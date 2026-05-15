@@ -1,0 +1,33 @@
+# BasicPileListFlow
+
+main: kit: flow: BasicPileListFlow:
+{
+  entity: "pile_list",
+  kind: "basic",
+  name: "BasicPileListFlow",
+  step: [
+    {
+      input: {
+        ref: "pile_list_ref01",
+        srcdatavar: "pile_list_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        deck_id: "deck01",
+        id: "pile_list01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-pile_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPileListFlow"
+}

@@ -1,0 +1,89 @@
+# Entity: pile_list
+
+main: kit: entity: pile_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deck_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "pile"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "remaining"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "pile_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_name"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/list/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_name}"
+            "list"
+          ]
+          select: {
+            exist: [
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deck"
+        "pile"
+      ]
+    ]
+  }
+
+
+
+}

@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "deck": {
+      "DECK00": {
+        "deck_id": "DECK01",
+        "remaining": "s29",
+        "shuffled": true,
+        "success": false
+      },
+      "DECK01": {
+        "deck_id": "DECK01",
+        "remaining": "s51",
+        "shuffled": true,
+        "success": false
+      },
+      "DECK02": {
+        "deck_id": "DECK01",
+        "remaining": "s79",
+        "shuffled": true,
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "deck": {
+      "deck_ref01": {
+        "deck_id": "DECK01",
+        "remaining": "sa1",
+        "shuffled": true,
+        "success": false
+      }
+    }
+  }
+}

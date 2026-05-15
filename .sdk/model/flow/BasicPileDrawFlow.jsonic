@@ -1,0 +1,27 @@
+# BasicPileDrawFlow
+
+main: kit: flow: BasicPileDrawFlow:
+{
+  entity: "pile_draw",
+  kind: "basic",
+  name: "BasicPileDrawFlow",
+  step: [
+    {
+      match: {
+        deck_id: "deck01",
+        pile_id: "pile01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "pile_draw_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPileDrawFlow"
+}

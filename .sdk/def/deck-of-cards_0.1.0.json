@@ -1,0 +1,904 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Deck of Cards API",
+    "description": "An API for playing cards. Allows users to shuffle, draw, reshuffle, create a new deck, use a partial deck, add to piles, shuffle piles, list cards in piles, draw from piles, and return cards to the deck.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://www.deckofcardsapi.com/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.deckofcardsapi.com/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/deck/new/": {
+      "get": {
+        "summary": "Create a brand new deck",
+        "description": "Open a brand new deck of cards. A-spades, 2-spades, 3-spades... followed by diamonds, clubs, then hearts.",
+        "operationId": "createNewDeck",
+        "tags": [
+          "Deck Operations"
+        ],
+        "parameters": [
+          {
+            "name": "jokers_enabled",
+            "in": "query",
+            "description": "Include two Jokers in the deck",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeckResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "3p40paa87x90",
+                  "shuffled": false,
+                  "remaining": 52
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/new/shuffle/": {
+      "get": {
+        "summary": "Create and shuffle a new deck",
+        "description": "Create a new shuffled deck of cards. Can specify number of decks and create partial decks.",
+        "operationId": "shuffleNewDeck",
+        "tags": [
+          "Deck Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_count",
+            "in": "query",
+            "description": "Number of decks to use (default is 1, Blackjack typically uses 6)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "cards",
+            "in": "query",
+            "description": "Comma-separated list of card codes to create a partial deck (e.g., AS,2S,KS,AD,2D,KD)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jokers_enabled",
+            "in": "query",
+            "description": "Include two Jokers in the deck",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeckResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "3p40paa87x90",
+                  "shuffled": true,
+                  "remaining": 52
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/shuffle/": {
+      "get": {
+        "summary": "Reshuffle an existing deck",
+        "description": "Shuffle an existing deck without creating a new one. Can optionally shuffle only remaining cards.",
+        "operationId": "reshuffleDeck",
+        "tags": [
+          "Deck Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "remaining",
+            "in": "query",
+            "description": "Only shuffle cards remaining in the main stack, leaving piles and drawn cards alone",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeckResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "3p40paa87x90",
+                  "shuffled": true,
+                  "remaining": 52
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/draw/": {
+      "get": {
+        "summary": "Draw cards from a deck",
+        "description": "Draw one or more cards from the deck. Use 'new' as deck_id to create a shuffled deck and draw in the same request.",
+        "operationId": "drawCards",
+        "tags": [
+          "Draw Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier (use 'new' to create a shuffled deck and draw from it)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of cards to draw from the deck",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DrawResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "kxozasf3edqu",
+                  "cards": [
+                    {
+                      "code": "6H",
+                      "image": "https://deckofcardsapi.com/static/img/6H.png",
+                      "images": {
+                        "svg": "https://deckofcardsapi.com/static/img/6H.svg",
+                        "png": "https://deckofcardsapi.com/static/img/6H.png"
+                      },
+                      "value": "6",
+                      "suit": "HEARTS"
+                    }
+                  ],
+                  "remaining": 51
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/add/": {
+      "get": {
+        "summary": "Add cards to a pile",
+        "description": "Add drawn cards to a pile. Piles are created on the fly. Note: This will not work with multiple decks.",
+        "operationId": "addToPile",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cards",
+            "in": "query",
+            "description": "Comma-separated list of card codes to add to the pile (e.g., AS,2S)",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PileResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "3p40paa87x90",
+                  "remaining": 12,
+                  "piles": {
+                    "discard": {
+                      "remaining": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/shuffle/": {
+      "get": {
+        "summary": "Shuffle a pile",
+        "description": "Shuffle cards in a specific pile. Note: This will not work with multiple decks.",
+        "operationId": "shufflePile",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/list/": {
+      "get": {
+        "summary": "List cards in a pile",
+        "description": "Get a list of all cards currently in a pile. Note: This will not work with multiple decks.",
+        "operationId": "listPileCards",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PileListResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "d5x0uw65g416",
+                  "remaining": 42,
+                  "piles": {
+                    "player1": {
+                      "remaining": 3
+                    },
+                    "player2": {
+                      "cards": [
+                        {
+                          "image": "https://www.deckofcardsapi.com/static/img/KH.png",
+                          "value": "KING",
+                          "suit": "HEARTS",
+                          "code": "KH"
+                        }
+                      ],
+                      "remaining": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/draw/": {
+      "get": {
+        "summary": "Draw cards from a pile (top)",
+        "description": "Draw specific cards or a number of cards from the top of a pile.",
+        "operationId": "drawFromPileTop",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cards",
+            "in": "query",
+            "description": "Comma-separated list of specific card codes to draw (e.g., AS)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of cards to draw from the pile",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PileDrawResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "3p40paa87x90",
+                  "remaining": 12,
+                  "piles": {
+                    "discard": {
+                      "remaining": 1
+                    }
+                  },
+                  "cards": [
+                    {
+                      "image": "https://www.deckofcardsapi.com/static/img/AS.png",
+                      "value": "ACE",
+                      "suit": "SPADES",
+                      "code": "AS"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/draw/bottom/": {
+      "get": {
+        "summary": "Draw cards from the bottom of a pile",
+        "description": "Draw cards from the bottom of a pile.",
+        "operationId": "drawFromPileBottom",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of cards to draw from the bottom of the pile",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PileDrawResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/draw/random/": {
+      "get": {
+        "summary": "Draw random cards from a pile",
+        "description": "Draw random cards from a pile.",
+        "operationId": "drawFromPileRandom",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Number of random cards to draw from the pile",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PileDrawResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/return/": {
+      "get": {
+        "summary": "Return all drawn cards to the deck",
+        "description": "Return all drawn cards back to the main deck to re-use.",
+        "operationId": "returnCardsToDeck",
+        "tags": [
+          "Deck Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cards",
+            "in": "query",
+            "description": "Comma-separated list of specific card codes to return (e.g., AS,2S)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnResponse"
+                },
+                "example": {
+                  "success": true,
+                  "deck_id": "3p40paa87x90",
+                  "shuffled": true,
+                  "remaining": 52,
+                  "piles": {
+                    "discard": {
+                      "remaining": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deck/{deck_id}/pile/{pile_name}/return/": {
+      "get": {
+        "summary": "Return cards from a pile to the deck",
+        "description": "Return cards from a specific pile back to the main deck.",
+        "operationId": "returnCardsFromPile",
+        "tags": [
+          "Pile Operations"
+        ],
+        "parameters": [
+          {
+            "name": "deck_id",
+            "in": "path",
+            "description": "The deck identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pile_name",
+            "in": "path",
+            "description": "The name of the pile",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cards",
+            "in": "query",
+            "description": "Comma-separated list of specific card codes to return (e.g., AS,2S)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeckResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the operation was successful"
+          },
+          "deck_id": {
+            "type": "string",
+            "description": "Unique identifier for the deck"
+          },
+          "shuffled": {
+            "type": "boolean",
+            "description": "Whether the deck is shuffled"
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the deck"
+          }
+        }
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Two-character card code (e.g., AS for Ace of Spades)"
+          },
+          "image": {
+            "type": "string",
+            "description": "URL to the PNG image of the card"
+          },
+          "images": {
+            "type": "object",
+            "properties": {
+              "svg": {
+                "type": "string",
+                "description": "URL to the SVG image of the card"
+              },
+              "png": {
+                "type": "string",
+                "description": "URL to the PNG image of the card"
+              }
+            }
+          },
+          "value": {
+            "type": "string",
+            "description": "Card value (e.g., ACE, 2, 10, KING)"
+          },
+          "suit": {
+            "type": "string",
+            "description": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)"
+          }
+        }
+      },
+      "DrawResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the operation was successful"
+          },
+          "deck_id": {
+            "type": "string",
+            "description": "Unique identifier for the deck"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            },
+            "description": "Array of drawn cards"
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the deck"
+          }
+        }
+      },
+      "PileInfo": {
+        "type": "object",
+        "properties": {
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the pile"
+          }
+        }
+      },
+      "PileResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the operation was successful"
+          },
+          "deck_id": {
+            "type": "string",
+            "description": "Unique identifier for the deck"
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the main deck"
+          },
+          "piles": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PileInfo"
+            },
+            "description": "Object containing pile information"
+          }
+        }
+      },
+      "PileDetailInfo": {
+        "type": "object",
+        "properties": {
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the pile"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            },
+            "description": "Array of cards in the pile"
+          }
+        }
+      },
+      "PileListResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the operation was successful"
+          },
+          "deck_id": {
+            "type": "string",
+            "description": "Unique identifier for the deck"
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the main deck"
+          },
+          "piles": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PileDetailInfo"
+            },
+            "description": "Object containing detailed pile information with cards"
+          }
+        }
+      },
+      "PileDrawResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the operation was successful"
+          },
+          "deck_id": {
+            "type": "string",
+            "description": "Unique identifier for the deck"
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the main deck"
+          },
+          "piles": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PileInfo"
+            },
+            "description": "Object containing pile information"
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Card"
+            },
+            "description": "Array of drawn cards from the pile"
+          }
+        }
+      },
+      "ReturnResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the operation was successful"
+          },
+          "deck_id": {
+            "type": "string",
+            "description": "Unique identifier for the deck"
+          },
+          "shuffled": {
+            "type": "boolean",
+            "description": "Whether the deck is shuffled"
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Number of cards remaining in the deck"
+          },
+          "piles": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/PileInfo"
+            },
+            "description": "Object containing pile information"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Deck Operations",
+      "description": "Operations for creating, shuffling, and managing decks"
+    },
+    {
+      "name": "Draw Operations",
+      "description": "Operations for drawing cards from decks"
+    },
+    {
+      "name": "Pile Operations",
+      "description": "Operations for managing card piles (hands, discard piles, etc.)"
+    }
+  ]
+}

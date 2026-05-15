@@ -1,0 +1,28 @@
+# BasicDeckFlow
+
+main: kit: flow: BasicDeckFlow:
+{
+  entity: "deck",
+  kind: "basic",
+  name: "BasicDeckFlow",
+  step: [
+    {
+      input: {
+        ref: "deck_ref01",
+        srcdatavar: "deck_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-deck_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDeckFlow"
+}

@@ -1,0 +1,140 @@
+# Entity: pile
+
+main: kit: entity: pile: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deck_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "pile"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "remaining"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "pile"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_name"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "card"
+                orig: "card"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/add/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_name}"
+            "add"
+          ]
+          select: {
+            "$action": "add"
+            exist: [
+              "card"
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_name"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/shuffle/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_name}"
+            "shuffle"
+          ]
+          select: {
+            "$action": "shuffle"
+            exist: [
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deck"
+        "pile"
+      ]
+    ]
+  }
+
+
+
+}

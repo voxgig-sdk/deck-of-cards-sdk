@@ -1,0 +1,69 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 12
+  metrics: count: method: 12
+
+  entity: deck: {
+    path: "/deck/new/": {
+      action: "new": {}
+      op: load: method: *GET
+    }
+    path: "/deck/new/shuffle/": {
+      op: load: method: *GET
+    }
+    path: "/deck/{deck_id}/shuffle/": {
+      action: "shuffle": {}
+      rename: param: "deck_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: draw: {
+    path: "/deck/{deck_id}/draw/": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: pile: {
+    path: "/deck/{deck_id}/pile/{pile_name}/add/": {
+      action: "add": {}
+      op: load: method: *GET
+    }
+    path: "/deck/{deck_id}/pile/{pile_name}/shuffle/": {
+      action: "shuffle": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: pile_draw: {
+    path: "/deck/{deck_id}/pile/{pile_name}/draw/": {
+      op: list: method: *GET
+    }
+    path: "/deck/{deck_id}/pile/{pile_name}/draw/bottom/": {
+      rename: param: "pile_name": *"pile_id"
+      op: list: method: *GET
+    }
+    path: "/deck/{deck_id}/pile/{pile_name}/draw/random/": {
+      rename: param: "pile_name": *"pile_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: pile_list: {
+    path: "/deck/{deck_id}/pile/{pile_name}/list/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: return: {
+    path: "/deck/{deck_id}/pile/{pile_name}/return/": {
+      op: load: method: *GET
+    }
+    path: "/deck/{deck_id}/return/": {
+      op: load: method: *GET
+    }
+  }
+
+}

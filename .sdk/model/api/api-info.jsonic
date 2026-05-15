@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "API Support"
+        url: "https://www.deckofcardsapi.com/"
+      }
+      description: "An API for playing cards. Allows users to shuffle, draw, reshuffle, create a new deck, use a partial deck, add to piles, shuffle piles, list cards in piles, draw from piles, and return cards to the deck."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://www.deckofcardsapi.com/api"
+        }
+      ]
+      title: "Deck of Cards API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

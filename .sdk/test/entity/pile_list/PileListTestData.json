@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "pile_list": {
+      "PILE_LIST00": {
+        "deck_id": "DECK01",
+        "pile": {},
+        "remaining": "s2a",
+        "success": false,
+        "pile_name": "PILE_NAME01"
+      },
+      "PILE_LIST01": {
+        "deck_id": "DECK01",
+        "pile": {},
+        "remaining": "s52",
+        "success": false,
+        "pile_name": "PILE_NAME01"
+      },
+      "PILE_LIST02": {
+        "deck_id": "DECK01",
+        "pile": {},
+        "remaining": "s7a",
+        "success": false,
+        "pile_name": "PILE_NAME01"
+      }
+    }
+  },
+  "new": {
+    "pile_list": {
+      "pile_list_ref01": {
+        "deck_id": "DECK01",
+        "pile": {},
+        "remaining": "sa2",
+        "success": false
+      }
+    }
+  }
+}

@@ -1,0 +1,217 @@
+# Entity: pile_draw
+
+main: kit: entity: pile_draw: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "image"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "suit"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "pile_draw"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_name"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "card"
+                orig: "card"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "count"
+                orig: "count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/draw/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_name}"
+            "draw"
+          ]
+          select: {
+            exist: [
+              "card"
+              "count"
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_id"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "count"
+                orig: "count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/draw/bottom/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_id}"
+            "draw"
+            "bottom"
+          ]
+          rename: {
+            param: {
+              pile_name: "pile_id"
+            }
+          }
+          select: {
+            exist: [
+              "count"
+              "deck_id"
+              "pile_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_id"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "count"
+                orig: "count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/draw/random/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_id}"
+            "draw"
+            "random"
+          ]
+          rename: {
+            param: {
+              pile_name: "pile_id"
+            }
+          }
+          select: {
+            exist: [
+              "count"
+              "deck_id"
+              "pile_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deck"
+        "pile"
+      ]
+    ]
+  }
+
+
+
+}

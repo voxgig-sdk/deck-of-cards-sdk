@@ -1,0 +1,32 @@
+# BasicReturnFlow
+
+main: kit: flow: BasicReturnFlow:
+{
+  entity: "return",
+  kind: "basic",
+  name: "BasicReturnFlow",
+  step: [
+    {
+      input: {
+        ref: "return_ref01",
+        srcdatavar: "return_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "return01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-return_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReturnFlow"
+}

@@ -1,0 +1,161 @@
+# Entity: deck
+
+main: kit: entity: deck: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deck_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "remaining"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "shuffled"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "deck"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "card"
+                orig: "card"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "deck_count"
+                orig: "deck_count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "jokers_enabled"
+                orig: "jokers_enabled"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/new/shuffle/"
+          parts: [
+            "deck"
+            "new"
+            "shuffle"
+          ]
+          select: {
+            exist: [
+              "card"
+              "deck_count"
+              "jokers_enabled"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "remaining"
+                orig: "remaining"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/shuffle/"
+          parts: [
+            "deck"
+            "{id}"
+            "shuffle"
+          ]
+          rename: {
+            param: {
+              deck_id: "id"
+            }
+          }
+          select: {
+            "$action": "shuffle"
+            exist: [
+              "id"
+              "remaining"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "jokers_enabled"
+                orig: "jokers_enabled"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/new/"
+          parts: [
+            "deck"
+            "new"
+          ]
+          select: {
+            "$action": "new"
+            exist: [
+              "jokers_enabled"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

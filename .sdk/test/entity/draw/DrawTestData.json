@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "draw": {
+      "DRAW00": {
+        "code": "s28",
+        "image": "s29",
+        "suit": "s2a",
+        "value": "s2b",
+        "deck_id": "DECK01"
+      },
+      "DRAW01": {
+        "code": "s50",
+        "image": "s51",
+        "suit": "s52",
+        "value": "s53",
+        "deck_id": "DECK01"
+      },
+      "DRAW02": {
+        "code": "s78",
+        "image": "s79",
+        "suit": "s7a",
+        "value": "s7b",
+        "deck_id": "DECK01"
+      }
+    }
+  },
+  "new": {
+    "draw": {
+      "draw_ref01": {
+        "code": "sa0",
+        "image": "sa1",
+        "suit": "sa2",
+        "value": "sa3"
+      }
+    }
+  }
+}
