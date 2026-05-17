@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/deck-of-cards-sdk"
-	"github.com/voxgig-sdk/deck-of-cards-sdk/core"
+	sdk "github.com/voxgig-sdk/deck-of-cards-sdk/go"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/deck-of-cards-sdk/go/utility/struct"
 )
 
 func TestDrawEntity(t *testing.T) {

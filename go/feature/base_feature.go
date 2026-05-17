@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/deck-of-cards-sdk/core"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
 )
 
 type BaseFeature struct {

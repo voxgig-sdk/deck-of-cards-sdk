@@ -1,10 +1,10 @@
 package voxgigdeckofcardssdk
 
 import (
-	"github.com/voxgig-sdk/deck-of-cards-sdk/core"
-	"github.com/voxgig-sdk/deck-of-cards-sdk/entity"
-	"github.com/voxgig-sdk/deck-of-cards-sdk/feature"
-	_ "github.com/voxgig-sdk/deck-of-cards-sdk/utility"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/entity"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/feature"
+	_ "github.com/voxgig-sdk/deck-of-cards-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

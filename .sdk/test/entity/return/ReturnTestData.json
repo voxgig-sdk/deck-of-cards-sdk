@@ -7,7 +7,8 @@
         "remaining": "s34",
         "shuffled": false,
         "success": true,
-        "pile_name": "PILE_NAME01"
+        "pile_name": "PILE_NAME01",
+        "id": "RETURN00"
       },
       "RETURN01": {
         "deck_id": "DECK01",
@@ -15,7 +16,8 @@
         "remaining": "s66",
         "shuffled": false,
         "success": true,
-        "pile_name": "PILE_NAME01"
+        "pile_name": "PILE_NAME01",
+        "id": "RETURN01"
       },
       "RETURN02": {
         "deck_id": "DECK01",
@@ -23,7 +25,8 @@
         "remaining": "s98",
         "shuffled": false,
         "success": true,
-        "pile_name": "PILE_NAME01"
+        "pile_name": "PILE_NAME01",
+        "id": "RETURN02"
       }
     }
   },

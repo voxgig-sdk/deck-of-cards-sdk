@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/deck-of-cards-sdk/core"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
 )
 
 type LogFeature struct {

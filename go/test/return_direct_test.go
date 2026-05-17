@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/deck-of-cards-sdk"
-	"github.com/voxgig-sdk/deck-of-cards-sdk/core"
+	sdk "github.com/voxgig-sdk/deck-of-cards-sdk/go"
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
 )
 
 func TestReturnDirect(t *testing.T) {

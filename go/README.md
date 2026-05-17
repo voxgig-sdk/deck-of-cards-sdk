@@ -5,14 +5,14 @@ The Golang SDK for the DeckOfCards API. Provides an entity-oriented interface us
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/deck-of-cards-sdk
+go get github.com/voxgig-sdk/deck-of-cards-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/deck-of-cards-sdk=../path/to/github.com/voxgig-sdk/deck-of-cards-sdk
+go mod edit -replace github.com/voxgig-sdk/deck-of-cards-sdk/go=../path/to/github.com/voxgig-sdk/deck-of-cards-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/deck-of-cards-sdk"
-    "github.com/voxgig-sdk/deck-of-cards-sdk/core"
+    sdk "github.com/voxgig-sdk/deck-of-cards-sdk/go"
+    "github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
 )
 
 func main() {
@@ -516,7 +516,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/deck-of-cards-sdk/
+github.com/voxgig-sdk/deck-of-cards-sdk/go/
 ├── deck-of-cards.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -525,7 +525,7 @@ github.com/voxgig-sdk/deck-of-cards-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/deck-of-cards-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/deck-of-cards-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

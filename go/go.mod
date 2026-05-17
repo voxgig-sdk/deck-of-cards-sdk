@@ -1,9 +1,4 @@
-module github.com/voxgig-sdk/deck-of-cards-sdk
+module github.com/voxgig-sdk/deck-of-cards-sdk/go
 
 go 1.20
 
-require (
-	github.com/voxgig/struct v0.0.0
-)
-
-replace github.com/voxgig/struct => ./utility/struct
