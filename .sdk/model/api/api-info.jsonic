@@ -17,8 +17,33 @@ main: {
       ]
       title: "Deck of Cards API"
       version: "1.0.0"
+      tagline: "Shuffle, draw, and manage virtual playing-card decks and piles over a simple HTTP API"
+      homepage: "https://www.deckofcardsapi.com/"
+      docs_url: "https://www.deckofcardsapi.com/"
+      license_short: "No license specified by the API author"
+      license_md: `- The Deck of Cards API does not publish an explicit licence on its homepage.
+- Created and maintained by Chase Roberts.
+- Treat the service as a free, best-effort hobby API; check the homepage for current terms before relying on it in production.`
+      about_md: `The [Deck of Cards API](https://www.deckofcardsapi.com/) is a small RESTful service that simulates one or more standard 52-card playing decks. It is maintained by Chase Roberts and is widely used as a teaching example for HTTP clients and card-game tutorials.
+
+What you get from the API:
+
+- Create a brand-new deck (\`/api/deck/new/\`) or a freshly shuffled deck (\`/api/deck/new/shuffle/\`).
+- Draw cards from the main deck (\`/api/deck/<deck_id>/draw/\`) and reshuffle remaining cards (\`/api/deck/<deck_id>/shuffle/\`).
+- Build and manage named piles per deck: add (\`/pile/<pile_name>/add/\`), draw (\`/pile/<pile_name>/draw/\`), list (\`/pile/<pile_name>/list/\`), and shuffle (\`/pile/<pile_name>/shuffle/\`) cards in a pile.
+- Return drawn or piled cards back to the main deck (\`/api/deck/<deck_id>/return/\`).
+- Support for partial decks (selected card codes) when creating a new deck.
+
+Operational notes: no authentication or API key is required and CORS is enabled on the endpoints. Deck identifiers expire after roughly two weeks of inactivity, so long-lived games should refresh or recreate decks as needed.`
+      entity_desc: {
+        deck: "A virtual deck of cards created and managed under `/api/deck/new/` and `/api/deck/<deck_id>/`, optionally shuffled at creation or built from a partial set of card codes."
+        draw: "Drawing cards from the main deck via `/api/deck/<deck_id>/draw/`, which removes the requested number of cards and returns their codes, suits, values, and images."
+        pile: "A named sub-collection of cards belonging to a deck, addressed as `/api/deck/<deck_id>/pile/<pile_name>/`, used to model hands, discard stacks, or any grouping of cards."
+        pile_draw: "Drawing cards out of a specific pile via `/api/deck/<deck_id>/pile/<pile_name>/draw/`, optionally by count or by specific card codes."
+        pile_list: "Listing the current contents of a named pile via `/api/deck/<deck_id>/pile/<pile_name>/list/` so clients can inspect which cards it holds."
+        return: "Returning previously drawn cards (from the main deck or from piles) back into the deck via `/api/deck/<deck_id>/return/`, so they can be drawn again."
+      }
+      auth: false
     }
   }
-}
-
 }

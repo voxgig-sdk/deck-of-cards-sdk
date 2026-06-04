@@ -88,7 +88,6 @@ function draw_basic_setup($extra)
         "DECKOFCARDS_TEST_DRAW_ENTID" => $idmap,
         "DECKOFCARDS_TEST_LIVE" => "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN" => "FALSE",
-        "DECKOFCARDS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +99,6 @@ function draw_basic_setup($extra)
     if ($env["DECKOFCARDS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DECKOFCARDS_APIKEY"],
             ],
             $extra ?? [],
         ]);

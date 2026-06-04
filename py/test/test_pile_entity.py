@@ -91,7 +91,6 @@ def _pile_basic_setup(extra):
         "DECKOFCARDS_TEST_PILE_ENTID": idmap,
         "DECKOFCARDS_TEST_LIVE": "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN": "FALSE",
-        "DECKOFCARDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _pile_basic_setup(extra):
     if env.get("DECKOFCARDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DECKOFCARDS_APIKEY"),
             },
             extra or {},
         ])
