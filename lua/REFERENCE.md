@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -123,7 +123,7 @@ local deck = client:Deck(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Deck(nil):load({ id = "deck_id" }, nil)
+local result, err = client:Deck():load({ id = "deck_id" })
 ```
 
 ### Common Methods
@@ -178,7 +178,7 @@ local draw = client:Draw(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Draw(nil):list(nil, nil)
+local results, err = client:Draw():list()
 ```
 
 ### Common Methods
@@ -233,7 +233,7 @@ local pile = client:Pile(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Pile(nil):load({ id = "pile_id" }, nil)
+local result, err = client:Pile():load({ id = "pile_id" })
 ```
 
 ### Common Methods
@@ -288,7 +288,7 @@ local pile_draw = client:PileDraw(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:PileDraw(nil):list(nil, nil)
+local results, err = client:PileDraw():list()
 ```
 
 ### Common Methods
@@ -343,7 +343,7 @@ local pile_list = client:PileList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PileList(nil):load({ id = "pile_list_id" }, nil)
+local result, err = client:PileList():load({ id = "pile_list_id" })
 ```
 
 ### Common Methods
@@ -399,7 +399,7 @@ local return = client:Return(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Return(nil):load({ id = "return_id" }, nil)
+local result, err = client:Return():load({ id = "return_id" })
 ```
 
 ### Common Methods

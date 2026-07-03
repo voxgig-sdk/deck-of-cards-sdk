@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DECKOFCARDS_TEST_DECK_ENTID': {},
     'DECKOFCARDS_TEST_LIVE': 'FALSE',
+    'DECKOFCARDS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DECKOFCARDS_TEST_LIVE
 
   if (live) {
     const client = new DeckOfCardsSDK({
+      apikey: env.DECKOFCARDS_APIKEY,
     })
 
     let idmap: any = env['DECKOFCARDS_TEST_DECK_ENTID']

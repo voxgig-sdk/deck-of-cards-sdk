@@ -1,22 +1,8 @@
 # DeckOfCards SDK
 
-Shuffle, draw, and manage virtual playing-card decks and piles over a simple HTTP API
+Deck of Cards API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Deck of Cards API
-
-The [Deck of Cards API](https://www.deckofcardsapi.com/) is a small RESTful service that simulates one or more standard 52-card playing decks. It is maintained by Chase Roberts and is widely used as a teaching example for HTTP clients and card-game tutorials.
-
-What you get from the API:
-
-- Create a brand-new deck (`/api/deck/new/`) or a freshly shuffled deck (`/api/deck/new/shuffle/`).
-- Draw cards from the main deck (`/api/deck/<deck_id>/draw/`) and reshuffle remaining cards (`/api/deck/<deck_id>/shuffle/`).
-- Build and manage named piles per deck: add (`/pile/<pile_name>/add/`), draw (`/pile/<pile_name>/draw/`), list (`/pile/<pile_name>/list/`), and shuffle (`/pile/<pile_name>/shuffle/`) cards in a pile.
-- Return drawn or piled cards back to the main deck (`/api/deck/<deck_id>/return/`).
-- Support for partial decks (selected card codes) when creating a new deck.
-
-Operational notes: no authentication or API key is required and CORS is enabled on the endpoints. Deck identifiers expire after roughly two weeks of inactivity, so long-lived games should refresh or recreate decks as needed.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install deck-of-cards-sdk
 luarocks install deck-of-cards-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DeckOfCardsSDK } from 'deck-of-cards'
 
-const client = new DeckOfCardsSDK({})
+const client = new DeckOfCardsSDK({
+  apikey: process.env.DECK-OF-CARDS_APIKEY,
+})
 
+// Load deck data
+const deck = await client.Deck().load({})
+console.log(deck.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,12 +90,12 @@ The API exposes 6 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Deck** | A virtual deck of cards created and managed under `/api/deck/new/` and `/api/deck/<deck_id>/`, optionally shuffled at creation or built from a partial set of card codes. | `/deck/new/shuffle/` |
-| **Draw** | Drawing cards from the main deck via `/api/deck/<deck_id>/draw/`, which removes the requested number of cards and returns their codes, suits, values, and images. | `/deck/{deck_id}/draw/` |
-| **Pile** | A named sub-collection of cards belonging to a deck, addressed as `/api/deck/<deck_id>/pile/<pile_name>/`, used to model hands, discard stacks, or any grouping of cards. | `/deck/{deck_id}/pile/{pile_name}/add/` |
-| **PileDraw** | Drawing cards out of a specific pile via `/api/deck/<deck_id>/pile/<pile_name>/draw/`, optionally by count or by specific card codes. | `/deck/{deck_id}/pile/{pile_name}/draw/` |
-| **PileList** | Listing the current contents of a named pile via `/api/deck/<deck_id>/pile/<pile_name>/list/` so clients can inspect which cards it holds. | `/deck/{deck_id}/pile/{pile_name}/list/` |
-| **Return** | Returning previously drawn cards (from the main deck or from piles) back into the deck via `/api/deck/<deck_id>/return/`, so they can be drawn again. | `/deck/{deck_id}/pile/{pile_name}/return/` |
+| **Deck** |  | `/deck/new/shuffle/` |
+| **Draw** |  | `/deck/{deck_id}/draw/` |
+| **Pile** |  | `/deck/{deck_id}/pile/{pile_name}/add/` |
+| **PileDraw** |  | `/deck/{deck_id}/pile/{pile_name}/draw/` |
+| **PileList** |  | `/deck/{deck_id}/pile/{pile_name}/list/` |
+| **Return** |  | `/deck/{deck_id}/pile/{pile_name}/return/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,15 +105,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from deckofcards_sdk import DeckOfCardsSDK
 
-client = DeckOfCardsSDK({})
+client = DeckOfCardsSDK({
+    "apikey": os.environ.get("DECK-OF-CARDS_APIKEY"),
+})
 
 
 # Load a specific deck
-deck, err = client.Deck(None).load(
-    {"id": "example_id"}, None
-)
+deck, err = client.Deck().load({"id": "example_id"})
+print(deck)
 ```
 
 ### PHP
@@ -132,13 +124,14 @@ deck, err = client.Deck(None).load(
 <?php
 require_once 'deckofcards_sdk.php';
 
-$client = new DeckOfCardsSDK([]);
+$client = new DeckOfCardsSDK([
+    "apikey" => getenv("DECK-OF-CARDS_APIKEY"),
+]);
 
 
 // Load a specific deck
-[$deck, $err] = $client->Deck(null)->load(
-    ["id" => "example_id"], null
-);
+[$deck, $err] = $client->Deck()->load(["id" => "example_id"]);
+print_r($deck);
 ```
 
 ### Golang
@@ -146,8 +139,13 @@ $client = new DeckOfCardsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/deck-of-cards-sdk/go"
 
-client := sdk.NewDeckOfCardsSDK(map[string]any{})
+client := sdk.NewDeckOfCardsSDK(map[string]any{
+    "apikey": os.Getenv("DECK-OF-CARDS_APIKEY"),
+})
 
+// Load deck data
+deck, err := client.Deck(nil).Load(map[string]any{}, nil)
+fmt.Println(deck)
 ```
 
 ### Ruby
@@ -155,13 +153,14 @@ client := sdk.NewDeckOfCardsSDK(map[string]any{})
 ```ruby
 require_relative "DeckOfCards_sdk"
 
-client = DeckOfCardsSDK.new({})
+client = DeckOfCardsSDK.new({
+  "apikey" => ENV["DECK-OF-CARDS_APIKEY"],
+})
 
 
 # Load a specific deck
-deck, err = client.Deck(nil).load(
-  { "id" => "example_id" }, nil
-)
+deck, err = client.Deck().load({ "id" => "example_id" })
+puts deck
 ```
 
 ### Lua
@@ -169,13 +168,14 @@ deck, err = client.Deck(nil).load(
 ```lua
 local sdk = require("deck-of-cards_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DECK-OF-CARDS_APIKEY"),
+})
 
 
 -- Load a specific deck
-local deck, err = client:Deck(nil):load(
-  { id = "example_id" }, nil
-)
+local deck, err = client:Deck():load({ id = "example_id" })
+print(deck)
 ```
 
 ## Unit testing in offline mode
@@ -194,25 +194,21 @@ const result = await client.Deck().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DeckOfCardsSDK.test(None, None)
-result, err = client.Deck(None).load(
-    {"id": "test01"}, None
-)
+client = DeckOfCardsSDK.test()
+result, err = client.Deck().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DeckOfCardsSDK::test(null, null);
-[$result, $err] = $client->Deck(null)->load(
-    ["id" => "test01"], null
-);
+$client = DeckOfCardsSDK::test();
+[$result, $err] = $client->Deck()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Deck(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -221,19 +217,15 @@ result, err := client.Deck(nil).Load(
 ### Ruby
 
 ```ruby
-client = DeckOfCardsSDK.test(nil, nil)
-result, err = client.Deck(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DeckOfCardsSDK.test
+result, err = client.Deck().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Deck(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Deck():load({ id = "test01" })
 ```
 
 ## How it works
@@ -337,14 +329,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Deck of Cards API
-
-- Upstream: [https://www.deckofcardsapi.com/](https://www.deckofcardsapi.com/)
-
-- The Deck of Cards API does not publish an explicit licence on its homepage.
-- Created and maintained by Chase Roberts.
-- Treat the service as a free, best-effort hobby API; check the homepage for current terms before relying on it in production.
 
 ---
 

@@ -20,6 +20,9 @@ class DeckOfCardsConfig
             ],
             "options" => [
                 "base" => "https://www.deckofcardsapi.com/api",
+                "auth" => [
+                    "prefix" => "Bearer",
+                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -36,66 +39,68 @@ class DeckOfCardsConfig
         'deck' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'deck_id',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'remaining',
               'req' => false,
               'type' => '`$INTEGER`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'shuffled',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'success',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'active' => true,
               'index$' => 3,
             ],
           ],
           'name' => 'deck',
           'op' => [
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'card',
                         'orig' => 'card',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'deck_count',
                         'orig' => 'deck_count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'jokers_enabled',
                         'orig' => 'jokers_enabled',
                         'reqd' => false,
                         'type' => '`$BOOLEAN`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -117,29 +122,29 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'remaining',
                         'orig' => 'remaining',
                         'reqd' => false,
                         'type' => '`$BOOLEAN`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -166,19 +171,19 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 1,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'jokers_enabled',
                         'orig' => 'jokers_enabled',
                         'reqd' => false,
                         'type' => '`$BOOLEAN`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -198,11 +203,9 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 2,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],
@@ -213,60 +216,62 @@ class DeckOfCardsConfig
         'draw' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'code',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'image',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'suit',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'value',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 3,
             ],
           ],
           'name' => 'draw',
           'op' => [
             'list' => [
+              'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'example' => 1,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -287,11 +292,9 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'list',
             ],
           ],
@@ -306,67 +309,69 @@ class DeckOfCardsConfig
         'pile' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'deck_id',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'pile',
               'req' => false,
               'type' => '`$OBJECT`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'remaining',
               'req' => false,
               'type' => '`$INTEGER`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'success',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'active' => true,
               'index$' => 3,
             ],
           ],
           'name' => 'pile',
           'op' => [
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_name',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'card',
                         'orig' => 'card',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -391,27 +396,27 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_name',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -435,11 +440,9 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 1,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],
@@ -455,75 +458,77 @@ class DeckOfCardsConfig
         'pile_draw' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'code',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'image',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'suit',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'value',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 3,
             ],
           ],
           'name' => 'pile_draw',
           'op' => [
             'list' => [
+              'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_name',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'card',
                         'orig' => 'card',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -548,37 +553,37 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_id',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -608,37 +613,37 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 1,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_id',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'count',
                         'orig' => 'count',
                         'reqd' => false,
                         'type' => '`$INTEGER`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -668,11 +673,9 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 2,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'list',
             ],
           ],
@@ -688,57 +691,59 @@ class DeckOfCardsConfig
         'pile_list' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'deck_id',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'pile',
               'req' => false,
               'type' => '`$OBJECT`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'remaining',
               'req' => false,
               'type' => '`$INTEGER`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'success',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'active' => true,
               'index$' => 3,
             ],
           ],
           'name' => 'pile_list',
           'op' => [
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_name',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -761,11 +766,9 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],
@@ -781,74 +784,76 @@ class DeckOfCardsConfig
         'return' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'deck_id',
               'req' => false,
               'type' => '`$STRING`',
-              'active' => true,
               'index$' => 0,
             ],
             [
+              'active' => true,
               'name' => 'pile',
               'req' => false,
               'type' => '`$OBJECT`',
-              'active' => true,
               'index$' => 1,
             ],
             [
+              'active' => true,
               'name' => 'remaining',
               'req' => false,
               'type' => '`$INTEGER`',
-              'active' => true,
               'index$' => 2,
             ],
             [
+              'active' => true,
               'name' => 'shuffled',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'active' => true,
               'index$' => 3,
             ],
             [
+              'active' => true,
               'name' => 'success',
               'req' => false,
               'type' => '`$BOOLEAN`',
-              'active' => true,
               'index$' => 4,
             ],
           ],
           'name' => 'return',
           'op' => [
             'load' => [
+              'input' => 'data',
               'name' => 'load',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'pile_name',
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'card',
                         'orig' => 'card',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -872,29 +877,29 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
                 [
+                  'active' => true,
                   'args' => [
                     'params' => [
                       [
+                        'active' => true,
                         'kind' => 'param',
                         'name' => 'deck_id',
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'card',
                         'orig' => 'card',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -915,11 +920,9 @@ class DeckOfCardsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 1,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'load',
             ],
           ],

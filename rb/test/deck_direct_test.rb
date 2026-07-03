@@ -61,12 +61,14 @@ def deck_direct_setup(mockres)
   env = Runner.env_override({
     "DECKOFCARDS_TEST_DECK_ENTID" => {},
     "DECKOFCARDS_TEST_LIVE" => "FALSE",
+    "DECKOFCARDS_APIKEY" => "NONE",
   })
 
   live = env["DECKOFCARDS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["DECKOFCARDS_APIKEY"],
     }
     client = DeckOfCardsSDK.new(merged_opts)
     return {

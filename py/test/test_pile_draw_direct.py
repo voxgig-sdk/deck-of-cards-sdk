@@ -77,12 +77,14 @@ def _pile_draw_direct_setup(mockres):
     env = runner.env_override({
         "DECKOFCARDS_TEST_PILE_DRAW_ENTID": {},
         "DECKOFCARDS_TEST_LIVE": "FALSE",
+        "DECKOFCARDS_APIKEY": "NONE",
     })
 
     live = env.get("DECKOFCARDS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("DECKOFCARDS_APIKEY"),
         }
         client = DeckOfCardsSDK(merged_opts)
         return {

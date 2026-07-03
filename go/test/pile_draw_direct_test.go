@@ -126,12 +126,14 @@ func pile_drawDirectSetup(mockres any) *pile_drawDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DECKOFCARDS_TEST_PILE_DRAW_ENTID": map[string]any{},
 		"DECKOFCARDS_TEST_LIVE":    "FALSE",
+		"DECKOFCARDS_APIKEY":       "NONE",
 	})
 
 	live := env["DECKOFCARDS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DECKOFCARDS_APIKEY"],
 		}
 		client := sdk.NewDeckOfCardsSDK(mergedOpts)
 

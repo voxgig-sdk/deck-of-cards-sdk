@@ -82,12 +82,14 @@ function pile_draw_direct_setup(mockres)
   local env = runner.env_override({
     ["DECKOFCARDS_TEST_PILE_DRAW_ENTID"] = {},
     ["DECKOFCARDS_TEST_LIVE"] = "FALSE",
+    ["DECKOFCARDS_APIKEY"] = "NONE",
   })
 
   local live = env["DECKOFCARDS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["DECKOFCARDS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
