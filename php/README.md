@@ -10,7 +10,7 @@ The PHP SDK for the DeckOfCards API — an entity-oriented client using PHP conv
 
 ## Install
 ```bash
-composer require voxgig/deck-of-cards-sdk
+composer require voxgig-sdk/deck-of-cards
 ```
 
 

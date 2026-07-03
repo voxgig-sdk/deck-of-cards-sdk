@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/deck-of-cards",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Deck of Cards public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "deck-of-cards"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/deck-of-cards-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/deck-of-cards-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/deck-of-cards-sdk/issues"
+  },
   "main": "dist/DeckOfCardsSDK.js",
   "type": "commonjs",
   "types": "dist/DeckOfCardsSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "DeckOfCards",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

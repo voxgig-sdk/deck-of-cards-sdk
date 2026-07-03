@@ -5,16 +5,19 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "voxgig-sdk-deck-of-cards"
 version = "0.0.1"
-description = "DeckOfCards SDK for Python"
+description = "Unofficial generated Python SDK for the Deck of Cards public API. Not affiliated with or endorsed by the upstream API provider."
+readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
+keywords = ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "deck-of-cards"]
 dependencies = [
-    "requests>=2.33",
     "requests>=2.33",
 ]
 
 [project.urls]
-Homepage = "https://github.com/voxgig/deck-of-cards-sdk"
+Homepage = "https://github.com/voxgig-sdk/deck-of-cards-sdk"
+Repository = "https://github.com/voxgig-sdk/deck-of-cards-sdk"
+Issues = "https://github.com/voxgig-sdk/deck-of-cards-sdk/issues"
 
 # Explicit package list — setuptools auto-discovery refuses to pick when
 # multiple top-level dirs (core/entity/feature/utility) are present.

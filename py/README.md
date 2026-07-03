@@ -10,7 +10,7 @@ The Python SDK for the DeckOfCards API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install deck-of-cards-sdk
+pip install voxgig-sdk-deck-of-cards
 ```
 
 Or install from source:

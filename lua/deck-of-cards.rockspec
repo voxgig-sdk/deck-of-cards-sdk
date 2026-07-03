@@ -8,12 +8,14 @@ source = {
   dir = "deck-of-cards-sdk/lua"
 }
 description = {
-  summary = "DeckOfCards SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Deck of Cards public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/deck-of-cards-sdk",
+  issues_url = "https://github.com/voxgig-sdk/deck-of-cards-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "deck-of-cards" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

@@ -10,7 +10,7 @@ The TypeScript SDK for the DeckOfCards API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install deck-of-cards
+npm install @voxgig-sdk/deck-of-cards
 ```
 ## Tutorial: your first API call
 

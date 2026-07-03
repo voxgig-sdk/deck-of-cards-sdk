@@ -10,13 +10,13 @@ The Ruby SDK for the DeckOfCards API — an entity-oriented client using idiomat
 
 ## Install
 ```bash
-gem install deck-of-cards-sdk
+gem install voxgig-sdk-deck-of-cards
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "deck-of-cards-sdk"
+gem "voxgig-sdk-deck-of-cards"
 ```
 
 Then run:
