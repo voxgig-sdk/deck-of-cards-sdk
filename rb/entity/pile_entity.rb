@@ -45,6 +45,7 @@ class PileEntity
     end
   end
 
+  # @return [Pile, Hash] the current Pile data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PileEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Pile fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Pile.
+  #
+  # @param reqmatch [PileLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Pile, Hash] the loaded Pile; raises DeckOfCardsError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

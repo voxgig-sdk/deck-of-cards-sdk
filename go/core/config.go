@@ -14,9 +14,6 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://www.deckofcardsapi.com/api",
-			"auth": map[string]any{
-				"prefix": "Bearer",
-			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -129,6 +126,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -255,6 +253,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{
@@ -348,6 +347,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -356,6 +356,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 									"query": []any{
@@ -403,6 +404,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -411,6 +413,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 								},
@@ -497,6 +500,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -505,6 +509,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 									"query": []any{
@@ -560,6 +565,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -568,6 +574,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 									"query": []any{
@@ -620,6 +627,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -628,6 +636,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 									"query": []any{
@@ -730,6 +739,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -738,6 +748,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 								},
@@ -830,6 +841,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -838,6 +850,7 @@ func MakeConfig() map[string]any {
 											"orig": "pile_name",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 									"query": []any{
@@ -884,6 +897,7 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 									"query": []any{

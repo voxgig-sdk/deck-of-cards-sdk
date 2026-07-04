@@ -49,8 +49,7 @@ class PileListEntityTest extends TestCase
         // LOAD
         $pile_list_ref01_ent = $client->PileList(null);
         $pile_list_ref01_match_dt0 = [];
-        [$pile_list_ref01_data_dt0_loaded, $err] = $pile_list_ref01_ent->load($pile_list_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $pile_list_ref01_data_dt0_loaded = $pile_list_ref01_ent->load($pile_list_ref01_match_dt0, null);
         $this->assertNotNull($pile_list_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function pile_list_basic_setup($extra)
         "DECKOFCARDS_TEST_PILE_LIST_ENTID" => $idmap,
         "DECKOFCARDS_TEST_LIVE" => "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN" => "FALSE",
-        "DECKOFCARDS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function pile_list_basic_setup($extra)
     if ($env["DECKOFCARDS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DECKOFCARDS_APIKEY"],
             ],
             $extra ?? [],
         ]);

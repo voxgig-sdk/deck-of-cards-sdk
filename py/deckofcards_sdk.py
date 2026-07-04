@@ -144,16 +144,23 @@ class DeckOfCardsSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class DeckOfCardsSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,40 +212,106 @@ class DeckOfCardsSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def deck(self):
+        """Idiomatic facade: client.deck.list() / client.deck.load({"id": ...})."""
+        from entity.deck_entity import DeckEntity
+        cached = getattr(self, "_deck", None)
+        if cached is None:
+            cached = DeckEntity(self, None)
+            self._deck = cached
+        return cached
 
     def Deck(self, data=None):
+        # Deprecated: use client.deck instead.
         from entity.deck_entity import DeckEntity
         return DeckEntity(self, data)
 
 
+    @property
+    def draw(self):
+        """Idiomatic facade: client.draw.list() / client.draw.load({"id": ...})."""
+        from entity.draw_entity import DrawEntity
+        cached = getattr(self, "_draw", None)
+        if cached is None:
+            cached = DrawEntity(self, None)
+            self._draw = cached
+        return cached
+
     def Draw(self, data=None):
+        # Deprecated: use client.draw instead.
         from entity.draw_entity import DrawEntity
         return DrawEntity(self, data)
 
 
+    @property
+    def pile(self):
+        """Idiomatic facade: client.pile.list() / client.pile.load({"id": ...})."""
+        from entity.pile_entity import PileEntity
+        cached = getattr(self, "_pile", None)
+        if cached is None:
+            cached = PileEntity(self, None)
+            self._pile = cached
+        return cached
+
     def Pile(self, data=None):
+        # Deprecated: use client.pile instead.
         from entity.pile_entity import PileEntity
         return PileEntity(self, data)
 
 
+    @property
+    def pile_draw(self):
+        """Idiomatic facade: client.pile_draw.list() / client.pile_draw.load({"id": ...})."""
+        from entity.pile_draw_entity import PileDrawEntity
+        cached = getattr(self, "_pile_draw", None)
+        if cached is None:
+            cached = PileDrawEntity(self, None)
+            self._pile_draw = cached
+        return cached
+
     def PileDraw(self, data=None):
+        # Deprecated: use client.pile_draw instead.
         from entity.pile_draw_entity import PileDrawEntity
         return PileDrawEntity(self, data)
 
 
+    @property
+    def pile_list(self):
+        """Idiomatic facade: client.pile_list.list() / client.pile_list.load({"id": ...})."""
+        from entity.pile_list_entity import PileListEntity
+        cached = getattr(self, "_pile_list", None)
+        if cached is None:
+            cached = PileListEntity(self, None)
+            self._pile_list = cached
+        return cached
+
     def PileList(self, data=None):
+        # Deprecated: use client.pile_list instead.
         from entity.pile_list_entity import PileListEntity
         return PileListEntity(self, data)
 
 
+    @property
+    def return(self):
+        """Idiomatic facade: client.return.list() / client.return.load({"id": ...})."""
+        from entity.return_entity import ReturnEntity
+        cached = getattr(self, "_return", None)
+        if cached is None:
+            cached = ReturnEntity(self, None)
+            self._return = cached
+        return cached
+
     def Return(self, data=None):
+        # Deprecated: use client.return instead.
         from entity.return_entity import ReturnEntity
         return ReturnEntity(self, data)
 

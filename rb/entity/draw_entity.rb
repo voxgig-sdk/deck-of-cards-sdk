@@ -45,6 +45,7 @@ class DrawEntity
     end
   end
 
+  # @return [Draw, Hash] the current Draw data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class DrawEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Draw fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class DrawEntity
   
 
   
+  # List Draw items matching the given filter.
+  #
+  # @param reqmatch [DrawListMatch, Hash, nil] match filter (any subset of Draw fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Draw>, Array] the matching Draw items; raises DeckOfCardsError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PileDrawListMatch
+---@param ctrl? table
+---@return PileDraw[]
+---@return string? err
 function PileDrawEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

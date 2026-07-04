@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://www.deckofcardsapi.com/api',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -169,7 +165,8 @@ class Config {
                     "name": "id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -295,7 +292,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -388,7 +386,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -396,7 +395,8 @@ class Config {
                     "name": "pile_name",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ],
                 "query": [
@@ -443,7 +443,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -451,7 +452,8 @@ class Config {
                     "name": "pile_name",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -537,7 +539,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -545,7 +548,8 @@ class Config {
                     "name": "pile_name",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ],
                 "query": [
@@ -600,7 +604,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -608,7 +613,8 @@ class Config {
                     "name": "pile_id",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ],
                 "query": [
@@ -660,7 +666,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -668,7 +675,8 @@ class Config {
                     "name": "pile_id",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ],
                 "query": [
@@ -770,7 +778,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -778,7 +787,8 @@ class Config {
                     "name": "pile_name",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -870,7 +880,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -878,7 +889,8 @@ class Config {
                     "name": "pile_name",
                     "orig": "pile_name",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ],
                 "query": [
@@ -924,7 +936,8 @@ class Config {
                     "name": "deck_id",
                     "orig": "deck_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

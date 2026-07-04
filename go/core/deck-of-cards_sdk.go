@@ -245,31 +245,49 @@ func (sdk *DeckOfCardsSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// Deck returns a Deck entity bound to this client.
+// Idiomatic usage: client.Deck(nil).List(nil, nil) or
+// client.Deck(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeckOfCardsSDK) Deck(data map[string]any) DeckOfCardsEntity {
 	return NewDeckEntityFunc(sdk, data)
 }
 
 
+// Draw returns a Draw entity bound to this client.
+// Idiomatic usage: client.Draw(nil).List(nil, nil) or
+// client.Draw(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeckOfCardsSDK) Draw(data map[string]any) DeckOfCardsEntity {
 	return NewDrawEntityFunc(sdk, data)
 }
 
 
+// Pile returns a Pile entity bound to this client.
+// Idiomatic usage: client.Pile(nil).List(nil, nil) or
+// client.Pile(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeckOfCardsSDK) Pile(data map[string]any) DeckOfCardsEntity {
 	return NewPileEntityFunc(sdk, data)
 }
 
 
+// PileDraw returns a PileDraw entity bound to this client.
+// Idiomatic usage: client.PileDraw(nil).List(nil, nil) or
+// client.PileDraw(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeckOfCardsSDK) PileDraw(data map[string]any) DeckOfCardsEntity {
 	return NewPileDrawEntityFunc(sdk, data)
 }
 
 
+// PileList returns a PileList entity bound to this client.
+// Idiomatic usage: client.PileList(nil).List(nil, nil) or
+// client.PileList(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeckOfCardsSDK) PileList(data map[string]any) DeckOfCardsEntity {
 	return NewPileListEntityFunc(sdk, data)
 }
 
 
+// Return returns a Return entity bound to this client.
+// Idiomatic usage: client.Return(nil).List(nil, nil) or
+// client.Return(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DeckOfCardsSDK) Return(data map[string]any) DeckOfCardsEntity {
 	return NewReturnEntityFunc(sdk, data)
 }

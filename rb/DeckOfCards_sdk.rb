@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'DeckOfCards_types'
+
 
 class DeckOfCardsSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class DeckOfCardsSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class DeckOfCardsSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue DeckOfCardsError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = DeckOfCardsHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class DeckOfCardsSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,46 +198,88 @@ class DeckOfCardsSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.deck.list / client.deck.load({ "id" => ... })
+  def deck
+    require_relative 'entity/deck_entity'
+    @deck ||= DeckEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.deck instead.
   def Deck(data = nil)
     require_relative 'entity/deck_entity'
     DeckEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.draw.list / client.draw.load({ "id" => ... })
+  def draw
+    require_relative 'entity/draw_entity'
+    @draw ||= DrawEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.draw instead.
   def Draw(data = nil)
     require_relative 'entity/draw_entity'
     DrawEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.pile.list / client.pile.load({ "id" => ... })
+  def pile
+    require_relative 'entity/pile_entity'
+    @pile ||= PileEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.pile instead.
   def Pile(data = nil)
     require_relative 'entity/pile_entity'
     PileEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.pile_draw.list / client.pile_draw.load({ "id" => ... })
+  def pile_draw
+    require_relative 'entity/pile_draw_entity'
+    @pile_draw ||= PileDrawEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.pile_draw instead.
   def PileDraw(data = nil)
     require_relative 'entity/pile_draw_entity'
     PileDrawEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.pile_list.list / client.pile_list.load({ "id" => ... })
+  def pile_list
+    require_relative 'entity/pile_list_entity'
+    @pile_list ||= PileListEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.pile_list instead.
   def PileList(data = nil)
     require_relative 'entity/pile_list_entity'
     PileListEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.return.list / client.return.load({ "id" => ... })
+  def return
+    require_relative 'entity/return_entity'
+    @return ||= ReturnEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.return instead.
   def Return(data = nil)
     require_relative 'entity/return_entity'
     ReturnEntity.new(self, data)

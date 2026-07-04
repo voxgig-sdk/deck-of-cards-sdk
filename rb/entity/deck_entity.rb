@@ -45,6 +45,7 @@ class DeckEntity
     end
   end
 
+  # @return [Deck, Hash] the current Deck data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class DeckEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Deck fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Deck.
+  #
+  # @param reqmatch [DeckLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Deck, Hash] the loaded Deck; raises DeckOfCardsError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -49,8 +49,7 @@ class TestReturnEntity:
         # LOAD
         return_ref01_ent = client.Return(None)
         return_ref01_match_dt0 = {}
-        return_ref01_data_dt0_loaded, err = return_ref01_ent.load(return_ref01_match_dt0, None)
-        assert err is None
+        return_ref01_data_dt0_loaded = return_ref01_ent.load(return_ref01_match_dt0, None)
         assert return_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _return_basic_setup(extra):
         "DECKOFCARDS_TEST_RETURN_ENTID": idmap,
         "DECKOFCARDS_TEST_LIVE": "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN": "FALSE",
-        "DECKOFCARDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _return_basic_setup(extra):
     if env.get("DECKOFCARDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DECKOFCARDS_APIKEY"),
             },
             extra or {},
         ])

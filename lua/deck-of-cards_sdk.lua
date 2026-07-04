@@ -244,36 +244,114 @@ end
 
 
 
+-- Idiomatic facade: client:deck():list() / client:deck():load({ id = ... })
+function DeckOfCardsSDK:deck(data)
+  local EntityMod = require("entity.deck_entity")
+  if data == nil then
+    if self._deck == nil then
+      self._deck = EntityMod.new(self, nil)
+    end
+    return self._deck
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:deck() instead.
 function DeckOfCardsSDK:Deck(data)
   local EntityMod = require("entity.deck_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:draw():list() / client:draw():load({ id = ... })
+function DeckOfCardsSDK:draw(data)
+  local EntityMod = require("entity.draw_entity")
+  if data == nil then
+    if self._draw == nil then
+      self._draw = EntityMod.new(self, nil)
+    end
+    return self._draw
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:draw() instead.
 function DeckOfCardsSDK:Draw(data)
   local EntityMod = require("entity.draw_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:pile():list() / client:pile():load({ id = ... })
+function DeckOfCardsSDK:pile(data)
+  local EntityMod = require("entity.pile_entity")
+  if data == nil then
+    if self._pile == nil then
+      self._pile = EntityMod.new(self, nil)
+    end
+    return self._pile
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:pile() instead.
 function DeckOfCardsSDK:Pile(data)
   local EntityMod = require("entity.pile_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:pile_draw():list() / client:pile_draw():load({ id = ... })
+function DeckOfCardsSDK:pile_draw(data)
+  local EntityMod = require("entity.pile_draw_entity")
+  if data == nil then
+    if self._pile_draw == nil then
+      self._pile_draw = EntityMod.new(self, nil)
+    end
+    return self._pile_draw
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:pile_draw() instead.
 function DeckOfCardsSDK:PileDraw(data)
   local EntityMod = require("entity.pile_draw_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:pile_list():list() / client:pile_list():load({ id = ... })
+function DeckOfCardsSDK:pile_list(data)
+  local EntityMod = require("entity.pile_list_entity")
+  if data == nil then
+    if self._pile_list == nil then
+      self._pile_list = EntityMod.new(self, nil)
+    end
+    return self._pile_list
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:pile_list() instead.
 function DeckOfCardsSDK:PileList(data)
   local EntityMod = require("entity.pile_list_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:return():list() / client:return():load({ id = ... })
+function DeckOfCardsSDK:return(data)
+  local EntityMod = require("entity.return_entity")
+  if data == nil then
+    if self._return == nil then
+      self._return = EntityMod.new(self, nil)
+    end
+    return self._return
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:return() instead.
 function DeckOfCardsSDK:Return(data)
   local EntityMod = require("entity.return_entity")
   return EntityMod.new(self, data)

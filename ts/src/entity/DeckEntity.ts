@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Deck,
+  DeckLoadMatch,
+} from '../DeckOfCardsTypes'
 
 // TODO: needs Entity superclass
-class DeckEntity extends DeckOfCardsEntityBase {
+class DeckEntity extends DeckOfCardsEntityBase<Deck> {
 
   constructor(client: DeckOfCardsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class DeckEntity extends DeckOfCardsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: DeckLoadMatch, ctrl?: Control): Promise<Deck> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class DeckEntity extends DeckOfCardsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Deck> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

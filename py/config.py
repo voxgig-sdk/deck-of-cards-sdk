@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://www.deckofcardsapi.com/api",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -130,6 +127,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -256,6 +254,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [
@@ -349,6 +348,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -357,6 +357,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                   "query": [
@@ -404,6 +405,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -412,6 +414,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -498,6 +501,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -506,6 +510,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                   "query": [
@@ -561,6 +566,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -569,6 +575,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                   "query": [
@@ -621,6 +628,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -629,6 +637,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                   "query": [
@@ -731,6 +740,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -739,6 +749,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -831,6 +842,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -839,6 +851,7 @@ def make_config():
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                   "query": [
@@ -885,6 +898,7 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                   "query": [

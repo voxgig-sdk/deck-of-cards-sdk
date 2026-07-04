@@ -121,7 +121,6 @@ func drawBasicSetup(extra map[string]any) *entityTestSetup {
 		"DECKOFCARDS_TEST_DRAW_ENTID": idmap,
 		"DECKOFCARDS_TEST_LIVE":      "FALSE",
 		"DECKOFCARDS_TEST_EXPLAIN":   "FALSE",
-		"DECKOFCARDS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DECKOFCARDS_TEST_DRAW_ENTID"])
@@ -132,7 +131,6 @@ func drawBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DECKOFCARDS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DECKOFCARDS_APIKEY"],
 			},
 			extra,
 		})

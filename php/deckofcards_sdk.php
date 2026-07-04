@@ -103,7 +103,7 @@ class DeckOfCardsSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class DeckOfCardsSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class DeckOfCardsSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,59 +216,125 @@ class DeckOfCardsSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Deck($data = null)
+    private $_deck = null;
+
+    // Idiomatic facade: $client->deck()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Deck() (PHP method
+    // names are case-insensitive).
+    public function deck($data = null)
     {
         require_once __DIR__ . '/entity/deck_entity.php';
+        if ($data === null) {
+            if ($this->_deck === null) {
+                $this->_deck = new DeckEntity($this, null);
+            }
+            return $this->_deck;
+        }
         return new DeckEntity($this, $data);
     }
 
 
-    public function Draw($data = null)
+    private $_draw = null;
+
+    // Idiomatic facade: $client->draw()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Draw() (PHP method
+    // names are case-insensitive).
+    public function draw($data = null)
     {
         require_once __DIR__ . '/entity/draw_entity.php';
+        if ($data === null) {
+            if ($this->_draw === null) {
+                $this->_draw = new DrawEntity($this, null);
+            }
+            return $this->_draw;
+        }
         return new DrawEntity($this, $data);
     }
 
 
-    public function Pile($data = null)
+    private $_pile = null;
+
+    // Idiomatic facade: $client->pile()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Pile() (PHP method
+    // names are case-insensitive).
+    public function pile($data = null)
     {
         require_once __DIR__ . '/entity/pile_entity.php';
+        if ($data === null) {
+            if ($this->_pile === null) {
+                $this->_pile = new PileEntity($this, null);
+            }
+            return $this->_pile;
+        }
         return new PileEntity($this, $data);
     }
 
 
-    public function PileDraw($data = null)
+    private $_pile_draw = null;
+
+    // Idiomatic facade: $client->pile_draw()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias PileDraw() (PHP method
+    // names are case-insensitive).
+    public function pile_draw($data = null)
     {
         require_once __DIR__ . '/entity/pile_draw_entity.php';
+        if ($data === null) {
+            if ($this->_pile_draw === null) {
+                $this->_pile_draw = new PileDrawEntity($this, null);
+            }
+            return $this->_pile_draw;
+        }
         return new PileDrawEntity($this, $data);
     }
 
 
-    public function PileList($data = null)
+    private $_pile_list = null;
+
+    // Idiomatic facade: $client->pile_list()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias PileList() (PHP method
+    // names are case-insensitive).
+    public function pile_list($data = null)
     {
         require_once __DIR__ . '/entity/pile_list_entity.php';
+        if ($data === null) {
+            if ($this->_pile_list === null) {
+                $this->_pile_list = new PileListEntity($this, null);
+            }
+            return $this->_pile_list;
+        }
         return new PileListEntity($this, $data);
     }
 
 
-    public function Return($data = null)
+    private $_return = null;
+
+    // Idiomatic facade: $client->return()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Return() (PHP method
+    // names are case-insensitive).
+    public function return($data = null)
     {
         require_once __DIR__ . '/entity/return_entity.php';
+        if ($data === null) {
+            if ($this->_return === null) {
+                $this->_return = new ReturnEntity($this, null);
+            }
+            return $this->_return;
+        }
         return new ReturnEntity($this, $data);
     }
 

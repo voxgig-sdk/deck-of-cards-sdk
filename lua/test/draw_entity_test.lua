@@ -94,7 +94,6 @@ function draw_basic_setup(extra)
     ["DECKOFCARDS_TEST_DRAW_ENTID"] = idmap,
     ["DECKOFCARDS_TEST_LIVE"] = "FALSE",
     ["DECKOFCARDS_TEST_EXPLAIN"] = "FALSE",
-    ["DECKOFCARDS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -106,7 +105,6 @@ function draw_basic_setup(extra)
   if env["DECKOFCARDS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["DECKOFCARDS_APIKEY"],
       },
       extra or {},
     })

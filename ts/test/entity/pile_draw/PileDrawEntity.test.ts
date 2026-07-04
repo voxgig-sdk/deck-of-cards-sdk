@@ -115,7 +115,6 @@ function basicSetup(extra?: any) {
     'DECK_OF_CARDS_TEST_PILE_DRAW_ENTID': idmap,
     'DECK_OF_CARDS_TEST_LIVE': 'FALSE',
     'DECK_OF_CARDS_TEST_EXPLAIN': 'FALSE',
-    'DECK_OF_CARDS_APIKEY': 'NONE',
   })
 
   idmap = env['DECK_OF_CARDS_TEST_PILE_DRAW_ENTID']
@@ -125,7 +124,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DeckOfCardsSDK(merge([
       {
-        apikey: env.DECK_OF_CARDS_APIKEY,
       },
       extra
     ]))

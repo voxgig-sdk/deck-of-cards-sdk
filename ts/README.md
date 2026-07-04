@@ -9,9 +9,12 @@ The TypeScript SDK for the DeckOfCards API — a type-safe, entity-oriented clie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/deck-of-cards
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/deck-of-cards-sdk/releases](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DeckOfCardsSDK } from 'deck-of-cards'
+import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
 
-const client = new DeckOfCardsSDK({
-  apikey: process.env.DECK-OF-CARDS_APIKEY,
-})
+const client = new DeckOfCardsSDK()
 ```
 
 ### 3. Load a deck
 
 ```ts
-const result = await client.Deck().load({ id: 'example_id' })
+const result = await client.deck.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DeckOfCardsSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.deck.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DeckOfCardsSDK({ apikey: '...' })
+const client = new DeckOfCardsSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.deck
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new DeckOfCardsSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new DeckOfCardsSDK({
 Create a `.env.local` file at the project root:
 
 ```
-DECK-OF-CARDS_TEST_LIVE=TRUE
-DECK-OF-CARDS_APIKEY=<your-key>
+DECK_OF_CARDS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new DeckOfCardsSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new DeckOfCardsSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -340,7 +337,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/return/`
 
 ### Deck
 
-Create an instance: `const deck = client.Deck()`
+Create an instance: `const deck = client.deck`
 
 #### Operations
 
@@ -360,13 +357,13 @@ Create an instance: `const deck = client.Deck()`
 #### Example: Load
 
 ```ts
-const deck = await client.Deck().load({ id: 'deck_id' })
+const deck = await client.deck.load({ id: 'deck_id' })
 ```
 
 
 ### Draw
 
-Create an instance: `const draw = client.Draw()`
+Create an instance: `const draw = client.draw`
 
 #### Operations
 
@@ -386,13 +383,13 @@ Create an instance: `const draw = client.Draw()`
 #### Example: List
 
 ```ts
-const draws = await client.Draw().list()
+const draws = await client.draw.list()
 ```
 
 
 ### Pile
 
-Create an instance: `const pile = client.Pile()`
+Create an instance: `const pile = client.pile`
 
 #### Operations
 
@@ -412,13 +409,13 @@ Create an instance: `const pile = client.Pile()`
 #### Example: Load
 
 ```ts
-const pile = await client.Pile().load({ id: 'pile_id' })
+const pile = await client.pile.load({ id: 'pile_id' })
 ```
 
 
 ### PileDraw
 
-Create an instance: `const pile_draw = client.PileDraw()`
+Create an instance: `const pile_draw = client.pile_draw`
 
 #### Operations
 
@@ -438,13 +435,13 @@ Create an instance: `const pile_draw = client.PileDraw()`
 #### Example: List
 
 ```ts
-const pile_draws = await client.PileDraw().list()
+const pile_draws = await client.pile_draw.list()
 ```
 
 
 ### PileList
 
-Create an instance: `const pile_list = client.PileList()`
+Create an instance: `const pile_list = client.pile_list`
 
 #### Operations
 
@@ -464,13 +461,13 @@ Create an instance: `const pile_list = client.PileList()`
 #### Example: Load
 
 ```ts
-const pile_list = await client.PileList().load({ id: 'pile_list_id' })
+const pile_list = await client.pile_list.load({ id: 'pile_list_id' })
 ```
 
 
 ### Return
 
-Create an instance: `const return = client.Return()`
+Create an instance: `const return = client.return`
 
 #### Operations
 
@@ -491,7 +488,7 @@ Create an instance: `const return = client.Return()`
 #### Example: Load
 
 ```ts
-const return = await client.Return().load({ id: 'return_id' })
+const return = await client.return.load({ id: 'return_id' })
 ```
 
 
@@ -552,7 +549,7 @@ deck-of-cards/
 Import the SDK from the package root:
 
 ```ts
-import { DeckOfCardsSDK } from 'deck-of-cards'
+import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
 ```
 
 ### Entity state
@@ -562,11 +559,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const deck = client.deck
+await deck.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// deck.data() now returns the loaded deck data
+// deck.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

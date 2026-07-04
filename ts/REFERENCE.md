@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -170,7 +169,7 @@ Alias for `DeckOfCardsSDK.test()`.
 ## DeckEntity
 
 ```ts
-const deck = client.Deck()
+const deck = client.deck
 ```
 
 ### Fields
@@ -189,7 +188,7 @@ const deck = client.Deck()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Deck().load({ id: 'deck_id' })
+const result = await client.deck.load({ id: 'deck_id' })
 ```
 
 ### Common Methods
@@ -223,7 +222,7 @@ Return a copy of the entity options.
 ## DrawEntity
 
 ```ts
-const draw = client.Draw()
+const draw = client.draw
 ```
 
 ### Fields
@@ -242,7 +241,7 @@ const draw = client.Draw()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Draw().list()
+const results = await client.draw.list()
 ```
 
 ### Common Methods
@@ -276,7 +275,7 @@ Return a copy of the entity options.
 ## PileEntity
 
 ```ts
-const pile = client.Pile()
+const pile = client.pile
 ```
 
 ### Fields
@@ -295,7 +294,7 @@ const pile = client.Pile()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Pile().load({ id: 'pile_id' })
+const result = await client.pile.load({ id: 'pile_id' })
 ```
 
 ### Common Methods
@@ -329,7 +328,7 @@ Return a copy of the entity options.
 ## PileDrawEntity
 
 ```ts
-const pile_draw = client.PileDraw()
+const pile_draw = client.pile_draw
 ```
 
 ### Fields
@@ -348,7 +347,7 @@ const pile_draw = client.PileDraw()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.PileDraw().list()
+const results = await client.pile_draw.list()
 ```
 
 ### Common Methods
@@ -382,7 +381,7 @@ Return a copy of the entity options.
 ## PileListEntity
 
 ```ts
-const pile_list = client.PileList()
+const pile_list = client.pile_list
 ```
 
 ### Fields
@@ -401,7 +400,7 @@ const pile_list = client.PileList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PileList().load({ id: 'pile_list_id' })
+const result = await client.pile_list.load({ id: 'pile_list_id' })
 ```
 
 ### Common Methods
@@ -435,7 +434,7 @@ Return a copy of the entity options.
 ## ReturnEntity
 
 ```ts
-const return = client.Return()
+const return = client.return
 ```
 
 ### Fields
@@ -455,7 +454,7 @@ const return = client.Return()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Return().load({ id: 'return_id' })
+const result = await client.return.load({ id: 'return_id' })
 ```
 
 ### Common Methods

@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -104,7 +103,7 @@ same parameters as `direct()`.
 ## DeckEntity
 
 ```lua
-local deck = client:Deck(nil)
+local deck = client:deck(nil)
 ```
 
 ### Fields
@@ -123,7 +122,7 @@ local deck = client:Deck(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Deck():load({ id = "deck_id" })
+local result, err = client:deck():load({ id = "deck_id" })
 ```
 
 ### Common Methods
@@ -159,7 +158,7 @@ Return the entity name.
 ## DrawEntity
 
 ```lua
-local draw = client:Draw(nil)
+local draw = client:draw(nil)
 ```
 
 ### Fields
@@ -178,7 +177,7 @@ local draw = client:Draw(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Draw():list()
+local results, err = client:draw():list()
 ```
 
 ### Common Methods
@@ -214,7 +213,7 @@ Return the entity name.
 ## PileEntity
 
 ```lua
-local pile = client:Pile(nil)
+local pile = client:pile(nil)
 ```
 
 ### Fields
@@ -233,7 +232,7 @@ local pile = client:Pile(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Pile():load({ id = "pile_id" })
+local result, err = client:pile():load({ id = "pile_id" })
 ```
 
 ### Common Methods
@@ -269,7 +268,7 @@ Return the entity name.
 ## PileDrawEntity
 
 ```lua
-local pile_draw = client:PileDraw(nil)
+local pile_draw = client:pile_draw(nil)
 ```
 
 ### Fields
@@ -288,7 +287,7 @@ local pile_draw = client:PileDraw(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:PileDraw():list()
+local results, err = client:pile_draw():list()
 ```
 
 ### Common Methods
@@ -324,7 +323,7 @@ Return the entity name.
 ## PileListEntity
 
 ```lua
-local pile_list = client:PileList(nil)
+local pile_list = client:pile_list(nil)
 ```
 
 ### Fields
@@ -343,7 +342,7 @@ local pile_list = client:PileList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PileList():load({ id = "pile_list_id" })
+local result, err = client:pile_list():load({ id = "pile_list_id" })
 ```
 
 ### Common Methods
@@ -379,7 +378,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```lua
-local return = client:Return(nil)
+local return = client:return(nil)
 ```
 
 ### Fields
@@ -399,7 +398,7 @@ local return = client:Return(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Return():load({ id = "return_id" })
+local result, err = client:return():load({ id = "return_id" })
 ```
 
 ### Common Methods

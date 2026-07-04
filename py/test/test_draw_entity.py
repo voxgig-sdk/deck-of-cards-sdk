@@ -52,8 +52,7 @@ class TestDrawEntity:
             "deck_id": setup["idmap"]["deck01"],
         }
 
-        draw_ref01_list_result, err = draw_ref01_ent.list(draw_ref01_match, None)
-        assert err is None
+        draw_ref01_list_result = draw_ref01_ent.list(draw_ref01_match, None)
         assert isinstance(draw_ref01_list_result, list)
 
 
@@ -94,7 +93,6 @@ def _draw_basic_setup(extra):
         "DECKOFCARDS_TEST_DRAW_ENTID": idmap,
         "DECKOFCARDS_TEST_LIVE": "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN": "FALSE",
-        "DECKOFCARDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -105,7 +103,6 @@ def _draw_basic_setup(extra):
     if env.get("DECKOFCARDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DECKOFCARDS_APIKEY"),
             },
             extra or {},
         ])

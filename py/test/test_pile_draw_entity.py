@@ -53,8 +53,7 @@ class TestPileDrawEntity:
             "pile_id": setup["idmap"]["pile01"],
         }
 
-        pile_draw_ref01_list_result, err = pile_draw_ref01_ent.list(pile_draw_ref01_match, None)
-        assert err is None
+        pile_draw_ref01_list_result = pile_draw_ref01_ent.list(pile_draw_ref01_match, None)
         assert isinstance(pile_draw_ref01_list_result, list)
 
 
@@ -95,7 +94,6 @@ def _pile_draw_basic_setup(extra):
         "DECKOFCARDS_TEST_PILE_DRAW_ENTID": idmap,
         "DECKOFCARDS_TEST_LIVE": "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN": "FALSE",
-        "DECKOFCARDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -106,7 +104,6 @@ def _pile_draw_basic_setup(extra):
     if env.get("DECKOFCARDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DECKOFCARDS_APIKEY"),
             },
             extra or {},
         ])

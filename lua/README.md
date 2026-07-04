@@ -9,12 +9,9 @@ The Lua SDK for the DeckOfCards API — an entity-oriented client using Lua conv
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-deck-of-cards
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("deck-of-cards_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("DECK-OF-CARDS_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a deck
 
 ```lua
-local result, err = client:Deck():load({ id = "example_id" })
+local result, err = client:deck():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:DeckOfCards():load({ id = "test01" })
+local result, err = client:deck():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-DECK-OF-CARDS_TEST_LIVE=TRUE
-DECK-OF-CARDS_APIKEY=<your-key>
+DECK_OF_CARDS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -295,7 +288,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/return/`
 
 ### Deck
 
-Create an instance: `const deck = client.Deck()`
+Create an instance: `const deck = client.deck`
 
 #### Operations
 
@@ -315,13 +308,13 @@ Create an instance: `const deck = client.Deck()`
 #### Example: Load
 
 ```ts
-const deck = await client.Deck().load({ id: 'deck_id' })
+const deck = await client.deck.load({ id: 'deck_id' })
 ```
 
 
 ### Draw
 
-Create an instance: `const draw = client.Draw()`
+Create an instance: `const draw = client.draw`
 
 #### Operations
 
@@ -341,13 +334,13 @@ Create an instance: `const draw = client.Draw()`
 #### Example: List
 
 ```ts
-const draws = await client.Draw().list()
+const draws = await client.draw.list()
 ```
 
 
 ### Pile
 
-Create an instance: `const pile = client.Pile()`
+Create an instance: `const pile = client.pile`
 
 #### Operations
 
@@ -367,13 +360,13 @@ Create an instance: `const pile = client.Pile()`
 #### Example: Load
 
 ```ts
-const pile = await client.Pile().load({ id: 'pile_id' })
+const pile = await client.pile.load({ id: 'pile_id' })
 ```
 
 
 ### PileDraw
 
-Create an instance: `const pile_draw = client.PileDraw()`
+Create an instance: `const pile_draw = client.pile_draw`
 
 #### Operations
 
@@ -393,13 +386,13 @@ Create an instance: `const pile_draw = client.PileDraw()`
 #### Example: List
 
 ```ts
-const pile_draws = await client.PileDraw().list()
+const pile_draws = await client.pile_draw.list()
 ```
 
 
 ### PileList
 
-Create an instance: `const pile_list = client.PileList()`
+Create an instance: `const pile_list = client.pile_list`
 
 #### Operations
 
@@ -419,13 +412,13 @@ Create an instance: `const pile_list = client.PileList()`
 #### Example: Load
 
 ```ts
-const pile_list = await client.PileList().load({ id: 'pile_list_id' })
+const pile_list = await client.pile_list.load({ id: 'pile_list_id' })
 ```
 
 
 ### Return
 
-Create an instance: `const return = client.Return()`
+Create an instance: `const return = client.return`
 
 #### Operations
 
@@ -446,7 +439,7 @@ Create an instance: `const return = client.Return()`
 #### Example: Load
 
 ```ts
-const return = await client.Return().load({ id: 'return_id' })
+const return = await client.return.load({ id: 'return_id' })
 ```
 
 
@@ -521,11 +514,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local deck = client:deck()
+deck:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- deck:data_get() now returns the loaded deck data
+-- deck:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

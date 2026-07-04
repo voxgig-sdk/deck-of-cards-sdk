@@ -42,8 +42,7 @@ class DeckEntityTest < Minitest::Test
     # LOAD
     deck_ref01_ent = client.Deck(nil)
     deck_ref01_match_dt0 = {}
-    deck_ref01_data_dt0_loaded, err = deck_ref01_ent.load(deck_ref01_match_dt0, nil)
-    assert_nil err
+    deck_ref01_data_dt0_loaded = deck_ref01_ent.load(deck_ref01_match_dt0, nil)
     assert !deck_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def deck_basic_setup(extra)
     "DECKOFCARDS_TEST_DECK_ENTID" => idmap,
     "DECKOFCARDS_TEST_LIVE" => "FALSE",
     "DECKOFCARDS_TEST_EXPLAIN" => "FALSE",
-    "DECKOFCARDS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def deck_basic_setup(extra)
   if env["DECKOFCARDS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DECKOFCARDS_APIKEY"],
       },
       extra || {},
     ])

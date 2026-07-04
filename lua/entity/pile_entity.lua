@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PileLoadMatch
+---@param ctrl? table
+---@return Pile
+---@return string? err
 function PileEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

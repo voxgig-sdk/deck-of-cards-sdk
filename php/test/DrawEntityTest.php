@@ -52,8 +52,7 @@ class DrawEntityTest extends TestCase
             "deck_id" => $setup["idmap"]["deck01"],
         ];
 
-        [$draw_ref01_list_result, $err] = $draw_ref01_ent->list($draw_ref01_match, null);
-        $this->assertNull($err);
+        $draw_ref01_list_result = $draw_ref01_ent->list($draw_ref01_match, null);
         $this->assertIsArray($draw_ref01_list_result);
 
     }
@@ -88,7 +87,6 @@ function draw_basic_setup($extra)
         "DECKOFCARDS_TEST_DRAW_ENTID" => $idmap,
         "DECKOFCARDS_TEST_LIVE" => "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN" => "FALSE",
-        "DECKOFCARDS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -100,7 +98,6 @@ function draw_basic_setup($extra)
     if ($env["DECKOFCARDS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DECKOFCARDS_APIKEY"],
             ],
             $extra ?? [],
         ]);

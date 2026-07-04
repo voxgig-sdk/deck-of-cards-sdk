@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DeckLoadMatch
+---@param ctrl? table
+---@return Deck
+---@return string? err
 function DeckEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

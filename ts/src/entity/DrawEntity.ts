@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Draw,
+  DrawListMatch,
+} from '../DeckOfCardsTypes'
 
 // TODO: needs Entity superclass
-class DrawEntity extends DeckOfCardsEntityBase {
+class DrawEntity extends DeckOfCardsEntityBase<Draw> {
 
   constructor(client: DeckOfCardsSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class DrawEntity extends DeckOfCardsEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: DrawListMatch, ctrl?: Control): Promise<Draw[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class DrawEntity extends DeckOfCardsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Draw[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

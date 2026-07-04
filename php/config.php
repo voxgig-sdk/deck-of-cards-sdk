@@ -20,9 +20,6 @@ class DeckOfCardsConfig
             ],
             "options" => [
                 "base" => "https://www.deckofcardsapi.com/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -135,6 +132,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -261,6 +259,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -354,6 +353,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -362,6 +362,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [
@@ -409,6 +410,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -417,6 +419,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -503,6 +506,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -511,6 +515,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [
@@ -566,6 +571,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -574,6 +580,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [
@@ -626,6 +633,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -634,6 +642,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [
@@ -736,6 +745,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -744,6 +754,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -836,6 +847,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -844,6 +856,7 @@ class DeckOfCardsConfig
                         'orig' => 'pile_name',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                     'query' => [
@@ -890,6 +903,7 @@ class DeckOfCardsConfig
                         'orig' => 'deck_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

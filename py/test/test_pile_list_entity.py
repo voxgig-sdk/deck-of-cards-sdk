@@ -49,8 +49,7 @@ class TestPileListEntity:
         # LOAD
         pile_list_ref01_ent = client.PileList(None)
         pile_list_ref01_match_dt0 = {}
-        pile_list_ref01_data_dt0_loaded, err = pile_list_ref01_ent.load(pile_list_ref01_match_dt0, None)
-        assert err is None
+        pile_list_ref01_data_dt0_loaded = pile_list_ref01_ent.load(pile_list_ref01_match_dt0, None)
         assert pile_list_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _pile_list_basic_setup(extra):
         "DECKOFCARDS_TEST_PILE_LIST_ENTID": idmap,
         "DECKOFCARDS_TEST_LIVE": "FALSE",
         "DECKOFCARDS_TEST_EXPLAIN": "FALSE",
-        "DECKOFCARDS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _pile_list_basic_setup(extra):
     if env.get("DECKOFCARDS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DECKOFCARDS_APIKEY"),
             },
             extra or {},
         ])

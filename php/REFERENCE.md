@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -76,7 +75,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -90,11 +92,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -102,7 +105,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## DeckEntity
 
 ```php
-$deck = $client->Deck();
+$deck = $client->deck();
 ```
 
 ### Fields
@@ -116,12 +119,12 @@ $deck = $client->Deck();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Deck()->load(["id" => "deck_id"]);
+$result = $client->deck()->load(["id" => "deck_id"]);
 ```
 
 ### Common Methods
@@ -157,7 +160,7 @@ Return the entity name.
 ## DrawEntity
 
 ```php
-$draw = $client->Draw();
+$draw = $client->draw();
 ```
 
 ### Fields
@@ -171,12 +174,12 @@ $draw = $client->Draw();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Draw()->list([]);
+$results = $client->draw()->list([]);
 ```
 
 ### Common Methods
@@ -212,7 +215,7 @@ Return the entity name.
 ## PileEntity
 
 ```php
-$pile = $client->Pile();
+$pile = $client->pile();
 ```
 
 ### Fields
@@ -226,12 +229,12 @@ $pile = $client->Pile();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Pile()->load(["id" => "pile_id"]);
+$result = $client->pile()->load(["id" => "pile_id"]);
 ```
 
 ### Common Methods
@@ -267,7 +270,7 @@ Return the entity name.
 ## PileDrawEntity
 
 ```php
-$pile_draw = $client->PileDraw();
+$pile_draw = $client->pile_draw();
 ```
 
 ### Fields
@@ -281,12 +284,12 @@ $pile_draw = $client->PileDraw();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->PileDraw()->list([]);
+$results = $client->pile_draw()->list([]);
 ```
 
 ### Common Methods
@@ -322,7 +325,7 @@ Return the entity name.
 ## PileListEntity
 
 ```php
-$pile_list = $client->PileList();
+$pile_list = $client->pile_list();
 ```
 
 ### Fields
@@ -336,12 +339,12 @@ $pile_list = $client->PileList();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->PileList()->load(["id" => "pile_list_id"]);
+$result = $client->pile_list()->load(["id" => "pile_list_id"]);
 ```
 
 ### Common Methods
@@ -377,7 +380,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```php
-$return = $client->Return();
+$return = $client->return();
 ```
 
 ### Fields
@@ -392,12 +395,12 @@ $return = $client->Return();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Return()->load(["id" => "return_id"]);
+$result = $client->return()->load(["id" => "return_id"]);
 ```
 
 ### Common Methods

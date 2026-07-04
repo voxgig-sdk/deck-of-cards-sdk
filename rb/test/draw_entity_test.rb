@@ -45,8 +45,7 @@ class DrawEntityTest < Minitest::Test
       "deck_id" => setup[:idmap]["deck01"],
     }
 
-    draw_ref01_list_result, err = draw_ref01_ent.list(draw_ref01_match, nil)
-    assert_nil err
+    draw_ref01_list_result = draw_ref01_ent.list(draw_ref01_match, nil)
     assert draw_ref01_list_result.is_a?(Array)
 
   end
@@ -85,7 +84,6 @@ def draw_basic_setup(extra)
     "DECKOFCARDS_TEST_DRAW_ENTID" => idmap,
     "DECKOFCARDS_TEST_LIVE" => "FALSE",
     "DECKOFCARDS_TEST_EXPLAIN" => "FALSE",
-    "DECKOFCARDS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -97,7 +95,6 @@ def draw_basic_setup(extra)
   if env["DECKOFCARDS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DECKOFCARDS_APIKEY"],
       },
       extra || {},
     ])

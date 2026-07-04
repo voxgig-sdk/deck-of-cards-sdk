@@ -85,6 +85,27 @@ func (e *PileListEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an PileList; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *PileListEntity) DataTyped(data ...PileList) PileList {
+	if len(data) > 0 {
+		return typedFrom[PileList](e.Data(asMap(data[0])))
+	}
+	return typedFrom[PileList](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through PileList (all fields
+// optional at the wire level).
+func (e *PileListEntity) MatchTyped(match ...PileList) PileList {
+	if len(match) > 0 {
+		return typedFrom[PileList](e.Match(asMap(match[0])))
+	}
+	return typedFrom[PileList](e.Match())
+}
+
 
 func (e *PileListEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *PileListEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// PileListLoadMatch and returns an PileList. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *PileListEntity) LoadTyped(reqmatch PileListLoadMatch, ctrl map[string]any) (PileList, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return PileList{}, err
+	}
+	return typedFrom[PileList](res), nil
 }
 
 

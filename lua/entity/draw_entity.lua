@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch DrawListMatch
+---@param ctrl? table
+---@return Draw[]
+---@return string? err
 function DrawEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

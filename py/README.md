@@ -9,11 +9,9 @@ The Python SDK for the DeckOfCards API — an entity-oriented client following P
 
 
 ## Install
-```bash
-pip install voxgig-sdk-deck-of-cards
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,21 +26,19 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from deckofcards_sdk import DeckOfCardsSDK
 
-client = DeckOfCardsSDK({
-    "apikey": os.environ.get("DECK-OF-CARDS_APIKEY"),
-})
+client = DeckOfCardsSDK()
 ```
 
 ### 3. Load a deck
 
 ```python
-result, err = client.Deck().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.deck.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -53,29 +49,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -89,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DeckOfCardsSDK.test()
 
-result, err = client.DeckOfCards().load({"id": "test01"})
+result = client.deck.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -119,8 +114,7 @@ client = DeckOfCardsSDK({
 Create a `.env.local` file at the project root:
 
 ```
-DECK-OF-CARDS_TEST_LIVE=TRUE
-DECK-OF-CARDS_APIKEY=<your-key>
+DECK_OF_CARDS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -166,8 +159,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Deck` | `(data) -> DeckEntity` | Create a Deck entity instance. |
 | `Draw` | `(data) -> DrawEntity` | Create a Draw entity instance. |
 | `Pile` | `(data) -> PileEntity` | Create a Pile entity instance. |
@@ -181,11 +174,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -195,8 +188,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -295,7 +292,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/return/`
 
 ### Deck
 
-Create an instance: `const deck = client.Deck()`
+Create an instance: `const deck = client.deck`
 
 #### Operations
 
@@ -315,13 +312,13 @@ Create an instance: `const deck = client.Deck()`
 #### Example: Load
 
 ```ts
-const deck = await client.Deck().load({ id: 'deck_id' })
+const deck = await client.deck.load({ id: 'deck_id' })
 ```
 
 
 ### Draw
 
-Create an instance: `const draw = client.Draw()`
+Create an instance: `const draw = client.draw`
 
 #### Operations
 
@@ -341,13 +338,13 @@ Create an instance: `const draw = client.Draw()`
 #### Example: List
 
 ```ts
-const draws = await client.Draw().list()
+const draws = await client.draw.list()
 ```
 
 
 ### Pile
 
-Create an instance: `const pile = client.Pile()`
+Create an instance: `const pile = client.pile`
 
 #### Operations
 
@@ -367,13 +364,13 @@ Create an instance: `const pile = client.Pile()`
 #### Example: Load
 
 ```ts
-const pile = await client.Pile().load({ id: 'pile_id' })
+const pile = await client.pile.load({ id: 'pile_id' })
 ```
 
 
 ### PileDraw
 
-Create an instance: `const pile_draw = client.PileDraw()`
+Create an instance: `const pile_draw = client.pile_draw`
 
 #### Operations
 
@@ -393,13 +390,13 @@ Create an instance: `const pile_draw = client.PileDraw()`
 #### Example: List
 
 ```ts
-const pile_draws = await client.PileDraw().list()
+const pile_draws = await client.pile_draw.list()
 ```
 
 
 ### PileList
 
-Create an instance: `const pile_list = client.PileList()`
+Create an instance: `const pile_list = client.pile_list`
 
 #### Operations
 
@@ -419,13 +416,13 @@ Create an instance: `const pile_list = client.PileList()`
 #### Example: Load
 
 ```ts
-const pile_list = await client.PileList().load({ id: 'pile_list_id' })
+const pile_list = await client.pile_list.load({ id: 'pile_list_id' })
 ```
 
 
 ### Return
 
-Create an instance: `const return = client.Return()`
+Create an instance: `const return = client.return`
 
 #### Operations
 
@@ -446,7 +443,7 @@ Create an instance: `const return = client.Return()`
 #### Example: Load
 
 ```ts
-const return = await client.Return().load({ id: 'return_id' })
+const return = await client.return.load({ id: 'return_id' })
 ```
 
 
@@ -520,11 +517,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+deck = client.deck
+deck.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# deck.data_get() now returns the loaded deck data
+# deck.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
