@@ -4,93 +4,85 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Deck:
-    deck_id: Optional[str] = None
-    remaining: Optional[int] = None
-    shuffled: Optional[bool] = None
-    success: Optional[bool] = None
+class Deck(TypedDict, total=False):
+    deck_id: str
+    remaining: int
+    shuffled: bool
+    success: bool
 
 
-@dataclass
-class DeckLoadMatch:
+class DeckLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Draw:
-    code: Optional[str] = None
-    image: Optional[str] = None
-    suit: Optional[str] = None
-    value: Optional[str] = None
+class Draw(TypedDict, total=False):
+    code: str
+    image: str
+    suit: str
+    value: str
 
 
-@dataclass
-class DrawListMatch:
+class DrawListMatch(TypedDict):
     deck_id: str
 
 
-@dataclass
-class Pile:
-    deck_id: Optional[str] = None
-    pile: Optional[dict] = None
-    remaining: Optional[int] = None
-    success: Optional[bool] = None
+class Pile(TypedDict, total=False):
+    deck_id: str
+    pile: dict
+    remaining: int
+    success: bool
 
 
-@dataclass
-class PileLoadMatch:
+class PileLoadMatch(TypedDict):
     deck_id: str
     pile_name: str
 
 
-@dataclass
-class PileDraw:
-    code: Optional[str] = None
-    image: Optional[str] = None
-    suit: Optional[str] = None
-    value: Optional[str] = None
+class PileDraw(TypedDict, total=False):
+    code: str
+    image: str
+    suit: str
+    value: str
 
 
-@dataclass
-class PileDrawListMatch:
+class PileDrawListMatch(TypedDict):
     deck_id: str
     pile_name: str
     pile_id: str
 
 
-@dataclass
-class PileList:
-    deck_id: Optional[str] = None
-    pile: Optional[dict] = None
-    remaining: Optional[int] = None
-    success: Optional[bool] = None
+class PileList(TypedDict, total=False):
+    deck_id: str
+    pile: dict
+    remaining: int
+    success: bool
 
 
-@dataclass
-class PileListLoadMatch:
+class PileListLoadMatch(TypedDict):
     deck_id: str
     pile_name: str
 
 
-@dataclass
-class Return:
-    deck_id: Optional[str] = None
-    pile: Optional[dict] = None
-    remaining: Optional[int] = None
-    shuffled: Optional[bool] = None
-    success: Optional[bool] = None
+class Return(TypedDict, total=False):
+    deck_id: str
+    pile: dict
+    remaining: int
+    shuffled: bool
+    success: bool
 
 
-@dataclass
-class ReturnLoadMatch:
+class ReturnLoadMatch(TypedDict):
     deck_id: str
     pile_name: str
-

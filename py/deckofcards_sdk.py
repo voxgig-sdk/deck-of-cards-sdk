@@ -220,105 +220,45 @@ class DeckOfCardsSDK:
         }
 
 
-    @property
-    def deck(self):
-        """Idiomatic facade: client.deck.list() / client.deck.load({"id": ...})."""
-        from entity.deck_entity import DeckEntity
-        cached = getattr(self, "_deck", None)
-        if cached is None:
-            cached = DeckEntity(self, None)
-            self._deck = cached
-        return cached
-
-    def Deck(self, data=None):
-        # Deprecated: use client.deck instead.
+    def Deck(self, data=None) -> "DeckEntity":
+        """Entity factory: client.Deck().list({}) / client.Deck().load({"id": ...})."""
         from entity.deck_entity import DeckEntity
         return DeckEntity(self, data)
 
 
-    @property
-    def draw(self):
-        """Idiomatic facade: client.draw.list() / client.draw.load({"id": ...})."""
-        from entity.draw_entity import DrawEntity
-        cached = getattr(self, "_draw", None)
-        if cached is None:
-            cached = DrawEntity(self, None)
-            self._draw = cached
-        return cached
-
-    def Draw(self, data=None):
-        # Deprecated: use client.draw instead.
+    def Draw(self, data=None) -> "DrawEntity":
+        """Entity factory: client.Draw().list({}) / client.Draw().load({"id": ...})."""
         from entity.draw_entity import DrawEntity
         return DrawEntity(self, data)
 
 
-    @property
-    def pile(self):
-        """Idiomatic facade: client.pile.list() / client.pile.load({"id": ...})."""
-        from entity.pile_entity import PileEntity
-        cached = getattr(self, "_pile", None)
-        if cached is None:
-            cached = PileEntity(self, None)
-            self._pile = cached
-        return cached
-
-    def Pile(self, data=None):
-        # Deprecated: use client.pile instead.
+    def Pile(self, data=None) -> "PileEntity":
+        """Entity factory: client.Pile().list({}) / client.Pile().load({"id": ...})."""
         from entity.pile_entity import PileEntity
         return PileEntity(self, data)
 
 
-    @property
-    def pile_draw(self):
-        """Idiomatic facade: client.pile_draw.list() / client.pile_draw.load({"id": ...})."""
-        from entity.pile_draw_entity import PileDrawEntity
-        cached = getattr(self, "_pile_draw", None)
-        if cached is None:
-            cached = PileDrawEntity(self, None)
-            self._pile_draw = cached
-        return cached
-
-    def PileDraw(self, data=None):
-        # Deprecated: use client.pile_draw instead.
+    def PileDraw(self, data=None) -> "PileDrawEntity":
+        """Entity factory: client.PileDraw().list({}) / client.PileDraw().load({"id": ...})."""
         from entity.pile_draw_entity import PileDrawEntity
         return PileDrawEntity(self, data)
 
 
-    @property
-    def pile_list(self):
-        """Idiomatic facade: client.pile_list.list() / client.pile_list.load({"id": ...})."""
-        from entity.pile_list_entity import PileListEntity
-        cached = getattr(self, "_pile_list", None)
-        if cached is None:
-            cached = PileListEntity(self, None)
-            self._pile_list = cached
-        return cached
-
-    def PileList(self, data=None):
-        # Deprecated: use client.pile_list instead.
+    def PileList(self, data=None) -> "PileListEntity":
+        """Entity factory: client.PileList().list({}) / client.PileList().load({"id": ...})."""
         from entity.pile_list_entity import PileListEntity
         return PileListEntity(self, data)
 
 
-    @property
-    def return(self):
-        """Idiomatic facade: client.return.list() / client.return.load({"id": ...})."""
-        from entity.return_entity import ReturnEntity
-        cached = getattr(self, "_return", None)
-        if cached is None:
-            cached = ReturnEntity(self, None)
-            self._return = cached
-        return cached
-
-    def Return(self, data=None):
-        # Deprecated: use client.return instead.
+    def Return(self, data=None) -> "ReturnEntity":
+        """Entity factory: client.Return().list({}) / client.Return().load({"id": ...})."""
         from entity.return_entity import ReturnEntity
         return ReturnEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DeckOfCardsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -338,3 +278,14 @@ class DeckOfCardsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.deck_entity import DeckEntity
+    from entity.draw_entity import DrawEntity
+    from entity.pile_entity import PileEntity
+    from entity.pile_draw_entity import PileDrawEntity
+    from entity.pile_list_entity import PileListEntity
+    from entity.return_entity import ReturnEntity

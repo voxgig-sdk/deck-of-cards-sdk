@@ -103,7 +103,7 @@ same parameters as `direct()`.
 ## DeckEntity
 
 ```lua
-local deck = client:deck(nil)
+local deck = client:Deck(nil)
 ```
 
 ### Fields
@@ -122,7 +122,7 @@ local deck = client:deck(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:deck():load({ id = "deck_id" })
+local result, err = client:Deck():load({ id = "deck_id" })
 ```
 
 ### Common Methods
@@ -158,7 +158,7 @@ Return the entity name.
 ## DrawEntity
 
 ```lua
-local draw = client:draw(nil)
+local draw = client:Draw(nil)
 ```
 
 ### Fields
@@ -177,7 +177,7 @@ local draw = client:draw(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:draw():list()
+local results, err = client:Draw():list()
 ```
 
 ### Common Methods
@@ -213,7 +213,7 @@ Return the entity name.
 ## PileEntity
 
 ```lua
-local pile = client:pile(nil)
+local pile = client:Pile(nil)
 ```
 
 ### Fields
@@ -232,7 +232,7 @@ local pile = client:pile(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:pile():load({ id = "pile_id" })
+local result, err = client:Pile():load({ id = "pile_id" })
 ```
 
 ### Common Methods
@@ -268,7 +268,7 @@ Return the entity name.
 ## PileDrawEntity
 
 ```lua
-local pile_draw = client:pile_draw(nil)
+local pile_draw = client:PileDraw(nil)
 ```
 
 ### Fields
@@ -287,7 +287,7 @@ local pile_draw = client:pile_draw(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:pile_draw():list()
+local results, err = client:PileDraw():list()
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ Return the entity name.
 ## PileListEntity
 
 ```lua
-local pile_list = client:pile_list(nil)
+local pile_list = client:PileList(nil)
 ```
 
 ### Fields
@@ -342,7 +342,7 @@ local pile_list = client:pile_list(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:pile_list():load({ id = "pile_list_id" })
+local result, err = client:PileList():load({ id = "pile_list_id" })
 ```
 
 ### Common Methods
@@ -378,7 +378,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```lua
-local return = client:return(nil)
+local return = client:Return(nil)
 ```
 
 ### Fields
@@ -398,7 +398,7 @@ local return = client:return(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:return():load({ id = "return_id" })
+local result, err = client:Return():load({ id = "return_id" })
 ```
 
 ### Common Methods

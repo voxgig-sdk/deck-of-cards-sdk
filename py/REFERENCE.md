@@ -100,7 +100,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## DeckEntity
 
 ```python
-deck = client.deck
+deck = client.Deck()
 ```
 
 ### Fields
@@ -119,7 +119,7 @@ deck = client.deck
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.deck.load({"id": "deck_id"})
+result = client.Deck().load({"id": "deck_id"})
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## DrawEntity
 
 ```python
-draw = client.draw
+draw = client.Draw()
 ```
 
 ### Fields
@@ -173,7 +173,9 @@ draw = client.draw
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.draw.list({})
+results = client.Draw().list({})
+for draw in results:
+    print(draw)
 ```
 
 ### Common Methods
@@ -208,7 +210,7 @@ Return the entity name.
 ## PileEntity
 
 ```python
-pile = client.pile
+pile = client.Pile()
 ```
 
 ### Fields
@@ -227,7 +229,7 @@ pile = client.pile
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.pile.load({"id": "pile_id"})
+result = client.Pile().load({"id": "pile_id"})
 ```
 
 ### Common Methods
@@ -262,7 +264,7 @@ Return the entity name.
 ## PileDrawEntity
 
 ```python
-pile_draw = client.pile_draw
+pile_draw = client.PileDraw()
 ```
 
 ### Fields
@@ -281,7 +283,9 @@ pile_draw = client.pile_draw
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.pile_draw.list({})
+results = client.PileDraw().list({})
+for pile_draw in results:
+    print(pile_draw)
 ```
 
 ### Common Methods
@@ -316,7 +320,7 @@ Return the entity name.
 ## PileListEntity
 
 ```python
-pile_list = client.pile_list
+pile_list = client.PileList()
 ```
 
 ### Fields
@@ -335,7 +339,7 @@ pile_list = client.pile_list
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.pile_list.load({"id": "pile_list_id"})
+result = client.PileList().load({"id": "pile_list_id"})
 ```
 
 ### Common Methods
@@ -370,7 +374,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```python
-return = client.return
+return = client.Return()
 ```
 
 ### Fields
@@ -390,7 +394,7 @@ return = client.return
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.return.load({"id": "return_id"})
+result = client.Return().load({"id": "return_id"})
 ```
 
 ### Common Methods

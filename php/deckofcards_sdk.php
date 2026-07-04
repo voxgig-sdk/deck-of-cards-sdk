@@ -233,10 +233,10 @@ class DeckOfCardsSDK
 
     private $_deck = null;
 
-    // Idiomatic facade: $client->deck()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Deck() (PHP method
-    // names are case-insensitive).
-    public function deck($data = null)
+    // Canonical facade: $client->Deck()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->deck()
+    // resolves here too.
+    public function Deck($data = null)
     {
         require_once __DIR__ . '/entity/deck_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DeckOfCardsSDK
 
     private $_draw = null;
 
-    // Idiomatic facade: $client->draw()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Draw() (PHP method
-    // names are case-insensitive).
-    public function draw($data = null)
+    // Canonical facade: $client->Draw()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->draw()
+    // resolves here too.
+    public function Draw($data = null)
     {
         require_once __DIR__ . '/entity/draw_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DeckOfCardsSDK
 
     private $_pile = null;
 
-    // Idiomatic facade: $client->pile()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Pile() (PHP method
-    // names are case-insensitive).
-    public function pile($data = null)
+    // Canonical facade: $client->Pile()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->pile()
+    // resolves here too.
+    public function Pile($data = null)
     {
         require_once __DIR__ . '/entity/pile_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class DeckOfCardsSDK
 
     private $_pile_draw = null;
 
-    // Idiomatic facade: $client->pile_draw()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PileDraw() (PHP method
-    // names are case-insensitive).
-    public function pile_draw($data = null)
+    // Canonical facade: $client->PileDraw()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->pile_draw()
+    // resolves here too.
+    public function PileDraw($data = null)
     {
         require_once __DIR__ . '/entity/pile_draw_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class DeckOfCardsSDK
 
     private $_pile_list = null;
 
-    // Idiomatic facade: $client->pile_list()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PileList() (PHP method
-    // names are case-insensitive).
-    public function pile_list($data = null)
+    // Canonical facade: $client->PileList()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->pile_list()
+    // resolves here too.
+    public function PileList($data = null)
     {
         require_once __DIR__ . '/entity/pile_list_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class DeckOfCardsSDK
 
     private $_return = null;
 
-    // Idiomatic facade: $client->return()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Return() (PHP method
-    // names are case-insensitive).
-    public function return($data = null)
+    // Canonical facade: $client->Return()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->return()
+    // resolves here too.
+    public function Return($data = null)
     {
         require_once __DIR__ . '/entity/return_entity.php';
         if ($data === null) {

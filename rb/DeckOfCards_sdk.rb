@@ -208,78 +208,42 @@ class DeckOfCardsSDK
   end
 
 
-  # Idiomatic facade: client.deck.list / client.deck.load({ "id" => ... })
-  def deck
-    require_relative 'entity/deck_entity'
-    @deck ||= DeckEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.deck instead.
+  # Canonical facade: client.Deck.list / client.Deck.load({ "id" => ... })
   def Deck(data = nil)
     require_relative 'entity/deck_entity'
     DeckEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.draw.list / client.draw.load({ "id" => ... })
-  def draw
-    require_relative 'entity/draw_entity'
-    @draw ||= DrawEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.draw instead.
+  # Canonical facade: client.Draw.list / client.Draw.load({ "id" => ... })
   def Draw(data = nil)
     require_relative 'entity/draw_entity'
     DrawEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.pile.list / client.pile.load({ "id" => ... })
-  def pile
-    require_relative 'entity/pile_entity'
-    @pile ||= PileEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.pile instead.
+  # Canonical facade: client.Pile.list / client.Pile.load({ "id" => ... })
   def Pile(data = nil)
     require_relative 'entity/pile_entity'
     PileEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.pile_draw.list / client.pile_draw.load({ "id" => ... })
-  def pile_draw
-    require_relative 'entity/pile_draw_entity'
-    @pile_draw ||= PileDrawEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.pile_draw instead.
+  # Canonical facade: client.PileDraw.list / client.PileDraw.load({ "id" => ... })
   def PileDraw(data = nil)
     require_relative 'entity/pile_draw_entity'
     PileDrawEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.pile_list.list / client.pile_list.load({ "id" => ... })
-  def pile_list
-    require_relative 'entity/pile_list_entity'
-    @pile_list ||= PileListEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.pile_list instead.
+  # Canonical facade: client.PileList.list / client.PileList.load({ "id" => ... })
   def PileList(data = nil)
     require_relative 'entity/pile_list_entity'
     PileListEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.return.list / client.return.load({ "id" => ... })
-  def return
-    require_relative 'entity/return_entity'
-    @return ||= ReturnEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.return instead.
+  # Canonical facade: client.Return.list / client.Return.load({ "id" => ... })
   def Return(data = nil)
     require_relative 'entity/return_entity'
     ReturnEntity.new(self, data)

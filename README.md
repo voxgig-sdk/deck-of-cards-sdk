@@ -26,9 +26,9 @@ import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
 
 const client = new DeckOfCardsSDK()
 
-// Load deck data
-const deck = await client.deck.load({})
-console.log(deck.data)
+// Load deck data (returns a Deck)
+const deck = await client.Deck().load()
+console.log(deck)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,8 +89,8 @@ from deckofcards_sdk import DeckOfCardsSDK
 client = DeckOfCardsSDK()
 
 
-# Load a specific deck
-deck = client.deck.load({"id": "example_id"})
+# Load a specific deck (returns the record, raises on error)
+deck = client.Deck().load({"id": "example_id"})
 print(deck)
 ```
 
@@ -103,8 +103,8 @@ require_once 'deckofcards_sdk.php';
 $client = new DeckOfCardsSDK();
 
 
-// Load a specific deck
-$deck = $client->deck()->load(["id" => "example_id"]);
+// Load a specific deck (returns the bare record; throws on error)
+$deck = $client->Deck()->load(["id" => "example_id"]);
 print_r($deck);
 ```
 
@@ -128,8 +128,8 @@ require_relative "DeckOfCards_sdk"
 client = DeckOfCardsSDK.new
 
 
-# Load a specific deck
-deck = client.deck.load({ "id" => "example_id" })
+# Load a specific deck (returns the bare record; raises on error)
+deck = client.Deck.load({ "id" => "example_id" })
 puts deck
 ```
 
@@ -142,7 +142,7 @@ local client = sdk.new()
 
 
 -- Load a specific deck
-local deck, err = client:deck():load({ id = "example_id" })
+local deck, err = client:Deck():load({ id = "example_id" })
 print(deck)
 ```
 
@@ -155,22 +155,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DeckOfCardsSDK.test()
-const result = await client.deck.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const deck = await client.Deck().load({ id: 'test01' })
+// deck is a bare Deck populated with mock data
+console.log(deck)
 ```
 
 ### Python
 
 ```python
 client = DeckOfCardsSDK.test()
-result = client.deck.load({"id": "test01"})
+deck = client.Deck().load({"id": "test01"})
+print(deck)
 ```
 
 ### PHP
 
 ```php
-$client = DeckOfCardsSDK::test();
-$result = $client->deck()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DeckOfCardsSDK::test([
+    "entity" => ["deck" => ["test01" => ["id" => "test01"]]],
+]);
+$deck = $client->Deck()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -185,15 +190,18 @@ result, err := client.Deck(nil).Load(
 ### Ruby
 
 ```ruby
-client = DeckOfCardsSDK.test
-result = client.deck.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DeckOfCardsSDK.test({
+  "entity" => { "deck" => { "test01" => { "id" => "test01" } } },
+})
+deck = client.Deck.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:deck():load({ id = "test01" })
+local result, err = client:Deck():load({ id = "test01" })
 ```
 
 ## How it works
@@ -241,6 +249,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

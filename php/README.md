@@ -33,9 +33,10 @@ $client = new DeckOfCardsSDK();
 
 ```php
 try {
-    $result = $client->deck()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Deck record (throws on error).
+    $deck = $client->Deck()->load(["id" => "example_id"]);
+    print_r($deck);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DeckOfCardsSDK::test();
+$client = DeckOfCardsSDK::test([
+    "entity" => ["deck" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->deck()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$deck = $client->Deck()->load(["id" => "test01"]);
+print_r($deck);
 ```
 
 ### Use a custom fetch function
@@ -297,7 +302,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/return/`
 
 ### Deck
 
-Create an instance: `const deck = client.deck`
+Create an instance: `$deck = $client->Deck();`
 
 #### Operations
 
@@ -316,14 +321,15 @@ Create an instance: `const deck = client.deck`
 
 #### Example: Load
 
-```ts
-const deck = await client.deck.load({ id: 'deck_id' })
+```php
+// load() returns the bare Deck record (throws on error).
+$deck = $client->Deck()->load(["id" => "deck_id"]);
 ```
 
 
 ### Draw
 
-Create an instance: `const draw = client.draw`
+Create an instance: `$draw = $client->Draw();`
 
 #### Operations
 
@@ -342,14 +348,15 @@ Create an instance: `const draw = client.draw`
 
 #### Example: List
 
-```ts
-const draws = await client.draw.list()
+```php
+// list() returns an array of Draw records (throws on error).
+$draws = $client->Draw()->list();
 ```
 
 
 ### Pile
 
-Create an instance: `const pile = client.pile`
+Create an instance: `$pile = $client->Pile();`
 
 #### Operations
 
@@ -368,14 +375,15 @@ Create an instance: `const pile = client.pile`
 
 #### Example: Load
 
-```ts
-const pile = await client.pile.load({ id: 'pile_id' })
+```php
+// load() returns the bare Pile record (throws on error).
+$pile = $client->Pile()->load(["id" => "pile_id"]);
 ```
 
 
 ### PileDraw
 
-Create an instance: `const pile_draw = client.pile_draw`
+Create an instance: `$pile_draw = $client->PileDraw();`
 
 #### Operations
 
@@ -394,14 +402,15 @@ Create an instance: `const pile_draw = client.pile_draw`
 
 #### Example: List
 
-```ts
-const pile_draws = await client.pile_draw.list()
+```php
+// list() returns an array of PileDraw records (throws on error).
+$pile_draws = $client->PileDraw()->list();
 ```
 
 
 ### PileList
 
-Create an instance: `const pile_list = client.pile_list`
+Create an instance: `$pile_list = $client->PileList();`
 
 #### Operations
 
@@ -420,14 +429,15 @@ Create an instance: `const pile_list = client.pile_list`
 
 #### Example: Load
 
-```ts
-const pile_list = await client.pile_list.load({ id: 'pile_list_id' })
+```php
+// load() returns the bare PileList record (throws on error).
+$pile_list = $client->PileList()->load(["id" => "pile_list_id"]);
 ```
 
 
 ### Return
 
-Create an instance: `const return = client.return`
+Create an instance: `$return = $client->Return();`
 
 #### Operations
 
@@ -447,8 +457,9 @@ Create an instance: `const return = client.return`
 
 #### Example: Load
 
-```ts
-const return = await client.return.load({ id: 'return_id' })
+```php
+// load() returns the bare Return record (throws on error).
+$return = $client->Return()->load(["id" => "return_id"]);
 ```
 
 
@@ -523,7 +534,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$deck = $client->deck();
+$deck = $client->Deck();
 $deck->load(["id" => "example_id"]);
 
 // $deck->dataGet() now returns the loaded deck data

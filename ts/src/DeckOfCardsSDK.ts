@@ -209,84 +209,42 @@ class DeckOfCardsSDK {
 
 
 
-  _deck?: DeckEntity
-
-  // Idiomatic facade: `client.deck.list()` / `client.deck.load({ id })`.
-  get deck(): DeckEntity {
-    return (this._deck ??= new DeckEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.deck` instead. */
+  // Entity access: `client.Deck().list()` / `client.Deck().load({ id })`.
   Deck(data?: any) {
     const self = this
     return new DeckEntity(self,data)
   }
 
 
-  _draw?: DrawEntity
-
-  // Idiomatic facade: `client.draw.list()` / `client.draw.load({ id })`.
-  get draw(): DrawEntity {
-    return (this._draw ??= new DrawEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.draw` instead. */
+  // Entity access: `client.Draw().list()` / `client.Draw().load({ id })`.
   Draw(data?: any) {
     const self = this
     return new DrawEntity(self,data)
   }
 
 
-  _pile?: PileEntity
-
-  // Idiomatic facade: `client.pile.list()` / `client.pile.load({ id })`.
-  get pile(): PileEntity {
-    return (this._pile ??= new PileEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.pile` instead. */
+  // Entity access: `client.Pile().list()` / `client.Pile().load({ id })`.
   Pile(data?: any) {
     const self = this
     return new PileEntity(self,data)
   }
 
 
-  _pile_draw?: PileDrawEntity
-
-  // Idiomatic facade: `client.pile_draw.list()` / `client.pile_draw.load({ id })`.
-  get pile_draw(): PileDrawEntity {
-    return (this._pile_draw ??= new PileDrawEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.pile_draw` instead. */
+  // Entity access: `client.PileDraw().list()` / `client.PileDraw().load({ id })`.
   PileDraw(data?: any) {
     const self = this
     return new PileDrawEntity(self,data)
   }
 
 
-  _pile_list?: PileListEntity
-
-  // Idiomatic facade: `client.pile_list.list()` / `client.pile_list.load({ id })`.
-  get pile_list(): PileListEntity {
-    return (this._pile_list ??= new PileListEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.pile_list` instead. */
+  // Entity access: `client.PileList().list()` / `client.PileList().load({ id })`.
   PileList(data?: any) {
     const self = this
     return new PileListEntity(self,data)
   }
 
 
-  _return?: ReturnEntity
-
-  // Idiomatic facade: `client.return.list()` / `client.return.load({ id })`.
-  get return(): ReturnEntity {
-    return (this._return ??= new ReturnEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.return` instead. */
+  // Entity access: `client.Return().list()` / `client.Return().load({ id })`.
   Return(data?: any) {
     const self = this
     return new ReturnEntity(self,data)

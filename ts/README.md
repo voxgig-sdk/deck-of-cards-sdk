@@ -30,11 +30,14 @@ const client = new DeckOfCardsSDK()
 
 ### 3. Load a deck
 
-```ts
-const result = await client.deck.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const deck = await client.Deck().load({ id: 'example_id' })
+  console.log(deck)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DeckOfCardsSDK.test()
 
-const result = await client.deck.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const deck = await client.Deck().load({ id: 'test01' })
+// deck is a bare entity populated with mock response data
+console.log(deck)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.deck
+const entity = client.Deck()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -197,29 +203,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): DeckOfCardsSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -337,7 +344,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/return/`
 
 ### Deck
 
-Create an instance: `const deck = client.deck`
+Create an instance: `const deck = client.Deck()`
 
 #### Operations
 
@@ -357,13 +364,13 @@ Create an instance: `const deck = client.deck`
 #### Example: Load
 
 ```ts
-const deck = await client.deck.load({ id: 'deck_id' })
+const deck = await client.Deck().load({ id: 'deck_id' })
 ```
 
 
 ### Draw
 
-Create an instance: `const draw = client.draw`
+Create an instance: `const draw = client.Draw()`
 
 #### Operations
 
@@ -383,13 +390,13 @@ Create an instance: `const draw = client.draw`
 #### Example: List
 
 ```ts
-const draws = await client.draw.list()
+const draws = await client.Draw().list()
 ```
 
 
 ### Pile
 
-Create an instance: `const pile = client.pile`
+Create an instance: `const pile = client.Pile()`
 
 #### Operations
 
@@ -409,13 +416,13 @@ Create an instance: `const pile = client.pile`
 #### Example: Load
 
 ```ts
-const pile = await client.pile.load({ id: 'pile_id' })
+const pile = await client.Pile().load({ id: 'pile_id' })
 ```
 
 
 ### PileDraw
 
-Create an instance: `const pile_draw = client.pile_draw`
+Create an instance: `const pile_draw = client.PileDraw()`
 
 #### Operations
 
@@ -435,13 +442,13 @@ Create an instance: `const pile_draw = client.pile_draw`
 #### Example: List
 
 ```ts
-const pile_draws = await client.pile_draw.list()
+const pile_draws = await client.PileDraw().list()
 ```
 
 
 ### PileList
 
-Create an instance: `const pile_list = client.pile_list`
+Create an instance: `const pile_list = client.PileList()`
 
 #### Operations
 
@@ -461,13 +468,13 @@ Create an instance: `const pile_list = client.pile_list`
 #### Example: Load
 
 ```ts
-const pile_list = await client.pile_list.load({ id: 'pile_list_id' })
+const pile_list = await client.PileList().load({ id: 'pile_list_id' })
 ```
 
 
 ### Return
 
-Create an instance: `const return = client.return`
+Create an instance: `const return = client.Return()`
 
 #### Operations
 
@@ -488,7 +495,7 @@ Create an instance: `const return = client.return`
 #### Example: Load
 
 ```ts
-const return = await client.return.load({ id: 'return_id' })
+const return = await client.Return().load({ id: 'return_id' })
 ```
 
 
@@ -559,7 +566,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const deck = client.deck
+const deck = client.Deck()
 await deck.load({ id: "example_id" })
 
 // deck.data() now returns the loaded deck data

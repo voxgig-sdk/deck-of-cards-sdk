@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:deck():list() / client:deck():load({ id = ... })
-function DeckOfCardsSDK:deck(data)
+-- Idiomatic facade: client:Deck():list() / client:Deck():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeckOfCardsSDK:Deck(data)
   local EntityMod = require("entity.deck_entity")
   if data == nil then
     if self._deck == nil then
@@ -256,15 +257,10 @@ function DeckOfCardsSDK:deck(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:deck() instead.
-function DeckOfCardsSDK:Deck(data)
-  local EntityMod = require("entity.deck_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:draw():list() / client:draw():load({ id = ... })
-function DeckOfCardsSDK:draw(data)
+-- Idiomatic facade: client:Draw():list() / client:Draw():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeckOfCardsSDK:Draw(data)
   local EntityMod = require("entity.draw_entity")
   if data == nil then
     if self._draw == nil then
@@ -275,15 +271,10 @@ function DeckOfCardsSDK:draw(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:draw() instead.
-function DeckOfCardsSDK:Draw(data)
-  local EntityMod = require("entity.draw_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:pile():list() / client:pile():load({ id = ... })
-function DeckOfCardsSDK:pile(data)
+-- Idiomatic facade: client:Pile():list() / client:Pile():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeckOfCardsSDK:Pile(data)
   local EntityMod = require("entity.pile_entity")
   if data == nil then
     if self._pile == nil then
@@ -294,15 +285,10 @@ function DeckOfCardsSDK:pile(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:pile() instead.
-function DeckOfCardsSDK:Pile(data)
-  local EntityMod = require("entity.pile_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:pile_draw():list() / client:pile_draw():load({ id = ... })
-function DeckOfCardsSDK:pile_draw(data)
+-- Idiomatic facade: client:PileDraw():list() / client:PileDraw():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeckOfCardsSDK:PileDraw(data)
   local EntityMod = require("entity.pile_draw_entity")
   if data == nil then
     if self._pile_draw == nil then
@@ -313,15 +299,10 @@ function DeckOfCardsSDK:pile_draw(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:pile_draw() instead.
-function DeckOfCardsSDK:PileDraw(data)
-  local EntityMod = require("entity.pile_draw_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:pile_list():list() / client:pile_list():load({ id = ... })
-function DeckOfCardsSDK:pile_list(data)
+-- Idiomatic facade: client:PileList():list() / client:PileList():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeckOfCardsSDK:PileList(data)
   local EntityMod = require("entity.pile_list_entity")
   if data == nil then
     if self._pile_list == nil then
@@ -332,15 +313,10 @@ function DeckOfCardsSDK:pile_list(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:pile_list() instead.
-function DeckOfCardsSDK:PileList(data)
-  local EntityMod = require("entity.pile_list_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:return():list() / client:return():load({ id = ... })
-function DeckOfCardsSDK:return(data)
+-- Idiomatic facade: client:Return():list() / client:Return():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DeckOfCardsSDK:Return(data)
   local EntityMod = require("entity.return_entity")
   if data == nil then
     if self._return == nil then
@@ -348,12 +324,6 @@ function DeckOfCardsSDK:return(data)
     end
     return self._return
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:return() instead.
-function DeckOfCardsSDK:Return(data)
-  local EntityMod = require("entity.return_entity")
   return EntityMod.new(self, data)
 end
 

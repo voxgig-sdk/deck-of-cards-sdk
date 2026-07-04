@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a deck
 
 ```lua
-local result, err = client:deck():load({ id = "example_id" })
+local deck, err = client:Deck():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(deck)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:deck():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Deck():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -188,17 +188,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local deck, err = client:Deck():load({ id = "example_id" })
+    if err then error(err) end
+    -- deck is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -288,7 +293,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/return/`
 
 ### Deck
 
-Create an instance: `const deck = client.deck`
+Create an instance: `local deck = client:Deck(nil)`
 
 #### Operations
 
@@ -307,14 +312,14 @@ Create an instance: `const deck = client.deck`
 
 #### Example: Load
 
-```ts
-const deck = await client.deck.load({ id: 'deck_id' })
+```lua
+local deck, err = client:Deck():load({ id = "deck_id" })
 ```
 
 
 ### Draw
 
-Create an instance: `const draw = client.draw`
+Create an instance: `local draw = client:Draw(nil)`
 
 #### Operations
 
@@ -333,14 +338,14 @@ Create an instance: `const draw = client.draw`
 
 #### Example: List
 
-```ts
-const draws = await client.draw.list()
+```lua
+local draws, err = client:Draw():list()
 ```
 
 
 ### Pile
 
-Create an instance: `const pile = client.pile`
+Create an instance: `local pile = client:Pile(nil)`
 
 #### Operations
 
@@ -359,14 +364,14 @@ Create an instance: `const pile = client.pile`
 
 #### Example: Load
 
-```ts
-const pile = await client.pile.load({ id: 'pile_id' })
+```lua
+local pile, err = client:Pile():load({ id = "pile_id" })
 ```
 
 
 ### PileDraw
 
-Create an instance: `const pile_draw = client.pile_draw`
+Create an instance: `local pile_draw = client:PileDraw(nil)`
 
 #### Operations
 
@@ -385,14 +390,14 @@ Create an instance: `const pile_draw = client.pile_draw`
 
 #### Example: List
 
-```ts
-const pile_draws = await client.pile_draw.list()
+```lua
+local pile_draws, err = client:PileDraw():list()
 ```
 
 
 ### PileList
 
-Create an instance: `const pile_list = client.pile_list`
+Create an instance: `local pile_list = client:PileList(nil)`
 
 #### Operations
 
@@ -411,14 +416,14 @@ Create an instance: `const pile_list = client.pile_list`
 
 #### Example: Load
 
-```ts
-const pile_list = await client.pile_list.load({ id: 'pile_list_id' })
+```lua
+local pile_list, err = client:PileList():load({ id = "pile_list_id" })
 ```
 
 
 ### Return
 
-Create an instance: `const return = client.return`
+Create an instance: `local return = client:Return(nil)`
 
 #### Operations
 
@@ -438,8 +443,8 @@ Create an instance: `const return = client.return`
 
 #### Example: Load
 
-```ts
-const return = await client.return.load({ id: 'return_id' })
+```lua
+local return, err = client:Return():load({ id = "return_id" })
 ```
 
 
@@ -514,7 +519,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local deck = client:deck()
+local deck = client:Deck()
 deck:load({ id = "example_id" })
 
 -- deck:data_get() now returns the loaded deck data

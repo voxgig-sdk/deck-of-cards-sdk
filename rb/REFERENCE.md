@@ -106,7 +106,7 @@ same parameters as `direct()`. Raises on error.
 ## DeckEntity
 
 ```ruby
-deck = client.deck
+deck = client.Deck
 ```
 
 ### Fields
@@ -125,7 +125,7 @@ deck = client.deck
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.deck.load({ "id" => "deck_id" })
+result = client.Deck.load({ "id" => "deck_id" })
 ```
 
 ### Common Methods
@@ -161,7 +161,7 @@ Return the entity name.
 ## DrawEntity
 
 ```ruby
-draw = client.draw
+draw = client.Draw
 ```
 
 ### Fields
@@ -180,7 +180,7 @@ draw = client.draw
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.draw.list(nil)
+results = client.Draw.list(nil)
 ```
 
 ### Common Methods
@@ -216,7 +216,7 @@ Return the entity name.
 ## PileEntity
 
 ```ruby
-pile = client.pile
+pile = client.Pile
 ```
 
 ### Fields
@@ -235,7 +235,7 @@ pile = client.pile
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.pile.load({ "id" => "pile_id" })
+result = client.Pile.load({ "id" => "pile_id" })
 ```
 
 ### Common Methods
@@ -271,7 +271,7 @@ Return the entity name.
 ## PileDrawEntity
 
 ```ruby
-pile_draw = client.pile_draw
+pile_draw = client.PileDraw
 ```
 
 ### Fields
@@ -290,7 +290,7 @@ pile_draw = client.pile_draw
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.pile_draw.list(nil)
+results = client.PileDraw.list(nil)
 ```
 
 ### Common Methods
@@ -326,7 +326,7 @@ Return the entity name.
 ## PileListEntity
 
 ```ruby
-pile_list = client.pile_list
+pile_list = client.PileList
 ```
 
 ### Fields
@@ -345,7 +345,7 @@ pile_list = client.pile_list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.pile_list.load({ "id" => "pile_list_id" })
+result = client.PileList.load({ "id" => "pile_list_id" })
 ```
 
 ### Common Methods
@@ -381,7 +381,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```ruby
-return = client.return
+return = client.Return
 ```
 
 ### Fields
@@ -401,7 +401,7 @@ return = client.return
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.return.load({ "id" => "return_id" })
+result = client.Return.load({ "id" => "return_id" })
 ```
 
 ### Common Methods
