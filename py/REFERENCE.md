@@ -8,7 +8,7 @@ Complete API reference for the DeckOfCards Python SDK.
 ### Constructor
 
 ```python
-from deck-of-cards_sdk import DeckOfCardsSDK
+from deckofcards_sdk import DeckOfCardsSDK
 
 client = DeckOfCardsSDK(options)
 ```
@@ -107,10 +107,10 @@ deck = client.Deck()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `str` | No |  |
+| `remaining` | `int` | No |  |
+| `shuffled` | `bool` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -161,19 +161,19 @@ draw = client.Draw()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `str` | No |  |
+| `image` | `str` | No |  |
+| `suit` | `str` | No |  |
+| `value` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Draw().list({})
+results = client.Draw().list()
 for draw in results:
     print(draw)
 ```
@@ -217,10 +217,10 @@ pile = client.Pile()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `str` | No |  |
+| `pile` | `dict` | No |  |
+| `remaining` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -229,7 +229,7 @@ pile = client.Pile()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Pile().load({"id": "pile_id"})
+result = client.Pile().load()
 ```
 
 ### Common Methods
@@ -271,19 +271,19 @@ pile_draw = client.PileDraw()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `str` | No |  |
+| `image` | `str` | No |  |
+| `suit` | `str` | No |  |
+| `value` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PileDraw().list({})
+results = client.PileDraw().list()
 for pile_draw in results:
     print(pile_draw)
 ```
@@ -327,10 +327,10 @@ pile_list = client.PileList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `str` | No |  |
+| `pile` | `dict` | No |  |
+| `remaining` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -339,7 +339,7 @@ pile_list = client.PileList()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PileList().load({"id": "pile_list_id"})
+result = client.PileList().load()
 ```
 
 ### Common Methods
@@ -381,11 +381,11 @@ return = client.Return()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `str` | No |  |
+| `pile` | `dict` | No |  |
+| `remaining` | `int` | No |  |
+| `shuffled` | `bool` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -394,7 +394,7 @@ return = client.Return()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Return().load({"id": "return_id"})
+result = client.Return().load()
 ```
 
 ### Common Methods

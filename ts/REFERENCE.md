@@ -176,10 +176,10 @@ const deck = client.Deck()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `remaining` | `number` | No |  |
+| `shuffled` | `boolean` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -229,10 +229,10 @@ const draw = client.Draw()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
@@ -282,10 +282,10 @@ const pile = client.Pile()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `Record<string, any>` | No |  |
+| `remaining` | `number` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -294,7 +294,7 @@ const pile = client.Pile()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Pile().load({ id: 'pile_id' })
+const result = await client.Pile().load()
 ```
 
 ### Common Methods
@@ -335,10 +335,10 @@ const pile_draw = client.PileDraw()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
@@ -388,10 +388,10 @@ const pile_list = client.PileList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `Record<string, any>` | No |  |
+| `remaining` | `number` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -400,7 +400,7 @@ const pile_list = client.PileList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PileList().load({ id: 'pile_list_id' })
+const result = await client.PileList().load()
 ```
 
 ### Common Methods
@@ -434,18 +434,18 @@ Return a copy of the entity options.
 ## ReturnEntity
 
 ```ts
-const return = client.Return()
+const return_ = client.Return()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `Record<string, any>` | No |  |
+| `remaining` | `number` | No |  |
+| `shuffled` | `boolean` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -454,7 +454,7 @@ const return = client.Return()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Return().load({ id: 'return_id' })
+const result = await client.Return().load()
 ```
 
 ### Common Methods

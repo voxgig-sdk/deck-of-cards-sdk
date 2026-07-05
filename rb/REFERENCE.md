@@ -8,7 +8,7 @@ Complete API reference for the DeckOfCards Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'deck-of-cards_sdk'
+require_relative 'DeckOfCards_sdk'
 
 client = DeckOfCardsSDK.new(options)
 ```
@@ -113,10 +113,10 @@ deck = client.Deck
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `String` | No |  |
+| `remaining` | `Integer` | No |  |
+| `shuffled` | `Boolean` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -168,19 +168,19 @@ draw = client.Draw
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `String` | No |  |
+| `image` | `String` | No |  |
+| `suit` | `String` | No |  |
+| `value` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Draw.list(nil)
+results = client.Draw.list
 ```
 
 ### Common Methods
@@ -223,10 +223,10 @@ pile = client.Pile
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `String` | No |  |
+| `pile` | `Hash` | No |  |
+| `remaining` | `Integer` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -235,7 +235,7 @@ pile = client.Pile
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Pile.load({ "id" => "pile_id" })
+result = client.Pile.load()
 ```
 
 ### Common Methods
@@ -278,19 +278,19 @@ pile_draw = client.PileDraw
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `String` | No |  |
+| `image` | `String` | No |  |
+| `suit` | `String` | No |  |
+| `value` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.PileDraw.list(nil)
+results = client.PileDraw.list
 ```
 
 ### Common Methods
@@ -333,10 +333,10 @@ pile_list = client.PileList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `String` | No |  |
+| `pile` | `Hash` | No |  |
+| `remaining` | `Integer` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -345,7 +345,7 @@ pile_list = client.PileList
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.PileList.load({ "id" => "pile_list_id" })
+result = client.PileList.load()
 ```
 
 ### Common Methods
@@ -388,11 +388,11 @@ return = client.Return
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `String` | No |  |
+| `pile` | `Hash` | No |  |
+| `remaining` | `Integer` | No |  |
+| `shuffled` | `Boolean` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -401,7 +401,7 @@ return = client.Return
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Return.load({ "id" => "return_id" })
+result = client.Return.load()
 ```
 
 ### Common Methods

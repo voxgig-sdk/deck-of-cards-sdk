@@ -221,37 +221,37 @@ class DeckOfCardsSDK:
 
 
     def Deck(self, data=None) -> "DeckEntity":
-        """Entity factory: client.Deck().list({}) / client.Deck().load({"id": ...})."""
+        """Entity factory: client.Deck().list() / client.Deck().load({"id": ...})."""
         from entity.deck_entity import DeckEntity
         return DeckEntity(self, data)
 
 
     def Draw(self, data=None) -> "DrawEntity":
-        """Entity factory: client.Draw().list({}) / client.Draw().load({"id": ...})."""
+        """Entity factory: client.Draw().list() / client.Draw().load({"id": ...})."""
         from entity.draw_entity import DrawEntity
         return DrawEntity(self, data)
 
 
     def Pile(self, data=None) -> "PileEntity":
-        """Entity factory: client.Pile().list({}) / client.Pile().load({"id": ...})."""
+        """Entity factory: client.Pile().list() / client.Pile().load({"id": ...})."""
         from entity.pile_entity import PileEntity
         return PileEntity(self, data)
 
 
     def PileDraw(self, data=None) -> "PileDrawEntity":
-        """Entity factory: client.PileDraw().list({}) / client.PileDraw().load({"id": ...})."""
+        """Entity factory: client.PileDraw().list() / client.PileDraw().load({"id": ...})."""
         from entity.pile_draw_entity import PileDrawEntity
         return PileDrawEntity(self, data)
 
 
     def PileList(self, data=None) -> "PileListEntity":
-        """Entity factory: client.PileList().list({}) / client.PileList().load({"id": ...})."""
+        """Entity factory: client.PileList().list() / client.PileList().load({"id": ...})."""
         from entity.pile_list_entity import PileListEntity
         return PileListEntity(self, data)
 
 
     def Return(self, data=None) -> "ReturnEntity":
-        """Entity factory: client.Return().list({}) / client.Return().load({"id": ...})."""
+        """Entity factory: client.Return().list() / client.Return().load({"id": ...})."""
         from entity.return_entity import ReturnEntity
         return ReturnEntity(self, data)
 

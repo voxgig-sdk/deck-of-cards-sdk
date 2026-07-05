@@ -8,7 +8,7 @@ Complete API reference for the DeckOfCards PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/deck-of-cards_sdk.php';
+require_once __DIR__ . '/deckofcards_sdk.php';
 
 $client = new DeckOfCardsSDK($options);
 ```
@@ -65,11 +65,11 @@ Create a new `PileListEntity` instance. Pass `null` for no initial data.
 
 Create a new `ReturnEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): DeckOfCardsUtility`
 
 Return a copy of the SDK utility object.
 
@@ -112,10 +112,10 @@ $deck = $client->Deck();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `remaining` | `int` | No |  |
+| `shuffled` | `bool` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -129,19 +129,19 @@ $result = $client->Deck()->load(["id" => "deck_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -150,7 +150,7 @@ Set the entity match criteria.
 Create a new `DeckEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -167,36 +167,36 @@ $draw = $client->Draw();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Draw()->list([]);
+$results = $client->Draw()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -205,7 +205,7 @@ Set the entity match criteria.
 Create a new `DrawEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -222,10 +222,10 @@ $pile = $client->Pile();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `array` | No |  |
+| `remaining` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -234,24 +234,24 @@ $pile = $client->Pile();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Pile()->load(["id" => "pile_id"]);
+$result = $client->Pile()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -260,7 +260,7 @@ Set the entity match criteria.
 Create a new `PileEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -277,36 +277,36 @@ $pile_draw = $client->PileDraw();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->PileDraw()->list([]);
+$results = $client->PileDraw()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -315,7 +315,7 @@ Set the entity match criteria.
 Create a new `PileDrawEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -332,10 +332,10 @@ $pile_list = $client->PileList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `array` | No |  |
+| `remaining` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -344,24 +344,24 @@ $pile_list = $client->PileList();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->PileList()->load(["id" => "pile_list_id"]);
+$result = $client->PileList()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -370,7 +370,7 @@ Set the entity match criteria.
 Create a new `PileListEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -387,11 +387,11 @@ $return = $client->Return();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `array` | No |  |
+| `remaining` | `int` | No |  |
+| `shuffled` | `bool` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -400,24 +400,24 @@ $return = $client->Return();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Return()->load(["id" => "return_id"]);
+$result = $client->Return()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -426,7 +426,7 @@ Set the entity match criteria.
 Create a new `ReturnEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

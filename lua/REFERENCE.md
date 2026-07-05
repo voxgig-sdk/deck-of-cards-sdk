@@ -110,10 +110,10 @@ local deck = client:Deck(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `remaining` | `number` | No |  |
+| `shuffled` | `boolean` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -165,10 +165,10 @@ local draw = client:Draw(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
@@ -220,10 +220,10 @@ local pile = client:Pile(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `table` | No |  |
+| `remaining` | `number` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -232,7 +232,7 @@ local pile = client:Pile(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Pile():load({ id = "pile_id" })
+local result, err = client:Pile():load()
 ```
 
 ### Common Methods
@@ -275,10 +275,10 @@ local pile_draw = client:PileDraw(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
@@ -330,10 +330,10 @@ local pile_list = client:PileList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `table` | No |  |
+| `remaining` | `number` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -342,7 +342,7 @@ local pile_list = client:PileList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PileList():load({ id = "pile_list_id" })
+local result, err = client:PileList():load()
 ```
 
 ### Common Methods
@@ -385,11 +385,11 @@ local return = client:Return(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `table` | No |  |
+| `remaining` | `number` | No |  |
+| `shuffled` | `boolean` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -398,7 +398,7 @@ local return = client:Return(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Return():load({ id = "return_id" })
+local result, err = client:Return():load()
 ```
 
 ### Common Methods

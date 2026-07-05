@@ -117,10 +117,10 @@ deck := client.Deck(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `remaining` | `int` | No |  |
+| `shuffled` | `bool` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -166,10 +166,10 @@ draw := client.Draw(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
@@ -215,10 +215,10 @@ pile := client.Pile(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `map[string]any` | No |  |
+| `remaining` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -227,7 +227,7 @@ pile := client.Pile(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Pile(nil).Load(map[string]any{"id": "pile_id"}, nil)
+result, err := client.Pile(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -264,10 +264,10 @@ pile_draw := client.PileDraw(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | ``$STRING`` | No |  |
-| `image` | ``$STRING`` | No |  |
-| `suit` | ``$STRING`` | No |  |
-| `value` | ``$STRING`` | No |  |
+| `code` | `string` | No |  |
+| `image` | `string` | No |  |
+| `suit` | `string` | No |  |
+| `value` | `string` | No |  |
 
 ### Operations
 
@@ -313,10 +313,10 @@ pile_list := client.PileList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `map[string]any` | No |  |
+| `remaining` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -325,7 +325,7 @@ pile_list := client.PileList(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PileList(nil).Load(map[string]any{"id": "pile_list_id"}, nil)
+result, err := client.PileList(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -362,11 +362,11 @@ return := client.Return(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | ``$STRING`` | No |  |
-| `pile` | ``$OBJECT`` | No |  |
-| `remaining` | ``$INTEGER`` | No |  |
-| `shuffled` | ``$BOOLEAN`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `deck_id` | `string` | No |  |
+| `pile` | `map[string]any` | No |  |
+| `remaining` | `int` | No |  |
+| `shuffled` | `bool` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -375,7 +375,7 @@ return := client.Return(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Return(nil).Load(map[string]any{"id": "return_id"}, nil)
+result, err := client.Return(nil).Load(nil, nil)
 ```
 
 ### Common Methods
