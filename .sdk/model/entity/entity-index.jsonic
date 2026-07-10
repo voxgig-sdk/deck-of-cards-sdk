@@ -1,8 +1,0 @@
-# Entity Models
-
-@"deck.jsonic"
-@"draw.jsonic"
-@"pile.jsonic"
-@"pile_draw.jsonic"
-@"pile_list.jsonic"
-@"return.jsonic"

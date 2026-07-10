@@ -30,13 +30,15 @@ require_relative "DeckOfCards_sdk"
 client = DeckOfCardsSDK.new
 ```
 
-### 3. Load a deck
+### 3. Load a pile
+
+Pile is nested under deck, so provide the `deck_id`.
 
 ```ruby
 begin
-  # load returns the bare Deck record (raises on error).
-  deck = client.Deck.load({ "id" => "example_id" })
-  puts deck
+  # load returns the bare Pile record (raises on error).
+  pile = client.Pile.load({ "deck_id" => "example_deck_id", "pile_name" => "example_pile_name" })
+  puts pile
 rescue => err
   warn "load failed: #{err}"
 end
@@ -49,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  deck = client.Deck.load({ "id" => "example_id" })
+  deck = client.Deck.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -112,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = DeckOfCardsSDK.test({
-  "entity" => { "deck" => { "test01" => { "id" => "test01" } } },
-})
+client = DeckOfCardsSDK.test
 
 # Entity ops return the bare mock record (raises on error).
-deck = client.Deck.load({ "id" => "test01" })
+deck = client.Deck.load()
 puts deck
 ```
 
@@ -346,7 +345,7 @@ Create an instance: `deck = client.Deck`
 
 ```ruby
 # load returns the bare Deck record (raises on error).
-deck = client.Deck.load({ "id" => "deck_id" })
+deck = client.Deck.load()
 ```
 
 
@@ -400,7 +399,7 @@ Create an instance: `pile = client.Pile`
 
 ```ruby
 # load returns the bare Pile record (raises on error).
-pile = client.Pile.load()
+pile = client.Pile.load({ "deck_id" => "deck_id", "pile_name" => "pile_name" })
 ```
 
 
@@ -454,13 +453,13 @@ Create an instance: `pile_list = client.PileList`
 
 ```ruby
 # load returns the bare PileList record (raises on error).
-pile_list = client.PileList.load()
+pile_list = client.PileList.load({ "deck_id" => "deck_id", "pile_name" => "pile_name" })
 ```
 
 
 ### Return
 
-Create an instance: `return = client.Return`
+Create an instance: `return_ = client.Return`
 
 #### Operations
 
@@ -482,7 +481,7 @@ Create an instance: `return = client.Return`
 
 ```ruby
 # load returns the bare Return record (raises on error).
-return = client.Return.load()
+return_ = client.Return.load({ "deck_id" => "deck_id" })
 ```
 
 
@@ -563,7 +562,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 deck = client.Deck
-deck.load({ "id" => "example_id" })
+deck.load()
 
 # deck.data_get now returns the deck data from the last load
 # deck.match_get returns the last match criteria

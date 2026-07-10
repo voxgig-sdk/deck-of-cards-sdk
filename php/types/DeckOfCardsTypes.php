@@ -24,7 +24,10 @@ class Deck
 /** Request payload for Deck#load. */
 class DeckLoadMatch
 {
-    public string $id;
+    public ?string $deck_id = null;
+    public ?int $remaining = null;
+    public ?bool $shuffled = null;
+    public ?bool $success = null;
 }
 
 /** Draw entity data model. */
@@ -71,8 +74,8 @@ class PileDraw
 class PileDrawListMatch
 {
     public string $deck_id;
-    public string $pile_name;
-    public string $pile_id;
+    public ?string $pile_name = null;
+    public ?string $pile_id = null;
 }
 
 /** PileList entity data model. */
@@ -105,6 +108,6 @@ class Return
 class ReturnLoadMatch
 {
     public string $deck_id;
-    public string $pile_name;
+    public ?string $pile_name = null;
 }
 

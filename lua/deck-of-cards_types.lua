@@ -13,7 +13,10 @@
 ---@field success? boolean
 
 ---@class DeckLoadMatch
----@field id string
+---@field deck_id? string
+---@field remaining? number
+---@field shuffled? boolean
+---@field success? boolean
 
 ---@class Draw
 ---@field code? string
@@ -42,8 +45,8 @@
 
 ---@class PileDrawListMatch
 ---@field deck_id string
----@field pile_name string
----@field pile_id string
+---@field pile_name? string
+---@field pile_id? string
 
 ---@class PileList
 ---@field deck_id? string
@@ -64,7 +67,7 @@
 
 ---@class ReturnLoadMatch
 ---@field deck_id string
----@field pile_name string
+---@field pile_name? string
 
 local M = {}
 

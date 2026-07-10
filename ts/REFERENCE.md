@@ -188,7 +188,7 @@ const deck = client.Deck()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Deck().load({ id: 'deck_id' })
+const result = await client.Deck().load()
 ```
 
 ### Common Methods
@@ -294,7 +294,7 @@ const pile = client.Pile()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Pile().load()
+const result = await client.Pile().load({ deck_id: 'deck_id', pile_name: 'pile_name' })
 ```
 
 ### Common Methods
@@ -400,7 +400,7 @@ const pile_list = client.PileList()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PileList().load()
+const result = await client.PileList().load({ deck_id: 'deck_id', pile_name: 'pile_name' })
 ```
 
 ### Common Methods
@@ -454,7 +454,7 @@ const return_ = client.Return()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Return().load()
+const result = await client.Return().load({ deck_id: 'deck_id' })
 ```
 
 ### Common Methods

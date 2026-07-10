@@ -33,14 +33,18 @@ import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
 const client = new DeckOfCardsSDK()
 ```
 
-### 3. Load a deck
+### 3. Load a pile
 
+Pile is nested under deck, so provide the `deck_id`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const deck = await client.Deck().load({ id: 'example_id' })
-  console.log(deck)
+  const pile = await client.Pile().load({
+    deck_id: 'example_deck_id',
+    pile_name: 'example_pile_name',
+  })
+  console.log(pile)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -53,7 +57,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const deck = await client.Deck().load({ id: "example_id" })
+  const deck = await client.Deck().load()
   console.log(deck)
 } catch (err) {
   console.error('load failed:', err)
@@ -120,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DeckOfCardsSDK.test()
 
-const deck = await client.Deck().load({ id: 'test01' })
+const deck = await client.Deck().load()
 // deck is a bare entity populated with mock response data
 console.log(deck)
 ```
@@ -140,7 +144,7 @@ Entity instances remember their last match and data:
 const entity = client.Deck()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -394,7 +398,7 @@ Create an instance: `const deck = client.Deck()`
 #### Example: Load
 
 ```ts
-const deck = await client.Deck().load({ id: 'deck_id' })
+const deck = await client.Deck().load()
 ```
 
 
@@ -446,7 +450,7 @@ Create an instance: `const pile = client.Pile()`
 #### Example: Load
 
 ```ts
-const pile = await client.Pile().load()
+const pile = await client.Pile().load({ deck_id: 'deck_id', pile_name: 'pile_name' })
 ```
 
 
@@ -498,7 +502,7 @@ Create an instance: `const pile_list = client.PileList()`
 #### Example: Load
 
 ```ts
-const pile_list = await client.PileList().load()
+const pile_list = await client.PileList().load({ deck_id: 'deck_id', pile_name: 'pile_name' })
 ```
 
 
@@ -525,7 +529,7 @@ Create an instance: `const return_ = client.Return()`
 #### Example: Load
 
 ```ts
-const return_ = await client.Return().load()
+const return_ = await client.Return().load({ deck_id: 'deck_id' })
 ```
 
 
@@ -599,10 +603,10 @@ calls on the same instance can rely on this state.
 
 ```ts
 const deck = client.Deck()
-await deck.load({ id: "example_id" })
+await deck.load()
 
 // deck.data() now returns the deck data from the last `load`
-// deck.match() returns { id: "example_id" }
+// deck.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

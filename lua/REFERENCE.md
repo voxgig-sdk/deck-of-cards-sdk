@@ -122,7 +122,7 @@ local deck = client:Deck(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Deck():load({ id = "deck_id" })
+local result, err = client:Deck():load()
 ```
 
 ### Common Methods
@@ -232,7 +232,7 @@ local pile = client:Pile(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Pile():load()
+local result, err = client:Pile():load({ deck_id = "deck_id", pile_name = "pile_name" })
 ```
 
 ### Common Methods
@@ -342,7 +342,7 @@ local pile_list = client:PileList(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PileList():load()
+local result, err = client:PileList():load({ deck_id = "deck_id", pile_name = "pile_name" })
 ```
 
 ### Common Methods
@@ -378,7 +378,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```lua
-local return = client:Return(nil)
+local return_ = client:Return(nil)
 ```
 
 ### Fields
@@ -398,7 +398,7 @@ local return = client:Return(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Return():load()
+local result, err = client:Return():load({ deck_id = "deck_id" })
 ```
 
 ### Common Methods

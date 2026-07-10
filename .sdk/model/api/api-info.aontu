@@ -16,9 +16,9 @@ main: {
           url: "https://www.deckofcardsapi.com/api"
         }
       ]
+      summary: "An API for playing cards."
       title: "Deck of Cards API"
       version: "1.0.0"
+      website: "https://deckofcardsapi.com"
     }
   }
-}
-

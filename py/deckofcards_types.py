@@ -23,8 +23,11 @@ class Deck(TypedDict, total=False):
     success: bool
 
 
-class DeckLoadMatch(TypedDict):
-    id: str
+class DeckLoadMatch(TypedDict, total=False):
+    deck_id: str
+    remaining: int
+    shuffled: bool
+    success: bool
 
 
 class Draw(TypedDict, total=False):
@@ -57,8 +60,11 @@ class PileDraw(TypedDict, total=False):
     value: str
 
 
-class PileDrawListMatch(TypedDict):
+class PileDrawListMatchRequired(TypedDict):
     deck_id: str
+
+
+class PileDrawListMatch(PileDrawListMatchRequired, total=False):
     pile_name: str
     pile_id: str
 
@@ -83,6 +89,9 @@ class Return(TypedDict, total=False):
     success: bool
 
 
-class ReturnLoadMatch(TypedDict):
+class ReturnLoadMatchRequired(TypedDict):
     deck_id: str
+
+
+class ReturnLoadMatch(ReturnLoadMatchRequired, total=False):
     pile_name: str

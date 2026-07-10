@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1193,14 +1190,17 @@
           "url": "https://www.deckofcardsapi.com/"
         },
         "description": "An API for playing cards. Allows users to shuffle, draw, reshuffle, create a new deck, use a partial deck, add to piles, shuffle piles, list cards in piles, draw from piles, and return cards to the deck.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://www.deckofcardsapi.com/api"
           }
         ],
+        "summary": "An API for playing cards.",
         "title": "Deck of Cards API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://deckofcardsapi.com"
       },
       "option": {},
       "target": {
@@ -1253,6 +1253,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1303,6 +1306,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

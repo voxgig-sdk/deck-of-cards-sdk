@@ -1,8 +1,0 @@
-# Flows
-
-@"BasicDeckFlow.jsonic"
-@"BasicDrawFlow.jsonic"
-@"BasicPileDrawFlow.jsonic"
-@"BasicPileFlow.jsonic"
-@"BasicPileListFlow.jsonic"
-@"BasicReturnFlow.jsonic"

@@ -127,7 +127,6 @@ def make_config():
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [

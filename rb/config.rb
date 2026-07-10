@@ -127,7 +127,6 @@ module DeckOfCardsConfig
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [

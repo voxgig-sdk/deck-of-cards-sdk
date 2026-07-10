@@ -126,7 +126,6 @@ func MakeConfig() map[string]any {
 											"orig": "deck_id",
 											"reqd": true,
 											"type": "`$STRING`",
-											"index$": 0,
 										},
 									},
 									"query": []any{

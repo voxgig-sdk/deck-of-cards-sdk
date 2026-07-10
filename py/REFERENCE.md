@@ -119,7 +119,7 @@ deck = client.Deck()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Deck().load({"id": "deck_id"})
+result = client.Deck().load()
 ```
 
 ### Common Methods
@@ -229,7 +229,7 @@ pile = client.Pile()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Pile().load()
+result = client.Pile().load({"deck_id": "deck_id", "pile_name": "pile_name"})
 ```
 
 ### Common Methods
@@ -339,7 +339,7 @@ pile_list = client.PileList()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PileList().load()
+result = client.PileList().load({"deck_id": "deck_id", "pile_name": "pile_name"})
 ```
 
 ### Common Methods
@@ -374,7 +374,7 @@ Return the entity name.
 ## ReturnEntity
 
 ```python
-return = client.Return()
+return_ = client.Return()
 ```
 
 ### Fields
@@ -394,7 +394,7 @@ return = client.Return()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Return().load()
+result = client.Return().load({"deck_id": "deck_id"})
 ```
 
 ### Common Methods

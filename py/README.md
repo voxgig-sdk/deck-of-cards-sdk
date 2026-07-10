@@ -36,14 +36,15 @@ from deckofcards_sdk import DeckOfCardsSDK
 client = DeckOfCardsSDK()
 ```
 
-### 3. Load a deck
+### 3. Load a pile
 
+Pile is nested under deck, so provide the `deck_id`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    deck = client.Deck().load({"id": "example_id"})
-    print(deck)
+    pile = client.Pile().load({"deck_id": "example_deck_id", "pile_name": "example_pile_name"})
+    print(pile)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -55,7 +56,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    deck = client.Deck().load({"id": "example_id"})
+    deck = client.Deck().load()
     print(deck)
 except Exception as err:
     print(f"load failed: {err}")
@@ -123,7 +124,7 @@ Create a mock client for unit testing — no server required:
 client = DeckOfCardsSDK.test()
 
 # Entity ops return the bare record and raise on error.
-deck = client.Deck().load({"id": "test01"})
+deck = client.Deck().load()
 # deck contains the mock response record
 ```
 
@@ -348,7 +349,7 @@ Create an instance: `deck = client.Deck()`
 #### Example: Load
 
 ```python
-deck = client.Deck().load({"id": "deck_id"})
+deck = client.Deck().load()
 ```
 
 
@@ -400,7 +401,7 @@ Create an instance: `pile = client.Pile()`
 #### Example: Load
 
 ```python
-pile = client.Pile().load()
+pile = client.Pile().load({"deck_id": "deck_id", "pile_name": "pile_name"})
 ```
 
 
@@ -452,13 +453,13 @@ Create an instance: `pile_list = client.PileList()`
 #### Example: Load
 
 ```python
-pile_list = client.PileList().load()
+pile_list = client.PileList().load({"deck_id": "deck_id", "pile_name": "pile_name"})
 ```
 
 
 ### Return
 
-Create an instance: `return = client.Return()`
+Create an instance: `return_ = client.Return()`
 
 #### Operations
 
@@ -479,7 +480,7 @@ Create an instance: `return = client.Return()`
 #### Example: Load
 
 ```python
-return = client.Return().load()
+return_ = client.Return().load({"deck_id": "deck_id"})
 ```
 
 
@@ -559,7 +560,7 @@ stores the returned data and match criteria internally.
 
 ```python
 deck = client.Deck()
-deck.load({"id": "example_id"})
+deck.load()
 
 # deck.data_get() now returns the deck data from the last load
 # deck.match_get() returns the last match criteria

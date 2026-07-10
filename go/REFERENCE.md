@@ -111,6 +111,7 @@ same parameters as `Direct()`.
 
 ```go
 deck := client.Deck(nil)
+fmt.Println(deck.GetName()) // "deck"
 ```
 
 ### Fields
@@ -129,7 +130,11 @@ deck := client.Deck(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Deck(nil).Load(map[string]any{"id": "deck_id"}, nil)
+result, err := client.Deck(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -160,6 +165,7 @@ Return the entity name.
 
 ```go
 draw := client.Draw(nil)
+fmt.Println(draw.GetName()) // "draw"
 ```
 
 ### Fields
@@ -179,6 +185,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Draw(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -209,6 +219,7 @@ Return the entity name.
 
 ```go
 pile := client.Pile(nil)
+fmt.Println(pile.GetName()) // "pile"
 ```
 
 ### Fields
@@ -227,7 +238,11 @@ pile := client.Pile(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Pile(nil).Load(nil, nil)
+result, err := client.Pile(nil).Load(map[string]any{"deck_id": "deck_id", "pile_name": "pile_name"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -257,7 +272,8 @@ Return the entity name.
 ## PileDrawEntity
 
 ```go
-pile_draw := client.PileDraw(nil)
+pileDraw := client.PileDraw(nil)
+fmt.Println(pileDraw.GetName()) // "pile_draw"
 ```
 
 ### Fields
@@ -277,6 +293,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.PileDraw(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -306,7 +326,8 @@ Return the entity name.
 ## PileListEntity
 
 ```go
-pile_list := client.PileList(nil)
+pileList := client.PileList(nil)
+fmt.Println(pileList.GetName()) // "pile_list"
 ```
 
 ### Fields
@@ -325,7 +346,11 @@ pile_list := client.PileList(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PileList(nil).Load(nil, nil)
+result, err := client.PileList(nil).Load(map[string]any{"deck_id": "deck_id", "pile_name": "pile_name"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -355,7 +380,8 @@ Return the entity name.
 ## ReturnEntity
 
 ```go
-return := client.Return(nil)
+return_ := client.Return(nil)
+fmt.Println(return_.GetName()) // "return"
 ```
 
 ### Fields
@@ -375,7 +401,11 @@ return := client.Return(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Return(nil).Load(nil, nil)
+result, err := client.Return(nil).Load(map[string]any{"deck_id": "deck_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

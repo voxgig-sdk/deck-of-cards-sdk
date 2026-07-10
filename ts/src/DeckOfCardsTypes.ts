@@ -13,7 +13,10 @@ export interface Deck {
 }
 
 export interface DeckLoadMatch {
-  id: string
+  deck_id?: string
+  remaining?: number
+  shuffled?: boolean
+  success?: boolean
 }
 
 export interface Draw {
@@ -48,8 +51,8 @@ export interface PileDraw {
 
 export interface PileDrawListMatch {
   deck_id: string
-  pile_name: string
-  pile_id: string
+  pile_name?: string
+  pile_id?: string
 }
 
 export interface PileList {
@@ -74,6 +77,6 @@ export interface Return {
 
 export interface ReturnLoadMatch {
   deck_id: string
-  pile_name: string
+  pile_name?: string
 }
 

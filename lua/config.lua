@@ -126,7 +126,6 @@ local function make_config()
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {

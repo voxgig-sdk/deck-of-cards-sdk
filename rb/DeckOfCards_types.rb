@@ -31,10 +31,22 @@ Deck = Struct.new(
 
 # Request payload for Deck#load.
 #
-# @!attribute [rw] id
-#   @return [String]
+# @!attribute [rw] deck_id
+#   @return [String, nil]
+#
+# @!attribute [rw] remaining
+#   @return [Integer, nil]
+#
+# @!attribute [rw] shuffled
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] success
+#   @return [Boolean, nil]
 DeckLoadMatch = Struct.new(
-  :id,
+  :deck_id,
+  :remaining,
+  :shuffled,
+  :success,
   keyword_init: true
 )
 
@@ -129,10 +141,10 @@ PileDraw = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] pile_name
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] pile_id
-#   @return [String]
+#   @return [String, nil]
 PileDrawListMatch = Struct.new(
   :deck_id,
   :pile_name,
@@ -205,7 +217,7 @@ Return = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] pile_name
-#   @return [String]
+#   @return [String, nil]
 ReturnLoadMatch = Struct.new(
   :deck_id,
   :pile_name,
