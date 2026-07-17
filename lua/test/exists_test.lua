@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- DeckOfCards SDK exists test
 
 local sdk = require("deck-of-cards_sdk")
 
