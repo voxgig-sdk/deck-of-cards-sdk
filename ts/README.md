@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 const client = DeckOfCardsSDK.test()
 
 const deck = await client.Deck().load()
-// deck is a bare entity populated with mock response data
+// deck is the entity, populated with mock response data
+// — call deck.data() for the record itself
 console.log(deck)
 ```
 
@@ -311,6 +312,7 @@ API path: `/deck/new/shuffle/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -322,10 +324,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: load.
 
@@ -337,6 +336,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -348,10 +348,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
+| `cards` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: load.
 
@@ -361,11 +359,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
 
 Operations: load.
 
@@ -418,13 +412,14 @@ Create an instance: `const draw = client.Draw()`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `Record<string, any>` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
 #### Example: List
 
 ```ts
-const draws = await client.Draw().list()
+const draws = await client.Draw().list({ deck_id: "example" })
 ```
 
 
@@ -442,10 +437,7 @@ Create an instance: `const pile = client.Pile()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `Record<string, any>` |  |
 | `remaining` | `number` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -470,13 +462,14 @@ Create an instance: `const pile_draw = client.PileDraw()`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `Record<string, any>` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
 #### Example: List
 
 ```ts
-const pile_draws = await client.PileDraw().list()
+const pile_draws = await client.PileDraw().list({ deck_id: "example" })
 ```
 
 
@@ -494,10 +487,8 @@ Create an instance: `const pile_list = client.PileList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `Record<string, any>` |  |
+| `cards` | `any[]` |  |
 | `remaining` | `number` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -520,11 +511,7 @@ Create an instance: `const return_ = client.Return()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `Record<string, any>` |  |
 | `remaining` | `number` |  |
-| `shuffled` | `boolean` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 

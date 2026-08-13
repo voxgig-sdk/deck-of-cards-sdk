@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# DeckOfCards SDK exists test
 
 import pytest
 from deckofcards_sdk import DeckOfCardsSDK

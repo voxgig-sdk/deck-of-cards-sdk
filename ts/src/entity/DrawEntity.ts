@@ -37,7 +37,7 @@ class DrawEntity extends DeckOfCardsEntityBase<Draw> {
 
 
 
-  async list(this: any, reqmatch?: DrawListMatch, ctrl?: Control): Promise<Draw[]> {
+  async list(this: any, reqmatch?: DrawListMatch, ctrl?: Control): Promise<DrawEntity[]> {
 
     const utility = this._utility
 

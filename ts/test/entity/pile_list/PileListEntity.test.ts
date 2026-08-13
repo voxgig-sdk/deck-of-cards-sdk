@@ -26,8 +26,8 @@ import {
 describe('PileListEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DECKOFCARDS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DECKOFCARDS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DECK_OF_CARDS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DECK_OF_CARDS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DeckOfCardsSDK.test()

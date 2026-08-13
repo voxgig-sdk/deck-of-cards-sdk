@@ -71,11 +71,11 @@ function return_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["DECKOFCARDS_TEST_RETURN_ENTID"] = {},
-    ["DECKOFCARDS_TEST_LIVE"] = "FALSE",
+    ["DECK_OF_CARDS_TEST_RETURN_ENTID"] = {},
+    ["DECK_OF_CARDS_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["DECKOFCARDS_TEST_LIVE"] == "TRUE"
+  local live = env["DECK_OF_CARDS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

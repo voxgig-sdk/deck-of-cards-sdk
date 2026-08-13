@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = DeckOfCardsSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = DeckOfCardsSDK.test({
+  entity: {
+    deck: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const deck = await client.Deck().load()
-// deck is a bare Deck populated with mock data
+// deck is the Deck entity, populated with mock data
+// — call deck.data() for the record itself
 console.log(deck)
 ```
 
@@ -191,7 +200,7 @@ require_once 'deckofcards_sdk.php';
 $client = new DeckOfCardsSDK();
 
 
-// Load a specific deck (returns the bare record; throws on error)
+// Load a specific deck (returns the ENTITY; call data_get() for the record; throws on error)
 $deck = $client->Deck()->load();
 print_r($deck);
 ```
@@ -222,7 +231,7 @@ require_relative "DeckOfCards_sdk"
 client = DeckOfCardsSDK.new
 
 
-# Load a specific deck (returns the bare record; raises on error)
+# Load a specific deck (returns the ENTITY; call data_get for the record)
 deck = client.Deck.load()
 puts deck
 ```
@@ -356,6 +365,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.deckofcardsapi.com/](https://www.deckofcardsapi.com/)
 

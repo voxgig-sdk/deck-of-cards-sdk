@@ -23,8 +23,8 @@ module DeckOfCardsTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("DECKOFCARDS_TEST_LIVE")
-    override = getenv("DECKOFCARDS_TEST_OVERRIDE")
+    live = getenv("DECK_OF_CARDS_TEST_LIVE")
+    override = getenv("DECK_OF_CARDS_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module DeckOfCardsTestRunner
       end
     end
 
-    explain = getenv("DECKOFCARDS_TEST_EXPLAIN")
-    m["DECKOFCARDS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("DECK_OF_CARDS_TEST_EXPLAIN")
+    m["DECK_OF_CARDS_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

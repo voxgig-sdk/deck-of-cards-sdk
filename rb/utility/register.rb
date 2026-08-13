@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ DeckOfCardsUtility.registrar = ->(u) {
   u.prepare_params = DeckOfCardsUtilities::PrepareParams
   u.prepare_path = DeckOfCardsUtilities::PreparePath
   u.prepare_query = DeckOfCardsUtilities::PrepareQuery
+  u.graphql_body = DeckOfCardsUtilities::GraphqlBody
+  u.graphql_errors = DeckOfCardsUtilities::GraphqlErrors
   u.result_basic = DeckOfCardsUtilities::ResultBasic
   u.result_body = DeckOfCardsUtilities::ResultBody
   u.result_headers = DeckOfCardsUtilities::ResultHeaders

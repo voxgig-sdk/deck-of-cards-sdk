@@ -37,7 +37,7 @@ class PileDrawEntity extends DeckOfCardsEntityBase<PileDraw> {
 
 
 
-  async list(this: any, reqmatch?: PileDrawListMatch, ctrl?: Control): Promise<PileDraw[]> {
+  async list(this: any, reqmatch?: PileDrawListMatch, ctrl?: Control): Promise<PileDrawEntity[]> {
 
     const utility = this._utility
 

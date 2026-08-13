@@ -23,6 +23,7 @@ guide: {
   entity: draw: {
     path: "/deck/{deck_id}/draw/": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.cards`")|top
     }
   }
 
@@ -30,10 +31,12 @@ guide: {
     path: "/deck/{deck_id}/pile/{pile_name}/add/": {
       action: "add": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.piles`")|top
     }
     path: "/deck/{deck_id}/pile/{pile_name}/shuffle/": {
       action: "shuffle": {}
       op: load: method: *GET
+      op: load: transform: res: *("`body.piles`")|top
     }
   }
 
@@ -54,15 +57,18 @@ guide: {
   entity: pile_list: {
     path: "/deck/{deck_id}/pile/{pile_name}/list/": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.piles`")|top
     }
   }
 
   entity: return: {
     path: "/deck/{deck_id}/pile/{pile_name}/return/": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.piles`")|top
     }
     path: "/deck/{deck_id}/return/": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.piles`")|top
     }
   }
 

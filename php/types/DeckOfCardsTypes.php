@@ -35,6 +35,7 @@ class Draw
 {
     public ?string $code = null;
     public ?string $image = null;
+    public ?array $images = null;
     public ?string $suit = null;
     public ?string $value = null;
 }
@@ -48,10 +49,7 @@ class DrawListMatch
 /** Pile entity data model. */
 class Pile
 {
-    public ?string $deck_id = null;
-    public ?array $pile = null;
     public ?int $remaining = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for Pile#load. */
@@ -66,6 +64,7 @@ class PileDraw
 {
     public ?string $code = null;
     public ?string $image = null;
+    public ?array $images = null;
     public ?string $suit = null;
     public ?string $value = null;
 }
@@ -81,10 +80,8 @@ class PileDrawListMatch
 /** PileList entity data model. */
 class PileList
 {
-    public ?string $deck_id = null;
-    public ?array $pile = null;
+    public ?array $cards = null;
     public ?int $remaining = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for PileList#load. */
@@ -97,11 +94,7 @@ class PileListLoadMatch
 /** Return entity data model. */
 class Return
 {
-    public ?string $deck_id = null;
-    public ?array $pile = null;
     public ?int $remaining = null;
-    public ?bool $shuffled = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for Return#load. */

@@ -58,6 +58,9 @@ DeckLoadMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [String, nil]
 #
+# @!attribute [rw] images
+#   @return [Hash, nil]
+#
 # @!attribute [rw] suit
 #   @return [String, nil]
 #
@@ -66,6 +69,7 @@ DeckLoadMatch = Struct.new(
 Draw = Struct.new(
   :code,
   :image,
+  :images,
   :suit,
   :value,
   keyword_init: true
@@ -82,22 +86,10 @@ DrawListMatch = Struct.new(
 
 # Pile entity data model.
 #
-# @!attribute [rw] deck_id
-#   @return [String, nil]
-#
-# @!attribute [rw] pile
-#   @return [Hash, nil]
-#
 # @!attribute [rw] remaining
 #   @return [Integer, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 Pile = Struct.new(
-  :deck_id,
-  :pile,
   :remaining,
-  :success,
   keyword_init: true
 )
 
@@ -122,6 +114,9 @@ PileLoadMatch = Struct.new(
 # @!attribute [rw] image
 #   @return [String, nil]
 #
+# @!attribute [rw] images
+#   @return [Hash, nil]
+#
 # @!attribute [rw] suit
 #   @return [String, nil]
 #
@@ -130,6 +125,7 @@ PileLoadMatch = Struct.new(
 PileDraw = Struct.new(
   :code,
   :image,
+  :images,
   :suit,
   :value,
   keyword_init: true
@@ -154,22 +150,14 @@ PileDrawListMatch = Struct.new(
 
 # PileList entity data model.
 #
-# @!attribute [rw] deck_id
-#   @return [String, nil]
-#
-# @!attribute [rw] pile
-#   @return [Hash, nil]
+# @!attribute [rw] cards
+#   @return [Array, nil]
 #
 # @!attribute [rw] remaining
 #   @return [Integer, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 PileList = Struct.new(
-  :deck_id,
-  :pile,
+  :cards,
   :remaining,
-  :success,
   keyword_init: true
 )
 
@@ -188,26 +176,10 @@ PileListLoadMatch = Struct.new(
 
 # Return entity data model.
 #
-# @!attribute [rw] deck_id
-#   @return [String, nil]
-#
-# @!attribute [rw] pile
-#   @return [Hash, nil]
-#
 # @!attribute [rw] remaining
 #   @return [Integer, nil]
-#
-# @!attribute [rw] shuffled
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 Return = Struct.new(
-  :deck_id,
-  :pile,
   :remaining,
-  :shuffled,
-  :success,
   keyword_init: true
 )
 

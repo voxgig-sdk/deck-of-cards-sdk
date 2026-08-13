@@ -95,6 +95,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/new/shuffle/",
 								"parts": []any{
@@ -139,6 +140,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/shuffle/",
 								"parts": []any{
@@ -178,6 +180,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/new/",
 								"parts": []any{
@@ -197,7 +200,6 @@ func MakeConfig() map[string]any {
 								"index$": 2,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -222,17 +224,24 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
+						"name": "images",
+						"req": false,
+						"type": "`$OBJECT`",
+						"index$": 2,
+					},
+					map[string]any{
+						"active": true,
 						"name": "suit",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 2,
+						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
 						"name": "value",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 4,
 					},
 				},
 				"name": "draw",
@@ -267,6 +276,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/draw/",
 								"parts": []any{
@@ -282,12 +292,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.cards`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -302,31 +311,10 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "deck_id",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
-						"name": "pile",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
 						"name": "remaining",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
-						"name": "success",
-						"req": false,
-						"type": "`$BOOLEAN`",
-						"index$": 3,
+						"index$": 0,
 					},
 				},
 				"name": "pile",
@@ -369,6 +357,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/add/",
 								"parts": []any{
@@ -388,7 +377,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.piles`",
 								},
 								"index$": 0,
 							},
@@ -416,6 +405,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
 								"parts": []any{
@@ -434,12 +424,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.piles`",
 								},
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -469,17 +458,24 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
+						"name": "images",
+						"req": false,
+						"type": "`$OBJECT`",
+						"index$": 2,
+					},
+					map[string]any{
+						"active": true,
 						"name": "suit",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 2,
+						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
 						"name": "value",
 						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
+						"index$": 4,
 					},
 				},
 				"name": "pile_draw",
@@ -530,6 +526,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
 								"parts": []any{
@@ -587,6 +584,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
 								"parts": []any{
@@ -649,6 +647,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
 								"parts": []any{
@@ -678,7 +677,6 @@ func MakeConfig() map[string]any {
 								"index$": 2,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -694,31 +692,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "deck_id",
+						"name": "cards",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ARRAY`",
 						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
-						"name": "pile",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
 						"name": "remaining",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
-						"name": "success",
-						"req": false,
-						"type": "`$BOOLEAN`",
-						"index$": 3,
+						"index$": 1,
 					},
 				},
 				"name": "pile_list",
@@ -751,6 +735,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/list/",
 								"parts": []any{
@@ -768,12 +753,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.piles`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -789,38 +773,10 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "deck_id",
-						"req": false,
-						"type": "`$STRING`",
-						"index$": 0,
-					},
-					map[string]any{
-						"active": true,
-						"name": "pile",
-						"req": false,
-						"type": "`$OBJECT`",
-						"index$": 1,
-					},
-					map[string]any{
-						"active": true,
 						"name": "remaining",
 						"req": false,
 						"type": "`$INTEGER`",
-						"index$": 2,
-					},
-					map[string]any{
-						"active": true,
-						"name": "shuffled",
-						"req": false,
-						"type": "`$BOOLEAN`",
-						"index$": 3,
-					},
-					map[string]any{
-						"active": true,
-						"name": "success",
-						"req": false,
-						"type": "`$BOOLEAN`",
-						"index$": 4,
+						"index$": 0,
 					},
 				},
 				"name": "return",
@@ -863,6 +819,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/return/",
 								"parts": []any{
@@ -881,7 +838,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.piles`",
 								},
 								"index$": 0,
 							},
@@ -910,6 +867,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/return/",
 								"parts": []any{
@@ -925,12 +883,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.piles`",
 								},
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

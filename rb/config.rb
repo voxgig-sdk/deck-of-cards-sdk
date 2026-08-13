@@ -96,6 +96,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/new/shuffle/",
                   "parts" => [
@@ -140,6 +141,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/shuffle/",
                   "parts" => [
@@ -179,6 +181,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/new/",
                   "parts" => [
@@ -223,17 +226,24 @@ module DeckOfCardsConfig
             },
             {
               "active" => true,
+              "name" => "images",
+              "req" => false,
+              "type" => "`$OBJECT`",
+              "index$" => 2,
+            },
+            {
+              "active" => true,
               "name" => "suit",
               "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
+              "index$" => 3,
             },
             {
               "active" => true,
               "name" => "value",
               "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
+              "index$" => 4,
             },
           ],
           "name" => "draw",
@@ -268,6 +278,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/draw/",
                   "parts" => [
@@ -283,7 +294,7 @@ module DeckOfCardsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.cards`",
                   },
                   "index$" => 0,
                 },
@@ -303,31 +314,10 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "deck_id",
-              "req" => false,
-              "type" => "`$STRING`",
-              "index$" => 0,
-            },
-            {
-              "active" => true,
-              "name" => "pile",
-              "req" => false,
-              "type" => "`$OBJECT`",
-              "index$" => 1,
-            },
-            {
-              "active" => true,
               "name" => "remaining",
               "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
-            },
-            {
-              "active" => true,
-              "name" => "success",
-              "req" => false,
-              "type" => "`$BOOLEAN`",
-              "index$" => 3,
+              "index$" => 0,
             },
           ],
           "name" => "pile",
@@ -370,6 +360,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/add/",
                   "parts" => [
@@ -389,7 +380,7 @@ module DeckOfCardsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.piles`",
                   },
                   "index$" => 0,
                 },
@@ -417,6 +408,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/shuffle/",
                   "parts" => [
@@ -435,7 +427,7 @@ module DeckOfCardsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.piles`",
                   },
                   "index$" => 1,
                 },
@@ -470,17 +462,24 @@ module DeckOfCardsConfig
             },
             {
               "active" => true,
+              "name" => "images",
+              "req" => false,
+              "type" => "`$OBJECT`",
+              "index$" => 2,
+            },
+            {
+              "active" => true,
               "name" => "suit",
               "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
+              "index$" => 3,
             },
             {
               "active" => true,
               "name" => "value",
               "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
+              "index$" => 4,
             },
           ],
           "name" => "pile_draw",
@@ -531,6 +530,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/draw/",
                   "parts" => [
@@ -588,6 +588,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
                   "parts" => [
@@ -650,6 +651,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/draw/random/",
                   "parts" => [
@@ -695,31 +697,17 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "deck_id",
+              "name" => "cards",
               "req" => false,
-              "type" => "`$STRING`",
+              "type" => "`$ARRAY`",
               "index$" => 0,
-            },
-            {
-              "active" => true,
-              "name" => "pile",
-              "req" => false,
-              "type" => "`$OBJECT`",
-              "index$" => 1,
             },
             {
               "active" => true,
               "name" => "remaining",
               "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
-            },
-            {
-              "active" => true,
-              "name" => "success",
-              "req" => false,
-              "type" => "`$BOOLEAN`",
-              "index$" => 3,
+              "index$" => 1,
             },
           ],
           "name" => "pile_list",
@@ -752,6 +740,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/list/",
                   "parts" => [
@@ -769,7 +758,7 @@ module DeckOfCardsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.piles`",
                   },
                   "index$" => 0,
                 },
@@ -790,38 +779,10 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "deck_id",
-              "req" => false,
-              "type" => "`$STRING`",
-              "index$" => 0,
-            },
-            {
-              "active" => true,
-              "name" => "pile",
-              "req" => false,
-              "type" => "`$OBJECT`",
-              "index$" => 1,
-            },
-            {
-              "active" => true,
               "name" => "remaining",
               "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 2,
-            },
-            {
-              "active" => true,
-              "name" => "shuffled",
-              "req" => false,
-              "type" => "`$BOOLEAN`",
-              "index$" => 3,
-            },
-            {
-              "active" => true,
-              "name" => "success",
-              "req" => false,
-              "type" => "`$BOOLEAN`",
-              "index$" => 4,
+              "index$" => 0,
             },
           ],
           "name" => "return",
@@ -864,6 +825,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/pile/{pile_name}/return/",
                   "parts" => [
@@ -882,7 +844,7 @@ module DeckOfCardsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.piles`",
                   },
                   "index$" => 0,
                 },
@@ -911,6 +873,7 @@ module DeckOfCardsConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deck/{deck_id}/return/",
                   "parts" => [
@@ -926,7 +889,7 @@ module DeckOfCardsConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.piles`",
                   },
                   "index$" => 1,
                 },

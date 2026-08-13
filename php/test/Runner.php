@@ -43,8 +43,8 @@ class DeckOfCardsTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('DECKOFCARDS_TEST_LIVE');
-        $override = self::getenv('DECKOFCARDS_TEST_OVERRIDE');
+        $live = self::getenv('DECK_OF_CARDS_TEST_LIVE');
+        $override = self::getenv('DECK_OF_CARDS_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class DeckOfCardsTestRunner
             }
         }
 
-        $explain = self::getenv('DECKOFCARDS_TEST_EXPLAIN');
+        $explain = self::getenv('DECK_OF_CARDS_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['DECKOFCARDS_TEST_EXPLAIN'] = $explain;
+            $m['DECK_OF_CARDS_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

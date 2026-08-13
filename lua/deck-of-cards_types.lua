@@ -21,6 +21,7 @@
 ---@class Draw
 ---@field code? string
 ---@field image? string
+---@field images? table
 ---@field suit? string
 ---@field value? string
 
@@ -28,10 +29,7 @@
 ---@field deck_id string
 
 ---@class Pile
----@field deck_id? string
----@field pile? table
 ---@field remaining? number
----@field success? boolean
 
 ---@class PileLoadMatch
 ---@field deck_id string
@@ -40,6 +38,7 @@
 ---@class PileDraw
 ---@field code? string
 ---@field image? string
+---@field images? table
 ---@field suit? string
 ---@field value? string
 
@@ -49,21 +48,15 @@
 ---@field pile_id? string
 
 ---@class PileList
----@field deck_id? string
----@field pile? table
+---@field cards? table
 ---@field remaining? number
----@field success? boolean
 
 ---@class PileListLoadMatch
 ---@field deck_id string
 ---@field pile_name string
 
 ---@class Return
----@field deck_id? string
----@field pile? table
 ---@field remaining? number
----@field shuffled? boolean
----@field success? boolean
 
 ---@class ReturnLoadMatch
 ---@field deck_id string

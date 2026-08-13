@@ -6,24 +6,9 @@ main: kit: entity: pile: {
 
   fields: [
     {
-      name: "deck_id"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "pile"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "remaining"
       req: false
       type: "`$INTEGER`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
   ]
 
@@ -79,7 +64,7 @@ main: kit: entity: pile: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.piles`"
           }
         }
         {
@@ -119,7 +104,7 @@ main: kit: entity: pile: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.piles`"
           }
         }
       ]

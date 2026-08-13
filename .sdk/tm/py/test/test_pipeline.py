@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DeckOfCardsSDK
-from core.error import DeckOfCardsError
-from core.result import DeckOfCardsResult
-from core.response import DeckOfCardsResponse
-from core.spec import DeckOfCardsSpec
-from feature.base_feature import DeckOfCardsBaseFeature
+from projectname_sdk.core.error import DeckOfCardsError
+from projectname_sdk.core.result import DeckOfCardsResult
+from projectname_sdk.core.response import DeckOfCardsResponse
+from projectname_sdk.core.spec import DeckOfCardsSpec
+from projectname_sdk.feature.base_feature import DeckOfCardsBaseFeature
 
 
 def _client():

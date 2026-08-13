@@ -280,6 +280,7 @@ API path: `/deck/new/shuffle/`
 | --- | --- |
 | `"code"` |  |
 | `"image"` |  |
+| `"images"` |  |
 | `"suit"` |  |
 | `"value"` |  |
 
@@ -291,10 +292,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `"deck_id"` |  |
-| `"pile"` |  |
 | `"remaining"` |  |
-| `"success"` |  |
 
 Operations: Load.
 
@@ -306,6 +304,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 | --- | --- |
 | `"code"` |  |
 | `"image"` |  |
+| `"images"` |  |
 | `"suit"` |  |
 | `"value"` |  |
 
@@ -317,10 +316,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `"deck_id"` |  |
-| `"pile"` |  |
+| `"cards"` |  |
 | `"remaining"` |  |
-| `"success"` |  |
 
 Operations: Load.
 
@@ -330,11 +327,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `"deck_id"` |  |
-| `"pile"` |  |
 | `"remaining"` |  |
-| `"shuffled"` |  |
-| `"success"` |  |
 
 Operations: Load.
 
@@ -391,6 +384,7 @@ Create an instance: `draw := client.Draw(nil)`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `map[string]any` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
@@ -419,10 +413,7 @@ Create an instance: `pile := client.Pile(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `map[string]any` |  |
 | `remaining` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -451,6 +442,7 @@ Create an instance: `pileDraw := client.PileDraw(nil)`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `map[string]any` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
@@ -479,10 +471,8 @@ Create an instance: `pileList := client.PileList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `map[string]any` |  |
+| `cards` | `[]any` |  |
 | `remaining` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -509,11 +499,7 @@ Create an instance: `return_ := client.Return(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `map[string]any` |  |
 | `remaining` | `int` |  |
-| `shuffled` | `bool` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 

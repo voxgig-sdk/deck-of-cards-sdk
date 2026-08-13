@@ -2,29 +2,20 @@
   "existing": {
     "return": {
       "RETURN00": {
+        "remaining": "sa",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s34",
-        "shuffled": false,
-        "success": true,
         "pile_name": "PILE_NAME01",
         "id": "RETURN00"
       },
       "RETURN01": {
+        "remaining": "s14",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s66",
-        "shuffled": false,
-        "success": true,
         "pile_name": "PILE_NAME01",
         "id": "RETURN01"
       },
       "RETURN02": {
+        "remaining": "s1e",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s98",
-        "shuffled": false,
-        "success": true,
         "pile_name": "PILE_NAME01",
         "id": "RETURN02"
       }
@@ -33,11 +24,7 @@
   "new": {
     "return": {
       "return_ref01": {
-        "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "sca",
-        "shuffled": false,
-        "success": true
+        "remaining": "s28"
       }
     }
   }

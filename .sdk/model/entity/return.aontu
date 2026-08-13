@@ -6,29 +6,9 @@ main: kit: entity: return: {
 
   fields: [
     {
-      name: "deck_id"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "pile"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "remaining"
       req: false
       type: "`$INTEGER`"
-    }
-    {
-      name: "shuffled"
-      req: false
-      type: "`$BOOLEAN`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
   ]
 
@@ -83,7 +63,7 @@ main: kit: entity: return: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.piles`"
           }
         }
         {
@@ -122,7 +102,7 @@ main: kit: entity: return: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.piles`"
           }
         }
       ]

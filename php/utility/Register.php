@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ DeckOfCardsUtility::setRegistrar(function (DeckOfCardsUtility $u): void {
     $u->prepare_params = [DeckOfCardsPrepareParams::class, 'call'];
     $u->prepare_path = [DeckOfCardsPreparePath::class, 'call'];
     $u->prepare_query = [DeckOfCardsPrepareQuery::class, 'call'];
+    $u->graphql_body = [DeckOfCardsGraphql::class, 'body'];
+    $u->graphql_errors = [DeckOfCardsGraphql::class, 'errors'];
     $u->result_basic = [DeckOfCardsResultBasic::class, 'call'];
     $u->result_body = [DeckOfCardsResultBody::class, 'call'];
     $u->result_headers = [DeckOfCardsResultHeaders::class, 'call'];

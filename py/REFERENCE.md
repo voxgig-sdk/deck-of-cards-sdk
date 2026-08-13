@@ -163,6 +163,7 @@ draw = client.Draw()
 | --- | --- | --- | --- |
 | `code` | `str` | No |  |
 | `image` | `str` | No |  |
+| `images` | `dict` | No |  |
 | `suit` | `str` | No |  |
 | `value` | `str` | No |  |
 
@@ -173,7 +174,7 @@ draw = client.Draw()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Draw().list()
+results = client.Draw().list({"deck_id": "example"})
 for draw in results:
     print(draw)
 ```
@@ -217,10 +218,7 @@ pile = client.Pile()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `str` | No |  |
-| `pile` | `dict` | No |  |
 | `remaining` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -273,6 +271,7 @@ pile_draw = client.PileDraw()
 | --- | --- | --- | --- |
 | `code` | `str` | No |  |
 | `image` | `str` | No |  |
+| `images` | `dict` | No |  |
 | `suit` | `str` | No |  |
 | `value` | `str` | No |  |
 
@@ -283,7 +282,7 @@ pile_draw = client.PileDraw()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PileDraw().list()
+results = client.PileDraw().list({"deck_id": "example"})
 for pile_draw in results:
     print(pile_draw)
 ```
@@ -327,10 +326,8 @@ pile_list = client.PileList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `str` | No |  |
-| `pile` | `dict` | No |  |
+| `cards` | `list` | No |  |
 | `remaining` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -381,11 +378,7 @@ return_ = client.Return()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `str` | No |  |
-| `pile` | `dict` | No |  |
 | `remaining` | `int` | No |  |
-| `shuffled` | `bool` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 

@@ -65,11 +65,11 @@ function deck_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "DECKOFCARDS_TEST_DECK_ENTID" => [],
-        "DECKOFCARDS_TEST_LIVE" => "FALSE",
+        "DECK_OF_CARDS_TEST_DECK_ENTID" => [],
+        "DECK_OF_CARDS_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["DECKOFCARDS_TEST_LIVE"] === "TRUE";
+    $live = $env["DECK_OF_CARDS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

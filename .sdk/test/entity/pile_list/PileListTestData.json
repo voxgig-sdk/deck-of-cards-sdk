@@ -2,26 +2,23 @@
   "existing": {
     "pile_list": {
       "PILE_LIST00": {
+        "cards": [],
+        "remaining": "s15",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s2a",
-        "success": false,
         "pile_name": "PILE_NAME01",
         "id": "PILE_LIST00"
       },
       "PILE_LIST01": {
+        "cards": [],
+        "remaining": "s29",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s52",
-        "success": false,
         "pile_name": "PILE_NAME01",
         "id": "PILE_LIST01"
       },
       "PILE_LIST02": {
+        "cards": [],
+        "remaining": "s3d",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s7a",
-        "success": false,
         "pile_name": "PILE_NAME01",
         "id": "PILE_LIST02"
       }
@@ -30,10 +27,8 @@
   "new": {
     "pile_list": {
       "pile_list_ref01": {
-        "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "sa2",
-        "success": false
+        "cards": [],
+        "remaining": "s51"
       }
     }
   }

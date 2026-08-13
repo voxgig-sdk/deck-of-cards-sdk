@@ -26,8 +26,8 @@ import {
 describe('DeckEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DECKOFCARDS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DECKOFCARDS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DECK_OF_CARDS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DECK_OF_CARDS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DeckOfCardsSDK.test()
@@ -62,7 +62,7 @@ describe('DeckEntity', async () => {
     // LOAD
     const deck_ref01_ent = client.Deck()
     const deck_ref01_match_dt0: any = {}
-    const deck_ref01_data_dt0 = await deck_ref01_ent.load(deck_ref01_match_dt0)
+    const deck_ref01_data_dt0 = (await deck_ref01_ent.load(deck_ref01_match_dt0)).data()
     assert(null != deck_ref01_data_dt0)
 
 

@@ -167,6 +167,7 @@ local draw = client:Draw(nil)
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `table` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -220,10 +221,7 @@ local pile = client:Pile(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `table` | No |  |
 | `remaining` | `number` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -277,6 +275,7 @@ local pile_draw = client:PileDraw(nil)
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `table` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -330,10 +329,8 @@ local pile_list = client:PileList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `table` | No |  |
+| `cards` | `table` | No |  |
 | `remaining` | `number` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -385,11 +382,7 @@ local return_ = client:Return(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `table` | No |  |
 | `remaining` | `number` | No |  |
-| `shuffled` | `boolean` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 

@@ -39,7 +39,7 @@ client = DeckOfCardsSDK()
 ### 3. Load a pile
 
 Pile is nested under deck, so provide the `deck_id`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DeckOfCardsSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 deck = client.Deck().load()
 # deck contains the mock response record
 ```
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -262,6 +263,7 @@ API path: `/deck/new/shuffle/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -273,10 +275,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -288,6 +287,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -299,10 +299,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
+| `cards` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -312,11 +310,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -369,13 +363,14 @@ Create an instance: `draw = client.Draw()`
 | --- | --- | --- |
 | `code` | `str` |  |
 | `image` | `str` |  |
+| `images` | `dict` |  |
 | `suit` | `str` |  |
 | `value` | `str` |  |
 
 #### Example: List
 
 ```python
-draws = client.Draw().list()
+draws = client.Draw().list({"deck_id": "example"})
 ```
 
 
@@ -393,10 +388,7 @@ Create an instance: `pile = client.Pile()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `str` |  |
-| `pile` | `dict` |  |
 | `remaining` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -421,13 +413,14 @@ Create an instance: `pile_draw = client.PileDraw()`
 | --- | --- | --- |
 | `code` | `str` |  |
 | `image` | `str` |  |
+| `images` | `dict` |  |
 | `suit` | `str` |  |
 | `value` | `str` |  |
 
 #### Example: List
 
 ```python
-pile_draws = client.PileDraw().list()
+pile_draws = client.PileDraw().list({"deck_id": "example"})
 ```
 
 
@@ -445,10 +438,8 @@ Create an instance: `pile_list = client.PileList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `str` |  |
-| `pile` | `dict` |  |
+| `cards` | `list` |  |
 | `remaining` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -471,11 +462,7 @@ Create an instance: `return_ = client.Return()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `str` |  |
-| `pile` | `dict` |  |
 | `remaining` | `int` |  |
-| `shuffled` | `bool` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 

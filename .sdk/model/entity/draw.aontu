@@ -16,6 +16,11 @@ main: kit: entity: draw: {
       type: "`$STRING`"
     }
     {
+      name: "images"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
       name: "suit"
       req: false
       type: "`$STRING`"
@@ -69,7 +74,7 @@ main: kit: entity: draw: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.cards`"
           }
         }
       ]

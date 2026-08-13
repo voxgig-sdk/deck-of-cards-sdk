@@ -36,7 +36,7 @@ Pile is nested under deck, so provide the `deck_id`.
 
 ```ruby
 begin
-  # load returns the bare Pile record (raises on error).
+  # load returns the ENTITY — call data_get for the Pile record (raises on error).
   pile = client.Pile.load({ "deck_id" => "example_deck_id", "pile_name" => "example_pile_name" })
   puts pile
 rescue => err
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = DeckOfCardsSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 deck = client.Deck.load()
 puts deck
 ```
@@ -257,6 +258,7 @@ API path: `/deck/new/shuffle/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -268,10 +270,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -283,6 +282,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -294,10 +294,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
+| `cards` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -307,11 +305,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -344,7 +338,7 @@ Create an instance: `deck = client.Deck`
 #### Example: Load
 
 ```ruby
-# load returns the bare Deck record (raises on error).
+# load returns the ENTITY — call data_get for the Deck record (raises on error).
 deck = client.Deck.load()
 ```
 
@@ -365,6 +359,7 @@ Create an instance: `draw = client.Draw`
 | --- | --- | --- |
 | `code` | `String` |  |
 | `image` | `String` |  |
+| `images` | `Hash` |  |
 | `suit` | `String` |  |
 | `value` | `String` |  |
 
@@ -390,15 +385,12 @@ Create an instance: `pile = client.Pile`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `String` |  |
-| `pile` | `Hash` |  |
 | `remaining` | `Integer` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Pile record (raises on error).
+# load returns the ENTITY — call data_get for the Pile record (raises on error).
 pile = client.Pile.load({ "deck_id" => "deck_id", "pile_name" => "pile_name" })
 ```
 
@@ -419,6 +411,7 @@ Create an instance: `pile_draw = client.PileDraw`
 | --- | --- | --- |
 | `code` | `String` |  |
 | `image` | `String` |  |
+| `images` | `Hash` |  |
 | `suit` | `String` |  |
 | `value` | `String` |  |
 
@@ -444,15 +437,13 @@ Create an instance: `pile_list = client.PileList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `String` |  |
-| `pile` | `Hash` |  |
+| `cards` | `Array` |  |
 | `remaining` | `Integer` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare PileList record (raises on error).
+# load returns the ENTITY — call data_get for the PileList record (raises on error).
 pile_list = client.PileList.load({ "deck_id" => "deck_id", "pile_name" => "pile_name" })
 ```
 
@@ -471,16 +462,12 @@ Create an instance: `return_ = client.Return`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `String` |  |
-| `pile` | `Hash` |  |
 | `remaining` | `Integer` |  |
-| `shuffled` | `Boolean` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Return record (raises on error).
+# load returns the ENTITY — call data_get for the Return record (raises on error).
 return_ = client.Return.load({ "deck_id" => "deck_id" })
 ```
 

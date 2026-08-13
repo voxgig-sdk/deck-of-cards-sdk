@@ -181,6 +181,27 @@ const deck = client.Deck()
 | `shuffled` | `boolean` | No |  |
 | `success` | `boolean` | No |  |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `new` | `/deck/new/` | `client.Deck().load({ $action: 'new', ... })` |
+| `shuffle` | `/deck/{deck_id}/shuffle/` | `client.Deck().load({ $action: 'shuffle', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Deck record — check the API definition for its shape.
+
+```ts
+const result = await client.Deck().load({
+  $action: 'new',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -231,6 +252,7 @@ const draw = client.Draw()
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `Record<string, any>` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -241,7 +263,7 @@ const draw = client.Draw()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Draw().list()
+const results = await client.Draw().list({ deck_id: "example" })
 ```
 
 ### Common Methods
@@ -282,10 +304,28 @@ const pile = client.Pile()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `Record<string, any>` | No |  |
 | `remaining` | `number` | No |  |
-| `success` | `boolean` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `add` | `/deck/{deck_id}/pile/{pile_name}/add/` | `client.Pile().load({ $action: 'add', ... })` |
+| `shuffle` | `/deck/{deck_id}/pile/{pile_name}/shuffle/` | `client.Pile().load({ $action: 'shuffle', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Pile record — check the API definition for its shape.
+
+```ts
+const result = await client.Pile().load({
+  $action: 'add',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -337,6 +377,7 @@ const pile_draw = client.PileDraw()
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `Record<string, any>` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -347,7 +388,7 @@ const pile_draw = client.PileDraw()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.PileDraw().list()
+const results = await client.PileDraw().list({ deck_id: "example" })
 ```
 
 ### Common Methods
@@ -388,10 +429,8 @@ const pile_list = client.PileList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `Record<string, any>` | No |  |
+| `cards` | `any[]` | No |  |
 | `remaining` | `number` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -441,11 +480,7 @@ const return_ = client.Return()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `Record<string, any>` | No |  |
 | `remaining` | `number` | No |  |
-| `shuffled` | `boolean` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 

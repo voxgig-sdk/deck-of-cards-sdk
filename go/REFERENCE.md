@@ -174,6 +174,7 @@ fmt.Println(draw.GetName()) // "draw"
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `map[string]any` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -226,10 +227,7 @@ fmt.Println(pile.GetName()) // "pile"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `map[string]any` | No |  |
 | `remaining` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -282,6 +280,7 @@ fmt.Println(pileDraw.GetName()) // "pile_draw"
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `map[string]any` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -334,10 +333,8 @@ fmt.Println(pileList.GetName()) // "pile_list"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `map[string]any` | No |  |
+| `cards` | `[]any` | No |  |
 | `remaining` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -388,11 +385,7 @@ fmt.Println(return_.GetName()) // "return"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `map[string]any` | No |  |
 | `remaining` | `int` | No |  |
-| `shuffled` | `bool` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 

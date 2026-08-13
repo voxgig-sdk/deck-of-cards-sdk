@@ -170,6 +170,7 @@ draw = client.Draw
 | --- | --- | --- | --- |
 | `code` | `String` | No |  |
 | `image` | `String` | No |  |
+| `images` | `Hash` | No |  |
 | `suit` | `String` | No |  |
 | `value` | `String` | No |  |
 
@@ -223,10 +224,7 @@ pile = client.Pile
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `String` | No |  |
-| `pile` | `Hash` | No |  |
 | `remaining` | `Integer` | No |  |
-| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -280,6 +278,7 @@ pile_draw = client.PileDraw
 | --- | --- | --- | --- |
 | `code` | `String` | No |  |
 | `image` | `String` | No |  |
+| `images` | `Hash` | No |  |
 | `suit` | `String` | No |  |
 | `value` | `String` | No |  |
 
@@ -333,10 +332,8 @@ pile_list = client.PileList
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `String` | No |  |
-| `pile` | `Hash` | No |  |
+| `cards` | `Array` | No |  |
 | `remaining` | `Integer` | No |  |
-| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -388,11 +385,7 @@ return_ = client.Return
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `String` | No |  |
-| `pile` | `Hash` | No |  |
 | `remaining` | `Integer` | No |  |
-| `shuffled` | `Boolean` | No |  |
-| `success` | `Boolean` | No |  |
 
 ### Operations
 

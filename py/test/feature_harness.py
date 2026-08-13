@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DeckOfCardsControl
-from core.error import DeckOfCardsError
-from core.result import DeckOfCardsResult
-from core.spec import DeckOfCardsSpec
+from deckofcards_sdk.config import make_config
+from deckofcards_sdk.features import _make_feature
+from deckofcards_sdk.core.control import DeckOfCardsControl
+from deckofcards_sdk.core.error import DeckOfCardsError
+from deckofcards_sdk.core.result import DeckOfCardsResult
+from deckofcards_sdk.core.spec import DeckOfCardsSpec
 
 
 # True when this SDK was generated with the named feature.

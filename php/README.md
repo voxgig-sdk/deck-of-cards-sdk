@@ -37,7 +37,7 @@ Pile is nested under deck, so provide the `deck_id`.
 
 ```php
 try {
-    // load() returns the bare Pile record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Pile record (throws on error).
     $pile = $client->Pile()->load(["deck_id" => "example_deck_id", "pile_name" => "example_pile_name"]);
     print_r($pile);
 } catch (\Throwable $err) {
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DeckOfCardsSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $deck = $client->Deck()->load();
 print_r($deck);
 ```
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -267,6 +268,7 @@ API path: `/deck/new/shuffle/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -278,10 +280,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -293,6 +292,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -304,10 +304,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
+| `cards` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -317,11 +315,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -354,7 +348,7 @@ Create an instance: `$deck = $client->Deck();`
 #### Example: Load
 
 ```php
-// load() returns the bare Deck record (throws on error).
+// load() returns the ENTITY — call data_get() for the Deck record (throws on error).
 $deck = $client->Deck()->load();
 ```
 
@@ -375,6 +369,7 @@ Create an instance: `$draw = $client->Draw();`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `array` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
@@ -400,15 +395,12 @@ Create an instance: `$pile = $client->Pile();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `array` |  |
 | `remaining` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Pile record (throws on error).
+// load() returns the ENTITY — call data_get() for the Pile record (throws on error).
 $pile = $client->Pile()->load(["deck_id" => "deck_id", "pile_name" => "pile_name"]);
 ```
 
@@ -429,6 +421,7 @@ Create an instance: `$pile_draw = $client->PileDraw();`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `array` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
@@ -454,15 +447,13 @@ Create an instance: `$pile_list = $client->PileList();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `array` |  |
+| `cards` | `array` |  |
 | `remaining` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare PileList record (throws on error).
+// load() returns the ENTITY — call data_get() for the PileList record (throws on error).
 $pile_list = $client->PileList()->load(["deck_id" => "deck_id", "pile_name" => "pile_name"]);
 ```
 
@@ -481,16 +472,12 @@ Create an instance: `$return = $client->Return();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `array` |  |
 | `remaining` | `int` |  |
-| `shuffled` | `bool` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Return record (throws on error).
+// load() returns the ENTITY — call data_get() for the Return record (throws on error).
 $return = $client->Return()->load(["deck_id" => "deck_id"]);
 ```
 

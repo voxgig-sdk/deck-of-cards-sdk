@@ -151,8 +151,29 @@ class DeckOfCardsSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('DeckOfCardsSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -213,45 +234,111 @@ class DeckOfCardsSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('DeckOfCardsSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('DeckOfCardsSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Deck().list()` / `client.Deck().load({ id })`.
-  Deck(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Deck(entopts?: Record<string, any>) {
     const self = this
-    return new DeckEntity(self,data)
+    return new DeckEntity(self, entopts)
   }
 
 
   // Entity access: `client.Draw().list()` / `client.Draw().load({ id })`.
-  Draw(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Draw(entopts?: Record<string, any>) {
     const self = this
-    return new DrawEntity(self,data)
+    return new DrawEntity(self, entopts)
   }
 
 
   // Entity access: `client.Pile().list()` / `client.Pile().load({ id })`.
-  Pile(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Pile(entopts?: Record<string, any>) {
     const self = this
-    return new PileEntity(self,data)
+    return new PileEntity(self, entopts)
   }
 
 
   // Entity access: `client.PileDraw().list()` / `client.PileDraw().load({ id })`.
-  PileDraw(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PileDraw(entopts?: Record<string, any>) {
     const self = this
-    return new PileDrawEntity(self,data)
+    return new PileDrawEntity(self, entopts)
   }
 
 
   // Entity access: `client.PileList().list()` / `client.PileList().load({ id })`.
-  PileList(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PileList(entopts?: Record<string, any>) {
     const self = this
-    return new PileListEntity(self,data)
+    return new PileListEntity(self, entopts)
   }
 
 
   // Entity access: `client.Return().list()` / `client.Return().load({ id })`.
-  Return(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Return(entopts?: Record<string, any>) {
     const self = this
-    return new ReturnEntity(self,data)
+    return new ReturnEntity(self, entopts)
   }
 
 

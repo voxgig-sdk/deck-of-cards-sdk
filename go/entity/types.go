@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/deck-of-cards-sdk/go/core"
+)
 
 // Deck is the typed data model for the deck entity.
 type Deck struct {
@@ -28,6 +32,7 @@ type DeckLoadMatch struct {
 type Draw struct {
 	Code *string `json:"code,omitempty"`
 	Image *string `json:"image,omitempty"`
+	Images *map[string]any `json:"images,omitempty"`
 	Suit *string `json:"suit,omitempty"`
 	Value *string `json:"value,omitempty"`
 }
@@ -39,10 +44,7 @@ type DrawListMatch struct {
 
 // Pile is the typed data model for the pile entity.
 type Pile struct {
-	DeckId *string `json:"deck_id,omitempty"`
-	Pile *map[string]any `json:"pile,omitempty"`
 	Remaining *int `json:"remaining,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // PileLoadMatch is the typed request payload for Pile.LoadTyped.
@@ -55,6 +57,7 @@ type PileLoadMatch struct {
 type PileDraw struct {
 	Code *string `json:"code,omitempty"`
 	Image *string `json:"image,omitempty"`
+	Images *map[string]any `json:"images,omitempty"`
 	Suit *string `json:"suit,omitempty"`
 	Value *string `json:"value,omitempty"`
 }
@@ -68,10 +71,8 @@ type PileDrawListMatch struct {
 
 // PileList is the typed data model for the pile_list entity.
 type PileList struct {
-	DeckId *string `json:"deck_id,omitempty"`
-	Pile *map[string]any `json:"pile,omitempty"`
+	Cards *[]any `json:"cards,omitempty"`
 	Remaining *int `json:"remaining,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // PileListLoadMatch is the typed request payload for PileList.LoadTyped.
@@ -82,11 +83,7 @@ type PileListLoadMatch struct {
 
 // Return is the typed data model for the return entity.
 type Return struct {
-	DeckId *string `json:"deck_id,omitempty"`
-	Pile *map[string]any `json:"pile,omitempty"`
 	Remaining *int `json:"remaining,omitempty"`
-	Shuffled *bool `json:"shuffled,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // ReturnLoadMatch is the typed request payload for Return.LoadTyped.
@@ -107,12 +104,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -124,12 +135,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

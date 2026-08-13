@@ -169,6 +169,7 @@ $draw = $client->Draw();
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `array` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -222,10 +223,7 @@ $pile = $client->Pile();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `array` | No |  |
 | `remaining` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -279,6 +277,7 @@ $pile_draw = $client->PileDraw();
 | --- | --- | --- | --- |
 | `code` | `string` | No |  |
 | `image` | `string` | No |  |
+| `images` | `array` | No |  |
 | `suit` | `string` | No |  |
 | `value` | `string` | No |  |
 
@@ -332,10 +331,8 @@ $pile_list = $client->PileList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `array` | No |  |
+| `cards` | `array` | No |  |
 | `remaining` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -387,11 +384,7 @@ $return = $client->Return();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `pile` | `array` | No |  |
 | `remaining` | `int` | No |  |
-| `shuffled` | `bool` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 

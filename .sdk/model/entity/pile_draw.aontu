@@ -16,6 +16,11 @@ main: kit: entity: pile_draw: {
       type: "`$STRING`"
     }
     {
+      name: "images"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
       name: "suit"
       req: false
       type: "`$STRING`"

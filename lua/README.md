@@ -249,6 +249,7 @@ API path: `/deck/new/shuffle/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -260,10 +261,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -275,6 +273,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 | --- | --- |
 | `code` |  |
 | `image` |  |
+| `images` |  |
 | `suit` |  |
 | `value` |  |
 
@@ -286,10 +285,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
+| `cards` |  |
 | `remaining` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -299,11 +296,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `pile` |  |
 | `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
 
 Operations: Load.
 
@@ -356,6 +349,7 @@ Create an instance: `local draw = client:Draw(nil)`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `table` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
@@ -380,10 +374,7 @@ Create an instance: `local pile = client:Pile(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `table` |  |
 | `remaining` | `number` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -408,6 +399,7 @@ Create an instance: `local pile_draw = client:PileDraw(nil)`
 | --- | --- | --- |
 | `code` | `string` |  |
 | `image` | `string` |  |
+| `images` | `table` |  |
 | `suit` | `string` |  |
 | `value` | `string` |  |
 
@@ -432,10 +424,8 @@ Create an instance: `local pile_list = client:PileList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `table` |  |
+| `cards` | `table` |  |
 | `remaining` | `number` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -458,11 +448,7 @@ Create an instance: `local return_ = client:Return(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `pile` | `table` |  |
 | `remaining` | `number` |  |
-| `shuffled` | `boolean` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 

@@ -26,8 +26,8 @@ import {
 describe('PileDrawEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DECKOFCARDS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DECKOFCARDS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DECK_OF_CARDS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DECK_OF_CARDS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DeckOfCardsSDK.test()
@@ -65,7 +65,7 @@ describe('PileDrawEntity', async () => {
     pile_draw_ref01_match['deck_id'] = setup.idmap['deck01']
     pile_draw_ref01_match['pile_id'] = setup.idmap['pile01']
 
-    const pile_draw_ref01_list = await pile_draw_ref01_ent.list(pile_draw_ref01_match)
+    const pile_draw_ref01_list = (await pile_draw_ref01_ent.list(pile_draw_ref01_match)).map((e: any) => e.data())
 
 
   })

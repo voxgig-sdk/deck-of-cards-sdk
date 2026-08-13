@@ -17,11 +17,18 @@ export interface DeckLoadMatch {
   remaining?: number
   shuffled?: boolean
   success?: boolean
+
+  // Selects a custom action instead of the plain load:
+  //   'new' | 'shuffle'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Draw {
   code?: string
   image?: string
+  images?: Record<string, any>
   suit?: string
   value?: string
 }
@@ -31,20 +38,24 @@ export interface DrawListMatch {
 }
 
 export interface Pile {
-  deck_id?: string
-  pile?: Record<string, any>
   remaining?: number
-  success?: boolean
 }
 
 export interface PileLoadMatch {
   deck_id: string
   pile_name: string
+
+  // Selects a custom action instead of the plain load:
+  //   'add' | 'shuffle'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface PileDraw {
   code?: string
   image?: string
+  images?: Record<string, any>
   suit?: string
   value?: string
 }
@@ -56,10 +67,8 @@ export interface PileDrawListMatch {
 }
 
 export interface PileList {
-  deck_id?: string
-  pile?: Record<string, any>
+  cards?: any[]
   remaining?: number
-  success?: boolean
 }
 
 export interface PileListLoadMatch {
@@ -68,11 +77,7 @@ export interface PileListLoadMatch {
 }
 
 export interface Return {
-  deck_id?: string
-  pile?: Record<string, any>
   remaining?: number
-  shuffled?: boolean
-  success?: boolean
 }
 
 export interface ReturnLoadMatch {

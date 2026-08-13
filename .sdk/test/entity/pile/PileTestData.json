@@ -2,26 +2,20 @@
   "existing": {
     "pile": {
       "PILE00": {
+        "remaining": "sa",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s2a",
-        "success": false,
         "pile_name": "PILE_NAME01",
         "id": "PILE00"
       },
       "PILE01": {
+        "remaining": "s14",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s52",
-        "success": false,
         "pile_name": "PILE_NAME01",
         "id": "PILE01"
       },
       "PILE02": {
+        "remaining": "s1e",
         "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "s7a",
-        "success": false,
         "pile_name": "PILE_NAME01",
         "id": "PILE02"
       }
@@ -30,10 +24,7 @@
   "new": {
     "pile": {
       "pile_ref01": {
-        "deck_id": "DECK01",
-        "pile": {},
-        "remaining": "sa2",
-        "success": false
+        "remaining": "s28"
       }
     }
   }
