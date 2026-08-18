@@ -1,6 +1,20 @@
 # DeckOfCards SDK configuration
 
 module DeckOfCardsConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -31,32 +45,20 @@ module DeckOfCardsConfig
         "deck" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "deck_id",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "remaining",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "shuffled",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "success",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 3,
             },
           ],
           "name" => "deck",
@@ -66,32 +68,25 @@ module DeckOfCardsConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "card",
                         "orig" => "card",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => 1,
                         "kind" => "query",
                         "name" => "deck_count",
                         "orig" => "deck_count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "jokers_enabled",
                         "orig" => "jokers_enabled",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -115,14 +110,11 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "deck_id",
@@ -132,11 +124,9 @@ module DeckOfCardsConfig
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "remaining",
                         "orig" => "remaining",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -165,18 +155,14 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "jokers_enabled",
                         "orig" => "jokers_enabled",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                     ],
@@ -198,10 +184,8 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -211,39 +195,24 @@ module DeckOfCardsConfig
         "draw" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "code",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "image",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "images",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "suit",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "value",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
           ],
           "name" => "draw",
@@ -253,27 +222,22 @@ module DeckOfCardsConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "example" => 1,
                         "kind" => "query",
                         "name" => "count",
                         "orig" => "count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -296,10 +260,8 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.cards`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -313,11 +275,8 @@ module DeckOfCardsConfig
         "pile" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "remaining",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 0,
             },
           ],
           "name" => "pile",
@@ -327,31 +286,25 @@ module DeckOfCardsConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_name",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "card",
                         "orig" => "card",
@@ -382,29 +335,23 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.piles`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_name",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -429,10 +376,8 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.piles`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -447,39 +392,24 @@ module DeckOfCardsConfig
         "pile_draw" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "code",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "image",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "images",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "suit",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "value",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
           ],
           "name" => "pile_draw",
@@ -489,43 +419,34 @@ module DeckOfCardsConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_name",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "card",
                         "orig" => "card",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "count",
                         "orig" => "count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -552,38 +473,30 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_id",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "count",
                         "orig" => "count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -615,38 +528,30 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_id",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "count",
                         "orig" => "count",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                     ],
@@ -678,10 +583,8 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 2,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -696,18 +599,12 @@ module DeckOfCardsConfig
         "pile_list" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "cards",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "remaining",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
           ],
           "name" => "pile_list",
@@ -717,26 +614,21 @@ module DeckOfCardsConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_name",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -760,10 +652,8 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.piles`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -778,11 +668,8 @@ module DeckOfCardsConfig
         "return" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "remaining",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 0,
             },
           ],
           "name" => "return",
@@ -792,35 +679,28 @@ module DeckOfCardsConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "pile_name",
                         "orig" => "pile_name",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 1,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "card",
                         "orig" => "card",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -846,29 +726,23 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.piles`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "kind" => "param",
                         "name" => "deck_id",
                         "orig" => "deck_id",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "card",
                         "orig" => "card",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -891,10 +765,8 @@ module DeckOfCardsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.piles`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

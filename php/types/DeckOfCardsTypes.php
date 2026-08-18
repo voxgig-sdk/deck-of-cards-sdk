@@ -92,7 +92,7 @@ class PileListLoadMatch
 }
 
 /** Return entity data model. */
-class Return
+class ReturnType
 {
     public ?int $remaining = null;
 }

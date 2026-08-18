@@ -40,7 +40,7 @@ class PileDrawEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = DeckOfCardsConfig::make_config();
+        $cfg = DeckOfCardsConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = DeckOfCardsSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

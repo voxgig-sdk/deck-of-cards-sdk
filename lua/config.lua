@@ -1,5 +1,8 @@
 -- DeckOfCards SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -30,32 +33,20 @@ local function make_config()
       ["deck"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "deck_id",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "remaining",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "shuffled",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "success",
-            ["req"] = false,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 3,
           },
         },
         ["name"] = "deck",
@@ -65,32 +56,25 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "card",
                       ["orig"] = "card",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = 1,
                       ["kind"] = "query",
                       ["name"] = "deck_count",
                       ["orig"] = "deck_count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "jokers_enabled",
                       ["orig"] = "jokers_enabled",
-                      ["reqd"] = false,
                       ["type"] = "`$BOOLEAN`",
                     },
                   },
@@ -114,14 +98,11 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "id",
                       ["orig"] = "deck_id",
@@ -131,11 +112,9 @@ local function make_config()
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "remaining",
                       ["orig"] = "remaining",
-                      ["reqd"] = false,
                       ["type"] = "`$BOOLEAN`",
                     },
                   },
@@ -164,18 +143,14 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 1,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "jokers_enabled",
                       ["orig"] = "jokers_enabled",
-                      ["reqd"] = false,
                       ["type"] = "`$BOOLEAN`",
                     },
                   },
@@ -197,10 +172,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 2,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -210,39 +183,24 @@ local function make_config()
       ["draw"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "code",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "image",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "images",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "suit",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "value",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
         },
         ["name"] = "draw",
@@ -252,27 +210,22 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 1,
                       ["kind"] = "query",
                       ["name"] = "count",
                       ["orig"] = "count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                   },
@@ -295,10 +248,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.cards`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -312,11 +263,8 @@ local function make_config()
       ["pile"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "remaining",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 0,
           },
         },
         ["name"] = "pile",
@@ -326,31 +274,25 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_name",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "card",
                       ["orig"] = "card",
@@ -381,29 +323,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_name",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                 },
@@ -428,10 +364,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
                 },
-                ["index$"] = 1,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -446,39 +380,24 @@ local function make_config()
       ["pile_draw"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "code",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "image",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "images",
-            ["req"] = false,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "suit",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "value",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 4,
           },
         },
         ["name"] = "pile_draw",
@@ -488,43 +407,34 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_name",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "card",
                       ["orig"] = "card",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "count",
                       ["orig"] = "count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                   },
@@ -551,38 +461,30 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_id",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "count",
                       ["orig"] = "count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                   },
@@ -614,38 +516,30 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 1,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_id",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "count",
                       ["orig"] = "count",
-                      ["reqd"] = false,
                       ["type"] = "`$INTEGER`",
                     },
                   },
@@ -677,10 +571,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 2,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -695,18 +587,12 @@ local function make_config()
       ["pile_list"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "cards",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "remaining",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 1,
           },
         },
         ["name"] = "pile_list",
@@ -716,26 +602,21 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_name",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                 },
@@ -759,10 +640,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -777,11 +656,8 @@ local function make_config()
       ["return"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "remaining",
-            ["req"] = false,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 0,
           },
         },
         ["name"] = "return",
@@ -791,35 +667,28 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "pile_name",
                       ["orig"] = "pile_name",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 1,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "card",
                       ["orig"] = "card",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -845,29 +714,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "param",
                       ["name"] = "deck_id",
                       ["orig"] = "deck_id",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["kind"] = "query",
                       ["name"] = "card",
                       ["orig"] = "card",
-                      ["reqd"] = false,
                       ["type"] = "`$STRING`",
                     },
                   },
@@ -890,10 +753,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
                 },
-                ["index$"] = 1,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {

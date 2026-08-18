@@ -40,7 +40,7 @@ class DeckOfCardsSDK
         $utility = new DeckOfCardsUtility();
         $this->_utility = $utility;
 
-        $config = DeckOfCardsConfig::make_config();
+        $config = DeckOfCardsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

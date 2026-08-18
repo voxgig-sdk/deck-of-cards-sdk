@@ -28,7 +28,7 @@ class DeckOfCardsSDK
     utility = DeckOfCardsUtility.new
     @_utility = utility
 
-    config = DeckOfCardsConfig.make_config
+    config = DeckOfCardsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

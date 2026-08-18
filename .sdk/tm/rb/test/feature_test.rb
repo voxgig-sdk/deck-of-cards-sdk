@@ -15,7 +15,7 @@ require_relative "../DeckOfCards_sdk"
 module DeckOfCardsFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = DeckOfCardsConfig.make_config["feature"]
+    f = DeckOfCardsConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

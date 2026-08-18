@@ -1,7 +1,30 @@
 # DeckOfCards SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "DeckOfCards",
@@ -31,32 +54,20 @@ def make_config():
       "deck": {
         "fields": [
           {
-            "active": True,
             "name": "deck_id",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "remaining",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "shuffled",
-            "req": False,
             "type": "`$BOOLEAN`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "success",
-            "req": False,
             "type": "`$BOOLEAN`",
-            "index$": 3,
           },
         ],
         "name": "deck",
@@ -66,32 +77,25 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "card",
                       "orig": "card",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "deck_count",
                       "orig": "deck_count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "jokers_enabled",
                       "orig": "jokers_enabled",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                   ],
@@ -115,14 +119,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "deck_id",
@@ -132,11 +133,9 @@ def make_config():
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "remaining",
                       "orig": "remaining",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                   ],
@@ -165,18 +164,14 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 1,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "jokers_enabled",
                       "orig": "jokers_enabled",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                   ],
@@ -198,10 +193,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 2,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -211,39 +204,24 @@ def make_config():
       "draw": {
         "fields": [
           {
-            "active": True,
             "name": "code",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "image",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "images",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "suit",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "value",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 4,
           },
         ],
         "name": "draw",
@@ -253,27 +231,22 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -296,10 +269,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.cards`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -313,11 +284,8 @@ def make_config():
       "pile": {
         "fields": [
           {
-            "active": True,
             "name": "remaining",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 0,
           },
         ],
         "name": "pile",
@@ -327,31 +295,25 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_name",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "card",
                       "orig": "card",
@@ -382,29 +344,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.piles`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_name",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                 },
@@ -429,10 +385,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.piles`",
                 },
-                "index$": 1,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -447,39 +401,24 @@ def make_config():
       "pile_draw": {
         "fields": [
           {
-            "active": True,
             "name": "code",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "image",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "images",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "suit",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "value",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 4,
           },
         ],
         "name": "pile_draw",
@@ -489,43 +428,34 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_name",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "card",
                       "orig": "card",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -552,38 +482,30 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_id",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -615,38 +537,30 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 1,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_id",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "count",
                       "orig": "count",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -678,10 +592,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 2,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -696,18 +608,12 @@ def make_config():
       "pile_list": {
         "fields": [
           {
-            "active": True,
             "name": "cards",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "remaining",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 1,
           },
         ],
         "name": "pile_list",
@@ -717,26 +623,21 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_name",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                 },
@@ -760,10 +661,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.piles`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -778,11 +677,8 @@ def make_config():
       "return": {
         "fields": [
           {
-            "active": True,
             "name": "remaining",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 0,
           },
         ],
         "name": "return",
@@ -792,35 +688,28 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "pile_name",
                       "orig": "pile_name",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 1,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "card",
                       "orig": "card",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -846,29 +735,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.piles`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "deck_id",
                       "orig": "deck_id",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "card",
                       "orig": "card",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -891,10 +774,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.piles`",
                 },
-                "index$": 1,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {

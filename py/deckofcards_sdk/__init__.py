@@ -23,8 +23,8 @@ class DeckOfCardsSDK:
         utility = DeckOfCardsUtility()
         self._utility = utility
 
-        from deckofcards_sdk.config import make_config
-        config = make_config()
+        from deckofcards_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,
