@@ -33,6 +33,9 @@ class DeckOfCardsConfig
         return [
             "main" => [
                 "name" => "DeckOfCards",
+                "slug" => "deck-of-cards",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -60,18 +63,22 @@ class DeckOfCardsConfig
           'fields' => [
             [
               'name' => 'deck_id',
+              'short' => 'Unique identifier for the deck',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'remaining',
+              'short' => 'Number of cards remaining in the deck',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'shuffled',
+              'short' => 'Whether the deck is shuffled',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'success',
+              'short' => 'Whether the operation was successful',
               'type' => '`$BOOLEAN`',
             ],
           ],
@@ -210,10 +217,12 @@ class DeckOfCardsConfig
           'fields' => [
             [
               'name' => 'code',
+              'short' => 'Two-character card code (e.g., AS for Ace of Spades)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'image',
+              'short' => 'URL to the PNG image of the card',
               'type' => '`$STRING`',
             ],
             [
@@ -222,10 +231,12 @@ class DeckOfCardsConfig
             ],
             [
               'name' => 'suit',
+              'short' => 'Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'value',
+              'short' => 'Card value (e.g., ACE, 2, 10, KING)',
               'type' => '`$STRING`',
             ],
           ],
@@ -290,6 +301,7 @@ class DeckOfCardsConfig
           'fields' => [
             [
               'name' => 'remaining',
+              'short' => 'Number of cards remaining in the pile',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -407,10 +419,12 @@ class DeckOfCardsConfig
           'fields' => [
             [
               'name' => 'code',
+              'short' => 'Two-character card code (e.g., AS for Ace of Spades)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'image',
+              'short' => 'URL to the PNG image of the card',
               'type' => '`$STRING`',
             ],
             [
@@ -419,10 +433,12 @@ class DeckOfCardsConfig
             ],
             [
               'name' => 'suit',
+              'short' => 'Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'value',
+              'short' => 'Card value (e.g., ACE, 2, 10, KING)',
               'type' => '`$STRING`',
             ],
           ],
@@ -614,10 +630,12 @@ class DeckOfCardsConfig
           'fields' => [
             [
               'name' => 'cards',
+              'short' => 'Array of cards in the pile',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'remaining',
+              'short' => 'Number of cards remaining in the pile',
               'type' => '`$INTEGER`',
             ],
           ],
@@ -683,6 +701,7 @@ class DeckOfCardsConfig
           'fields' => [
             [
               'name' => 'remaining',
+              'short' => 'Number of cards remaining in the pile',
               'type' => '`$INTEGER`',
             ],
           ],

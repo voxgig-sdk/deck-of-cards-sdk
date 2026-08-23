@@ -1,8 +1,0 @@
-# Entity Models
-
-@"deck.aontu"
-@"draw.aontu"
-@"pile.aontu"
-@"pile_draw.aontu"
-@"pile_list.aontu"
-@"return.aontu"

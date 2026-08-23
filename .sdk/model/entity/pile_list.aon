@@ -1,0 +1,81 @@
+# Entity: pile_list
+
+main: kit: entity: pile_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cards"
+      req: false
+      short: "Array of cards in the pile"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "remaining"
+      req: false
+      short: "Number of cards remaining in the pile"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "pile_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "pile_name"
+                orig: "pile_name"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/pile/{pile_name}/list/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "pile"
+            "{pile_name}"
+            "list"
+          ]
+          select: {
+            exist: [
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.piles`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deck"
+        "pile"
+      ]
+    ]
+  }
+
+
+
+}

@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -297,10 +297,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
+| `deck_id` | Unique identifier for the deck |
+| `remaining` | Number of cards remaining in the deck |
+| `shuffled` | Whether the deck is shuffled |
+| `success` | Whether the operation was successful |
 
 Operations: load.
 
@@ -310,11 +310,11 @@ API path: `/deck/new/shuffle/`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `image` |  |
+| `code` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | URL to the PNG image of the card |
 | `images` |  |
-| `suit` |  |
-| `value` |  |
+| `suit` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | Card value (e.g., ACE, 2, 10, KING) |
 
 Operations: list.
 
@@ -324,7 +324,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` |  |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: load.
 
@@ -334,11 +334,11 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `image` |  |
+| `code` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | URL to the PNG image of the card |
 | `images` |  |
-| `suit` |  |
-| `value` |  |
+| `suit` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | Card value (e.g., ACE, 2, 10, KING) |
 
 Operations: list.
 
@@ -348,8 +348,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `cards` |  |
-| `remaining` |  |
+| `cards` | Array of cards in the pile |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: load.
 
@@ -359,7 +359,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` |  |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: load.
 
@@ -384,10 +384,10 @@ Create an instance: `const deck = client.Deck()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `remaining` | `number` |  |
-| `shuffled` | `boolean` |  |
-| `success` | `boolean` |  |
+| `deck_id` | `string` | Unique identifier for the deck |
+| `remaining` | `number` | Number of cards remaining in the deck |
+| `shuffled` | `boolean` | Whether the deck is shuffled |
+| `success` | `boolean` | Whether the operation was successful |
 
 #### Example: Load
 
@@ -410,11 +410,11 @@ Create an instance: `const draw = client.Draw()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `image` | `string` |  |
+| `code` | `string` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | URL to the PNG image of the card |
 | `images` | `Record<string, any>` |  |
-| `suit` | `string` |  |
-| `value` | `string` |  |
+| `suit` | `string` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | Card value (e.g., ACE, 2, 10, KING) |
 
 #### Example: List
 
@@ -437,7 +437,7 @@ Create an instance: `const pile = client.Pile()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `remaining` | `number` |  |
+| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -460,11 +460,11 @@ Create an instance: `const pile_draw = client.PileDraw()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `image` | `string` |  |
+| `code` | `string` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | URL to the PNG image of the card |
 | `images` | `Record<string, any>` |  |
-| `suit` | `string` |  |
-| `value` | `string` |  |
+| `suit` | `string` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | Card value (e.g., ACE, 2, 10, KING) |
 
 #### Example: List
 
@@ -487,8 +487,8 @@ Create an instance: `const pile_list = client.PileList()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cards` | `any[]` |  |
-| `remaining` | `number` |  |
+| `cards` | `any[]` | Array of cards in the pile |
+| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -511,7 +511,7 @@ Create an instance: `const return_ = client.Return()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `remaining` | `number` |  |
+| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 

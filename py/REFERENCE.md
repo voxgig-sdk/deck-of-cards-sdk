@@ -107,10 +107,10 @@ deck = client.Deck()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `str` | No |  |
-| `remaining` | `int` | No |  |
-| `shuffled` | `bool` | No |  |
-| `success` | `bool` | No |  |
+| `deck_id` | `str` | No | Unique identifier for the deck |
+| `remaining` | `int` | No | Number of cards remaining in the deck |
+| `shuffled` | `bool` | No | Whether the deck is shuffled |
+| `success` | `bool` | No | Whether the operation was successful |
 
 ### Operations
 
@@ -161,11 +161,11 @@ draw = client.Draw()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `str` | No |  |
-| `image` | `str` | No |  |
+| `code` | `str` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `str` | No | URL to the PNG image of the card |
 | `images` | `dict` | No |  |
-| `suit` | `str` | No |  |
-| `value` | `str` | No |  |
+| `suit` | `str` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `str` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -218,7 +218,7 @@ pile = client.Pile()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `int` | No |  |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -269,11 +269,11 @@ pile_draw = client.PileDraw()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `str` | No |  |
-| `image` | `str` | No |  |
+| `code` | `str` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `str` | No | URL to the PNG image of the card |
 | `images` | `dict` | No |  |
-| `suit` | `str` | No |  |
-| `value` | `str` | No |  |
+| `suit` | `str` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `str` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -326,8 +326,8 @@ pile_list = client.PileList()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cards` | `list` | No |  |
-| `remaining` | `int` | No |  |
+| `cards` | `list` | No | Array of cards in the pile |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -378,7 +378,7 @@ return_ = client.Return()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `int` | No |  |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 

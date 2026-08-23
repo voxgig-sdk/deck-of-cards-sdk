@@ -234,10 +234,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
+| `deck_id` | Unique identifier for the deck |
+| `remaining` | Number of cards remaining in the deck |
+| `shuffled` | Whether the deck is shuffled |
+| `success` | Whether the operation was successful |
 
 Operations: Load.
 
@@ -247,11 +247,11 @@ API path: `/deck/new/shuffle/`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `image` |  |
+| `code` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | URL to the PNG image of the card |
 | `images` |  |
-| `suit` |  |
-| `value` |  |
+| `suit` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | Card value (e.g., ACE, 2, 10, KING) |
 
 Operations: List.
 
@@ -261,7 +261,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` |  |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -271,11 +271,11 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `image` |  |
+| `code` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | URL to the PNG image of the card |
 | `images` |  |
-| `suit` |  |
-| `value` |  |
+| `suit` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | Card value (e.g., ACE, 2, 10, KING) |
 
 Operations: List.
 
@@ -285,8 +285,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `cards` |  |
-| `remaining` |  |
+| `cards` | Array of cards in the pile |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -296,7 +296,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` |  |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -321,10 +321,10 @@ Create an instance: `local deck = client:Deck(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `string` |  |
-| `remaining` | `number` |  |
-| `shuffled` | `boolean` |  |
-| `success` | `boolean` |  |
+| `deck_id` | `string` | Unique identifier for the deck |
+| `remaining` | `number` | Number of cards remaining in the deck |
+| `shuffled` | `boolean` | Whether the deck is shuffled |
+| `success` | `boolean` | Whether the operation was successful |
 
 #### Example: Load
 
@@ -347,11 +347,11 @@ Create an instance: `local draw = client:Draw(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `image` | `string` |  |
+| `code` | `string` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | URL to the PNG image of the card |
 | `images` | `table` |  |
-| `suit` | `string` |  |
-| `value` | `string` |  |
+| `suit` | `string` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | Card value (e.g., ACE, 2, 10, KING) |
 
 #### Example: List
 
@@ -374,7 +374,7 @@ Create an instance: `local pile = client:Pile(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `remaining` | `number` |  |
+| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -397,11 +397,11 @@ Create an instance: `local pile_draw = client:PileDraw(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `string` |  |
-| `image` | `string` |  |
+| `code` | `string` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | URL to the PNG image of the card |
 | `images` | `table` |  |
-| `suit` | `string` |  |
-| `value` | `string` |  |
+| `suit` | `string` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | Card value (e.g., ACE, 2, 10, KING) |
 
 #### Example: List
 
@@ -424,8 +424,8 @@ Create an instance: `local pile_list = client:PileList(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cards` | `table` |  |
-| `remaining` | `number` |  |
+| `cards` | `table` | Array of cards in the pile |
+| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -448,7 +448,7 @@ Create an instance: `local return_ = client:Return(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `remaining` | `number` |  |
+| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 

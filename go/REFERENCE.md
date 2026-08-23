@@ -118,10 +118,10 @@ fmt.Println(deck.GetName()) // "deck"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `remaining` | `int` | No |  |
-| `shuffled` | `bool` | No |  |
-| `success` | `bool` | No |  |
+| `deck_id` | `string` | No | Unique identifier for the deck |
+| `remaining` | `int` | No | Number of cards remaining in the deck |
+| `shuffled` | `bool` | No | Whether the deck is shuffled |
+| `success` | `bool` | No | Whether the operation was successful |
 
 ### Operations
 
@@ -172,11 +172,11 @@ fmt.Println(draw.GetName()) // "draw"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `image` | `string` | No |  |
+| `code` | `string` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | No | URL to the PNG image of the card |
 | `images` | `map[string]any` | No |  |
-| `suit` | `string` | No |  |
-| `value` | `string` | No |  |
+| `suit` | `string` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -227,7 +227,7 @@ fmt.Println(pile.GetName()) // "pile"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `int` | No |  |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -278,11 +278,11 @@ fmt.Println(pileDraw.GetName()) // "pile_draw"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `image` | `string` | No |  |
+| `code` | `string` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | No | URL to the PNG image of the card |
 | `images` | `map[string]any` | No |  |
-| `suit` | `string` | No |  |
-| `value` | `string` | No |  |
+| `suit` | `string` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -333,8 +333,8 @@ fmt.Println(pileList.GetName()) // "pile_list"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cards` | `[]any` | No |  |
-| `remaining` | `int` | No |  |
+| `cards` | `[]any` | No | Array of cards in the pile |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -385,7 +385,7 @@ fmt.Println(return_.GetName()) // "return"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `int` | No |  |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 

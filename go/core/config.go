@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "DeckOfCards",
+			"slug": "deck-of-cards",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -38,18 +41,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deck_id",
+						"short": "Unique identifier for the deck",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "remaining",
+						"short": "Number of cards remaining in the deck",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "shuffled",
+						"short": "Whether the deck is shuffled",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "success",
+						"short": "Whether the operation was successful",
 						"type": "`$BOOLEAN`",
 					},
 				},
@@ -188,10 +195,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "code",
+						"short": "Two-character card code (e.g., AS for Ace of Spades)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "image",
+						"short": "URL to the PNG image of the card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -200,10 +209,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "suit",
+						"short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "Card value (e.g., ACE, 2, 10, KING)",
 						"type": "`$STRING`",
 					},
 				},
@@ -268,6 +279,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "remaining",
+						"short": "Number of cards remaining in the pile",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -385,10 +397,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "code",
+						"short": "Two-character card code (e.g., AS for Ace of Spades)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "image",
+						"short": "URL to the PNG image of the card",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -397,10 +411,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "suit",
+						"short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
+						"short": "Card value (e.g., ACE, 2, 10, KING)",
 						"type": "`$STRING`",
 					},
 				},
@@ -592,10 +608,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cards",
+						"short": "Array of cards in the pile",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "remaining",
+						"short": "Number of cards remaining in the pile",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -661,6 +679,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "remaining",
+						"short": "Number of cards remaining in the pile",
 						"type": "`$INTEGER`",
 					},
 				},

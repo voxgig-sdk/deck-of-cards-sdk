@@ -1,0 +1,8 @@
+# Flows
+
+@"BasicDeckFlow.aon"
+@"BasicDrawFlow.aon"
+@"BasicPileDrawFlow.aon"
+@"BasicPileFlow.aon"
+@"BasicPileListFlow.aon"
+@"BasicReturnFlow.aon"

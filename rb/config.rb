@@ -19,6 +19,9 @@ module DeckOfCardsConfig
     {
       "main" => {
         "name" => "DeckOfCards",
+        "slug" => "deck-of-cards",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -46,18 +49,22 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "name" => "deck_id",
+              "short" => "Unique identifier for the deck",
               "type" => "`$STRING`",
             },
             {
               "name" => "remaining",
+              "short" => "Number of cards remaining in the deck",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "shuffled",
+              "short" => "Whether the deck is shuffled",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "success",
+              "short" => "Whether the operation was successful",
               "type" => "`$BOOLEAN`",
             },
           ],
@@ -196,10 +203,12 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "name" => "code",
+              "short" => "Two-character card code (e.g., AS for Ace of Spades)",
               "type" => "`$STRING`",
             },
             {
               "name" => "image",
+              "short" => "URL to the PNG image of the card",
               "type" => "`$STRING`",
             },
             {
@@ -208,10 +217,12 @@ module DeckOfCardsConfig
             },
             {
               "name" => "suit",
+              "short" => "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
               "type" => "`$STRING`",
             },
             {
               "name" => "value",
+              "short" => "Card value (e.g., ACE, 2, 10, KING)",
               "type" => "`$STRING`",
             },
           ],
@@ -276,6 +287,7 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "name" => "remaining",
+              "short" => "Number of cards remaining in the pile",
               "type" => "`$INTEGER`",
             },
           ],
@@ -393,10 +405,12 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "name" => "code",
+              "short" => "Two-character card code (e.g., AS for Ace of Spades)",
               "type" => "`$STRING`",
             },
             {
               "name" => "image",
+              "short" => "URL to the PNG image of the card",
               "type" => "`$STRING`",
             },
             {
@@ -405,10 +419,12 @@ module DeckOfCardsConfig
             },
             {
               "name" => "suit",
+              "short" => "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
               "type" => "`$STRING`",
             },
             {
               "name" => "value",
+              "short" => "Card value (e.g., ACE, 2, 10, KING)",
               "type" => "`$STRING`",
             },
           ],
@@ -600,10 +616,12 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "name" => "cards",
+              "short" => "Array of cards in the pile",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "remaining",
+              "short" => "Number of cards remaining in the pile",
               "type" => "`$INTEGER`",
             },
           ],
@@ -669,6 +687,7 @@ module DeckOfCardsConfig
           "fields" => [
             {
               "name" => "remaining",
+              "short" => "Number of cards remaining in the pile",
               "type" => "`$INTEGER`",
             },
           ],

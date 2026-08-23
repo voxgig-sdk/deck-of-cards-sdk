@@ -112,10 +112,10 @@ $deck = $client->Deck();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `remaining` | `int` | No |  |
-| `shuffled` | `bool` | No |  |
-| `success` | `bool` | No |  |
+| `deck_id` | `string` | No | Unique identifier for the deck |
+| `remaining` | `int` | No | Number of cards remaining in the deck |
+| `shuffled` | `bool` | No | Whether the deck is shuffled |
+| `success` | `bool` | No | Whether the operation was successful |
 
 ### Operations
 
@@ -167,11 +167,11 @@ $draw = $client->Draw();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `image` | `string` | No |  |
+| `code` | `string` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | No | URL to the PNG image of the card |
 | `images` | `array` | No |  |
-| `suit` | `string` | No |  |
-| `value` | `string` | No |  |
+| `suit` | `string` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -223,7 +223,7 @@ $pile = $client->Pile();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `int` | No |  |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -275,11 +275,11 @@ $pile_draw = $client->PileDraw();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `image` | `string` | No |  |
+| `code` | `string` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | No | URL to the PNG image of the card |
 | `images` | `array` | No |  |
-| `suit` | `string` | No |  |
-| `value` | `string` | No |  |
+| `suit` | `string` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -331,8 +331,8 @@ $pile_list = $client->PileList();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cards` | `array` | No |  |
-| `remaining` | `int` | No |  |
+| `cards` | `array` | No | Array of cards in the pile |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -384,7 +384,7 @@ $return = $client->Return();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `int` | No |  |
+| `remaining` | `int` | No | Number of cards remaining in the pile |
 
 ### Operations
 

@@ -243,10 +243,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `deck_id` |  |
-| `remaining` |  |
-| `shuffled` |  |
-| `success` |  |
+| `deck_id` | Unique identifier for the deck |
+| `remaining` | Number of cards remaining in the deck |
+| `shuffled` | Whether the deck is shuffled |
+| `success` | Whether the operation was successful |
 
 Operations: Load.
 
@@ -256,11 +256,11 @@ API path: `/deck/new/shuffle/`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `image` |  |
+| `code` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | URL to the PNG image of the card |
 | `images` |  |
-| `suit` |  |
-| `value` |  |
+| `suit` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | Card value (e.g., ACE, 2, 10, KING) |
 
 Operations: List.
 
@@ -270,7 +270,7 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` |  |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -280,11 +280,11 @@ API path: `/deck/{deck_id}/pile/{pile_name}/add/`
 
 | Field | Description |
 | --- | --- |
-| `code` |  |
-| `image` |  |
+| `code` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | URL to the PNG image of the card |
 | `images` |  |
-| `suit` |  |
-| `value` |  |
+| `suit` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | Card value (e.g., ACE, 2, 10, KING) |
 
 Operations: List.
 
@@ -294,8 +294,8 @@ API path: `/deck/{deck_id}/pile/{pile_name}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `cards` |  |
-| `remaining` |  |
+| `cards` | Array of cards in the pile |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -305,7 +305,7 @@ API path: `/deck/{deck_id}/pile/{pile_name}/list/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` |  |
+| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -330,10 +330,10 @@ Create an instance: `deck = client.Deck`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deck_id` | `String` |  |
-| `remaining` | `Integer` |  |
-| `shuffled` | `Boolean` |  |
-| `success` | `Boolean` |  |
+| `deck_id` | `String` | Unique identifier for the deck |
+| `remaining` | `Integer` | Number of cards remaining in the deck |
+| `shuffled` | `Boolean` | Whether the deck is shuffled |
+| `success` | `Boolean` | Whether the operation was successful |
 
 #### Example: Load
 
@@ -357,11 +357,11 @@ Create an instance: `draw = client.Draw`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `String` |  |
-| `image` | `String` |  |
+| `code` | `String` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `String` | URL to the PNG image of the card |
 | `images` | `Hash` |  |
-| `suit` | `String` |  |
-| `value` | `String` |  |
+| `suit` | `String` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `String` | Card value (e.g., ACE, 2, 10, KING) |
 
 #### Example: List
 
@@ -385,7 +385,7 @@ Create an instance: `pile = client.Pile`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `remaining` | `Integer` |  |
+| `remaining` | `Integer` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -409,11 +409,11 @@ Create an instance: `pile_draw = client.PileDraw`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `code` | `String` |  |
-| `image` | `String` |  |
+| `code` | `String` | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `String` | URL to the PNG image of the card |
 | `images` | `Hash` |  |
-| `suit` | `String` |  |
-| `value` | `String` |  |
+| `suit` | `String` | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `String` | Card value (e.g., ACE, 2, 10, KING) |
 
 #### Example: List
 
@@ -437,8 +437,8 @@ Create an instance: `pile_list = client.PileList`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cards` | `Array` |  |
-| `remaining` | `Integer` |  |
+| `cards` | `Array` | Array of cards in the pile |
+| `remaining` | `Integer` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -462,7 +462,7 @@ Create an instance: `return_ = client.Return`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `remaining` | `Integer` |  |
+| `remaining` | `Integer` | Number of cards remaining in the pile |
 
 #### Example: Load
 

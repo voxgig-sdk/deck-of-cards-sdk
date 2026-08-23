@@ -1,0 +1,98 @@
+# Entity: draw
+
+main: kit: entity: draw: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "code"
+      req: false
+      short: "Two-character card code (e.g., AS for Ace of Spades)"
+      type: "`$STRING`"
+    }
+    {
+      name: "image"
+      req: false
+      short: "URL to the PNG image of the card"
+      type: "`$STRING`"
+    }
+    {
+      name: "images"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "suit"
+      req: false
+      short: "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)"
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: false
+      short: "Card value (e.g., ACE, 2, 10, KING)"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "draw"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "deck_id"
+                orig: "deck_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "count"
+                orig: "count"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deck/{deck_id}/draw/"
+          parts: [
+            "deck"
+            "{deck_id}"
+            "draw"
+          ]
+          select: {
+            exist: [
+              "count"
+              "deck_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.cards`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "deck"
+      ]
+    ]
+  }
+
+
+
+}

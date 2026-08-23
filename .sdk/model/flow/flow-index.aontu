@@ -1,8 +1,0 @@
-# Flows
-
-@"BasicDeckFlow.aontu"
-@"BasicDrawFlow.aontu"
-@"BasicPileDrawFlow.aontu"
-@"BasicPileFlow.aontu"
-@"BasicPileListFlow.aontu"
-@"BasicReturnFlow.aontu"

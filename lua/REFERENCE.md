@@ -110,10 +110,10 @@ local deck = client:Deck(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deck_id` | `string` | No |  |
-| `remaining` | `number` | No |  |
-| `shuffled` | `boolean` | No |  |
-| `success` | `boolean` | No |  |
+| `deck_id` | `string` | No | Unique identifier for the deck |
+| `remaining` | `number` | No | Number of cards remaining in the deck |
+| `shuffled` | `boolean` | No | Whether the deck is shuffled |
+| `success` | `boolean` | No | Whether the operation was successful |
 
 ### Operations
 
@@ -165,11 +165,11 @@ local draw = client:Draw(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `image` | `string` | No |  |
+| `code` | `string` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | No | URL to the PNG image of the card |
 | `images` | `table` | No |  |
-| `suit` | `string` | No |  |
-| `value` | `string` | No |  |
+| `suit` | `string` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -221,7 +221,7 @@ local pile = client:Pile(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `number` | No |  |
+| `remaining` | `number` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -273,11 +273,11 @@ local pile_draw = client:PileDraw(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `code` | `string` | No |  |
-| `image` | `string` | No |  |
+| `code` | `string` | No | Two-character card code (e.g., AS for Ace of Spades) |
+| `image` | `string` | No | URL to the PNG image of the card |
 | `images` | `table` | No |  |
-| `suit` | `string` | No |  |
-| `value` | `string` | No |  |
+| `suit` | `string` | No | Card suit (SPADES, DIAMONDS, CLUBS, HEARTS) |
+| `value` | `string` | No | Card value (e.g., ACE, 2, 10, KING) |
 
 ### Operations
 
@@ -329,8 +329,8 @@ local pile_list = client:PileList(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cards` | `table` | No |  |
-| `remaining` | `number` | No |  |
+| `cards` | `table` | No | Array of cards in the pile |
+| `remaining` | `number` | No | Number of cards remaining in the pile |
 
 ### Operations
 
@@ -382,7 +382,7 @@ local return_ = client:Return(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `remaining` | `number` | No |  |
+| `remaining` | `number` | No | Number of cards remaining in the pile |
 
 ### Operations
 

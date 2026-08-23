@@ -36,24 +36,28 @@
               "active": true,
               "name": "deck_id",
               "req": false,
+              "short": "Unique identifier for the deck",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "remaining",
               "req": false,
+              "short": "Number of cards remaining in the deck",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "shuffled",
               "req": false,
+              "short": "Whether the deck is shuffled",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "success",
               "req": false,
+              "short": "Whether the operation was successful",
               "type": "`$BOOLEAN`"
             }
           ],
@@ -212,12 +216,14 @@
               "active": true,
               "name": "code",
               "req": false,
+              "short": "Two-character card code (e.g., AS for Ace of Spades)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "image",
               "req": false,
+              "short": "URL to the PNG image of the card",
               "type": "`$STRING`"
             },
             {
@@ -230,12 +236,14 @@
               "active": true,
               "name": "suit",
               "req": false,
+              "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "Card value (e.g., ACE, 2, 10, KING)",
               "type": "`$STRING`"
             }
           ],
@@ -310,6 +318,7 @@
               "active": true,
               "name": "remaining",
               "req": false,
+              "short": "Number of cards remaining in the pile",
               "type": "`$INTEGER`"
             }
           ],
@@ -440,12 +449,14 @@
               "active": true,
               "name": "code",
               "req": false,
+              "short": "Two-character card code (e.g., AS for Ace of Spades)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "image",
               "req": false,
+              "short": "URL to the PNG image of the card",
               "type": "`$STRING`"
             },
             {
@@ -458,12 +469,14 @@
               "active": true,
               "name": "suit",
               "req": false,
+              "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": false,
+              "short": "Card value (e.g., ACE, 2, 10, KING)",
               "type": "`$STRING`"
             }
           ],
@@ -678,12 +691,14 @@
               "active": true,
               "name": "cards",
               "req": false,
+              "short": "Array of cards in the pile",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "remaining",
               "req": false,
+              "short": "Number of cards remaining in the pile",
               "type": "`$INTEGER`"
             }
           ],
@@ -758,6 +773,7 @@
               "active": true,
               "name": "remaining",
               "req": false,
+              "short": "Number of cards remaining in the pile",
               "type": "`$INTEGER`"
             }
           ],
