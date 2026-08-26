@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  deck = client.Deck.load()
+  deck = client.Deck.load({ "id" => "example_id" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -114,14 +114,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DeckOfCardsSDK.test
+client = DeckOfCardsSDK.test({
+  "entity" => { "deck" => { "test01" => { "id" => "test01" } } },
+})
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-deck = client.Deck.load()
+deck = client.Deck.load({ "id" => "test01" })
 puts deck
 ```
 
@@ -244,6 +247,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `deck_id` | Unique identifier for the deck |
+| `id` |  |
 | `remaining` | Number of cards remaining in the deck |
 | `shuffled` | Whether the deck is shuffled |
 | `success` | Whether the operation was successful |
@@ -331,6 +335,7 @@ Create an instance: `deck = client.Deck`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deck_id` | `String` | Unique identifier for the deck |
+| `id` | `String` |  |
 | `remaining` | `Integer` | Number of cards remaining in the deck |
 | `shuffled` | `Boolean` | Whether the deck is shuffled |
 | `success` | `Boolean` | Whether the operation was successful |
@@ -339,7 +344,7 @@ Create an instance: `deck = client.Deck`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Deck record (raises on error).
-deck = client.Deck.load()
+deck = client.Deck.load({ "id" => "deck_id" })
 ```
 
 
@@ -549,7 +554,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 deck = client.Deck
-deck.load()
+deck.load({ "id" => "example_id" })
 
 # deck.data_get now returns the deck data from the last load
 # deck.match_get returns the last match criteria

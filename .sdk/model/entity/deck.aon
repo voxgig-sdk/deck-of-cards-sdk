@@ -12,6 +12,11 @@ main: kit: entity: deck: {
       type: "`$STRING`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "remaining"
       req: false
       short: "Number of cards remaining in the deck"
@@ -30,6 +35,11 @@ main: kit: entity: deck: {
       type: "`$BOOLEAN`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "deck"
   op: {

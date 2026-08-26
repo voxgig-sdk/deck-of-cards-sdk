@@ -119,6 +119,7 @@ fmt.Println(deck.GetName()) // "deck"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deck_id` | `string` | No | Unique identifier for the deck |
+| `id` | `string` | No |  |
 | `remaining` | `int` | No | Number of cards remaining in the deck |
 | `shuffled` | `bool` | No | Whether the deck is shuffled |
 | `success` | `bool` | No | Whether the operation was successful |
@@ -130,7 +131,7 @@ fmt.Println(deck.GetName()) // "deck"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Deck(nil).Load(nil, nil)
+result, err := client.Deck(nil).Load(map[string]any{"id": "deck_id"}, nil)
 if err != nil {
     panic(err)
 }

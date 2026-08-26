@@ -8,12 +8,14 @@
 
 ---@class Deck
 ---@field deck_id? string
+---@field id? string
 ---@field remaining? number
 ---@field shuffled? boolean
 ---@field success? boolean
 
 ---@class DeckLoadMatch
 ---@field deck_id? string
+---@field id string
 ---@field remaining? number
 ---@field shuffled? boolean
 ---@field success? boolean

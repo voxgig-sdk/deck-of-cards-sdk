@@ -177,6 +177,7 @@ const deck = client.Deck()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deck_id` | `string` | No | Unique identifier for the deck |
+| `id` | `string` | No |  |
 | `remaining` | `number` | No | Number of cards remaining in the deck |
 | `shuffled` | `boolean` | No | Whether the deck is shuffled |
 | `success` | `boolean` | No | Whether the operation was successful |
@@ -209,7 +210,7 @@ const result = await client.Deck().load({
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Deck().load()
+const result = await client.Deck().load({ id: 'deck_id' })
 ```
 
 ### Common Methods

@@ -62,8 +62,9 @@ describe('DeckEntity', async () => {
     // LOAD
     const deck_ref01_ent = client.Deck()
     const deck_ref01_match_dt0: any = {}
+    deck_ref01_match_dt0.id = deck_ref01_data.id
     const deck_ref01_data_dt0 = (await deck_ref01_ent.load(deck_ref01_match_dt0)).data()
-    assert(null != deck_ref01_data_dt0)
+    assert(deck_ref01_data_dt0.id === deck_ref01_data.id)
 
 
   })

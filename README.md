@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new DeckOfCardsSDK()
-const deck = await client.Deck().load()
+const deck = await client.Deck().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -47,7 +47,7 @@ const client = DeckOfCardsSDK.test({
     },
   },
 })
-const deck = await client.Deck().load()
+const deck = await client.Deck().load({ id: 'test01' })
 // deck is the Deck entity, populated with mock data
 // — call deck.data() for the record itself
 console.log(deck)
@@ -57,7 +57,7 @@ console.log(deck)
 
 ```python
 client = DeckOfCardsSDK.test()
-deck = client.Deck().load()
+deck = client.Deck().load({"id": "test01"})
 print(deck)
 ```
 
@@ -66,9 +66,9 @@ print(deck)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = DeckOfCardsSDK::test([
-    "entity" => ["deck" => ["test01" => []]],
+    "entity" => ["deck" => ["test01" => ["id" => "test01"]]],
 ]);
-$deck = $client->Deck()->load();
+$deck = $client->Deck()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -76,7 +76,7 @@ $deck = $client->Deck()->load();
 ```go
 client := sdk.Test()
 result, err := client.Deck(nil).Load(
-    nil, nil,
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -85,16 +85,16 @@ result, err := client.Deck(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = DeckOfCardsSDK.test({
-  "entity" => { "deck" => { "test01" => {} } },
+  "entity" => { "deck" => { "test01" => { "id" => "test01" } } },
 })
-deck = client.Deck.load()
+deck = client.Deck.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Deck():load()
+local result, err = client:Deck():load({ id = "test01" })
 ```
 
 ## Packages
@@ -187,7 +187,7 @@ client = DeckOfCardsSDK()
 
 
 # Load a specific deck (returns the record, raises on error)
-deck = client.Deck().load()
+deck = client.Deck().load({"id": "example_id"})
 print(deck)
 ```
 
@@ -201,7 +201,7 @@ $client = new DeckOfCardsSDK();
 
 
 // Load a specific deck (returns the ENTITY; call data_get() for the record; throws on error)
-$deck = $client->Deck()->load();
+$deck = $client->Deck()->load(["id" => "example_id"]);
 print_r($deck);
 ```
 
@@ -232,7 +232,7 @@ client = DeckOfCardsSDK.new
 
 
 # Load a specific deck (returns the ENTITY; call data_get for the record)
-deck = client.Deck.load()
+deck = client.Deck.load({ "id" => "example_id" })
 puts deck
 ```
 
@@ -245,7 +245,7 @@ local client = sdk.new()
 
 
 -- Load a specific deck
-local deck, err = client:Deck():load()
+local deck, err = client:Deck():load({ id = "example_id" })
 print(deck)
 ```
 

@@ -48,9 +48,13 @@ class DeckEntityTest extends TestCase
 
         // LOAD
         $deck_ref01_ent = $client->Deck(null);
-        $deck_ref01_match_dt0 = [];
+        $deck_ref01_match_dt0 = [
+            "id" => $deck_ref01_data["id"],
+        ];
         $deck_ref01_data_dt0_loaded = $deck_ref01_ent->load($deck_ref01_match_dt0, null);
-        $this->assertNotNull($deck_ref01_data_dt0_loaded);
+        $deck_ref01_data_dt0_load_result = Helpers::to_map(is_object($deck_ref01_data_dt0_loaded) && method_exists($deck_ref01_data_dt0_loaded, 'data_get') ? $deck_ref01_data_dt0_loaded->data_get() : $deck_ref01_data_dt0_loaded);
+        $this->assertNotNull($deck_ref01_data_dt0_load_result);
+        $this->assertEquals($deck_ref01_data_dt0_load_result["id"], $deck_ref01_data["id"]);
 
     }
 }

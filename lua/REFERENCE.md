@@ -111,6 +111,7 @@ local deck = client:Deck(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deck_id` | `string` | No | Unique identifier for the deck |
+| `id` | `string` | No |  |
 | `remaining` | `number` | No | Number of cards remaining in the deck |
 | `shuffled` | `boolean` | No | Whether the deck is shuffled |
 | `success` | `boolean` | No | Whether the operation was successful |
@@ -122,7 +123,7 @@ local deck = client:Deck(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Deck():load()
+local result, err = client:Deck():load({ id = "deck_id" })
 ```
 
 ### Common Methods

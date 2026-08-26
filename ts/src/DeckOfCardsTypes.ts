@@ -7,6 +7,7 @@
 
 export interface Deck {
   deck_id?: string
+  id?: string
   remaining?: number
   shuffled?: boolean
   success?: boolean
@@ -14,6 +15,7 @@ export interface Deck {
 
 export interface DeckLoadMatch {
   deck_id?: string
+  id: string
   remaining?: number
   shuffled?: boolean
   success?: boolean

@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single deck — the value is the loaded record.
-    deck, err := client.Deck(nil).Load(nil, nil)
+    deck, err := client.Deck(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-deck, err := client.Deck(nil).Load(nil, nil)
+deck, err := client.Deck(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 deck, err := client.Deck(nil).Load(
-    nil, nil,
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
@@ -252,7 +252,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    deck, err := client.Deck(nil).Load(nil, nil)
+    deck, err := client.Deck(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
     // deck is the returned record
 
@@ -266,6 +266,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"deck_id"` | Unique identifier for the deck |
+| `"id"` |  |
 | `"remaining"` | Number of cards remaining in the deck |
 | `"shuffled"` | Whether the deck is shuffled |
 | `"success"` | Whether the operation was successful |
@@ -353,6 +354,7 @@ Create an instance: `deck := client.Deck(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deck_id` | `string` | Unique identifier for the deck |
+| `id` | `string` |  |
 | `remaining` | `int` | Number of cards remaining in the deck |
 | `shuffled` | `bool` | Whether the deck is shuffled |
 | `success` | `bool` | Whether the operation was successful |
@@ -360,7 +362,7 @@ Create an instance: `deck := client.Deck(nil)`
 #### Example: Load
 
 ```go
-deck, err := client.Deck(nil).Load(nil, nil)
+deck, err := client.Deck(nil).Load(map[string]any{"id": "deck_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -586,7 +588,7 @@ stores the returned data and match criteria internally.
 
 ```go
 deck := client.Deck(nil)
-deck.Load(nil, nil)
+deck.Load(map[string]any{"id": "example_id"}, nil)
 
 // deck.Data() now returns the deck data from the last load
 // deck.Match() returns the last match criteria

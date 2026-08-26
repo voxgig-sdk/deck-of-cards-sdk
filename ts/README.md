@@ -57,7 +57,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const deck = await client.Deck().load()
+  const deck = await client.Deck().load({ id: "example_id" })
   console.log(deck)
 } catch (err) {
   console.error('load failed:', err)
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DeckOfCardsSDK.test()
 
-const deck = await client.Deck().load()
+const deck = await client.Deck().load({ id: 'test01' })
 // deck is the entity, populated with mock response data
 // — call deck.data() for the record itself
 console.log(deck)
@@ -145,11 +145,11 @@ Entity instances remember their last match and data:
 const entity = client.Deck()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -298,6 +298,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `deck_id` | Unique identifier for the deck |
+| `id` |  |
 | `remaining` | Number of cards remaining in the deck |
 | `shuffled` | Whether the deck is shuffled |
 | `success` | Whether the operation was successful |
@@ -385,6 +386,7 @@ Create an instance: `const deck = client.Deck()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deck_id` | `string` | Unique identifier for the deck |
+| `id` | `string` |  |
 | `remaining` | `number` | Number of cards remaining in the deck |
 | `shuffled` | `boolean` | Whether the deck is shuffled |
 | `success` | `boolean` | Whether the operation was successful |
@@ -392,7 +394,7 @@ Create an instance: `const deck = client.Deck()`
 #### Example: Load
 
 ```ts
-const deck = await client.Deck().load()
+const deck = await client.Deck().load({ id: 'deck_id' })
 ```
 
 
@@ -590,10 +592,10 @@ calls on the same instance can rely on this state.
 
 ```ts
 const deck = client.Deck()
-await deck.load()
+await deck.load({ id: "example_id" })
 
 // deck.data() now returns the deck data from the last `load`
-// deck.match() returns the last match criteria
+// deck.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

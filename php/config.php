@@ -42,6 +42,7 @@ class DeckOfCardsConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -64,6 +65,10 @@ class DeckOfCardsConfig
             [
               'name' => 'deck_id',
               'short' => 'Unique identifier for the deck',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

@@ -113,6 +113,7 @@ $deck = $client->Deck();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deck_id` | `string` | No | Unique identifier for the deck |
+| `id` | `string` | No |  |
 | `remaining` | `int` | No | Number of cards remaining in the deck |
 | `shuffled` | `bool` | No | Whether the deck is shuffled |
 | `success` | `bool` | No | Whether the operation was successful |
@@ -124,7 +125,7 @@ $deck = $client->Deck();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Deck()->load();
+$result = $client->Deck()->load(["id" => "deck_id"]);
 ```
 
 ### Common Methods

@@ -48,9 +48,13 @@ class TestDeckEntity:
 
         # LOAD
         deck_ref01_ent = client.Deck(None)
-        deck_ref01_match_dt0 = {}
+        deck_ref01_match_dt0 = {
+            "id": deck_ref01_data["id"],
+        }
         deck_ref01_data_dt0_loaded = deck_ref01_ent.load(deck_ref01_match_dt0, None)
-        assert deck_ref01_data_dt0_loaded is not None
+        deck_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(deck_ref01_data_dt0_loaded))
+        assert deck_ref01_data_dt0_load_result is not None
+        assert deck_ref01_data_dt0_load_result["id"] == deck_ref01_data["id"]
 
 
 

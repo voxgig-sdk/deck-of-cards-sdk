@@ -16,6 +16,7 @@ declare(strict_types=1);
 class Deck
 {
     public ?string $deck_id = null;
+    public ?string $id = null;
     public ?int $remaining = null;
     public ?bool $shuffled = null;
     public ?bool $success = null;
@@ -25,6 +26,7 @@ class Deck
 class DeckLoadMatch
 {
     public ?string $deck_id = null;
+    public string $id;
     public ?int $remaining = null;
     public ?bool $shuffled = null;
     public ?bool $success = null;

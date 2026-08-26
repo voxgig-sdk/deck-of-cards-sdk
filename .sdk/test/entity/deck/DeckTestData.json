@@ -3,24 +3,24 @@
     "deck": {
       "DECK00": {
         "deck_id": "DECK01",
-        "remaining": "s29",
-        "shuffled": true,
-        "success": false,
-        "id": "DECK00"
+        "id": "DECK00",
+        "remaining": "s34",
+        "shuffled": false,
+        "success": true
       },
       "DECK01": {
         "deck_id": "DECK01",
-        "remaining": "s51",
-        "shuffled": true,
-        "success": false,
-        "id": "DECK01"
+        "id": "DECK01",
+        "remaining": "s66",
+        "shuffled": false,
+        "success": true
       },
       "DECK02": {
         "deck_id": "DECK01",
-        "remaining": "s79",
-        "shuffled": true,
-        "success": false,
-        "id": "DECK02"
+        "id": "DECK02",
+        "remaining": "s98",
+        "shuffled": false,
+        "success": true
       }
     }
   },
@@ -28,9 +28,9 @@
     "deck": {
       "deck_ref01": {
         "deck_id": "DECK01",
-        "remaining": "sa1",
-        "shuffled": true,
-        "success": false
+        "remaining": "sca",
+        "shuffled": false,
+        "success": true
       }
     }
   }

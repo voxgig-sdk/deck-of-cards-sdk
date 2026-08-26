@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local deck, err = client:Deck():load()
+local deck, err = client:Deck():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Deck():load()
+local result, err = client:Deck():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -221,7 +221,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local deck, err = client:Deck():load()
+    local deck, err = client:Deck():load({ id = "example_id" })
     if err then error(err) end
     -- deck is the loaded record
 
@@ -235,6 +235,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `deck_id` | Unique identifier for the deck |
+| `id` |  |
 | `remaining` | Number of cards remaining in the deck |
 | `shuffled` | Whether the deck is shuffled |
 | `success` | Whether the operation was successful |
@@ -322,6 +323,7 @@ Create an instance: `local deck = client:Deck(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deck_id` | `string` | Unique identifier for the deck |
+| `id` | `string` |  |
 | `remaining` | `number` | Number of cards remaining in the deck |
 | `shuffled` | `boolean` | Whether the deck is shuffled |
 | `success` | `boolean` | Whether the operation was successful |
@@ -329,7 +331,7 @@ Create an instance: `local deck = client:Deck(nil)`
 #### Example: Load
 
 ```lua
-local deck, err = client:Deck():load()
+local deck, err = client:Deck():load({ id = "deck_id" })
 ```
 
 
@@ -534,7 +536,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local deck = client:Deck()
-deck:load()
+deck:load({ id = "example_id" })
 
 -- deck:data_get() now returns the deck data from the last load
 -- deck:match_get() returns the last match criteria

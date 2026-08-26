@@ -61,13 +61,19 @@ func TestDeckEntity(t *testing.T) {
 
 		// LOAD
 		deckRef01Ent := client.Deck(nil)
-		deckRef01MatchDt0 := map[string]any{}
+		deckRef01MatchDt0 := map[string]any{
+			"id": deckRef01Data["id"],
+		}
 		deckRef01DataDt0Loaded, err := deckRef01Ent.Load(deckRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if deckRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		deckRef01DataDt0LoadResult := core.ToMapAny(entityData(deckRef01DataDt0Loaded))
+		if deckRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if deckRef01DataDt0LoadResult["id"] != deckRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

@@ -44,10 +44,14 @@ describe("DeckEntity", function()
 
     -- LOAD
     local deck_ref01_ent = client:Deck(nil)
-    local deck_ref01_match_dt0 = {}
+    local deck_ref01_match_dt0 = {
+      id = deck_ref01_data["id"],
+    }
     local deck_ref01_data_dt0_loaded, err = deck_ref01_ent:load(deck_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(deck_ref01_data_dt0_loaded)
+    local deck_ref01_data_dt0_load_result = helpers.to_map(type(deck_ref01_data_dt0_loaded) == 'table' and deck_ref01_data_dt0_loaded.data_get and deck_ref01_data_dt0_loaded:data_get() or deck_ref01_data_dt0_loaded)
+    assert.is_not_nil(deck_ref01_data_dt0_load_result)
+    assert.are.equal(deck_ref01_data_dt0_load_result["id"], deck_ref01_data["id"])
 
   end)
 end)

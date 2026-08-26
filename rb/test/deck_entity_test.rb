@@ -41,9 +41,13 @@ class DeckEntityTest < Minitest::Test
 
     # LOAD
     deck_ref01_ent = client.Deck(nil)
-    deck_ref01_match_dt0 = {}
+    deck_ref01_match_dt0 = {
+      "id" => deck_ref01_data["id"],
+    }
     deck_ref01_data_dt0_loaded = deck_ref01_ent.load(deck_ref01_match_dt0, nil)
-    assert !deck_ref01_data_dt0_loaded.nil?
+    deck_ref01_data_dt0_load_result = Helpers.to_map(deck_ref01_data_dt0_loaded.respond_to?(:data_get) ? deck_ref01_data_dt0_loaded.data_get : deck_ref01_data_dt0_loaded)
+    assert !deck_ref01_data_dt0_load_result.nil?
+    assert_equal deck_ref01_data_dt0_load_result["id"], deck_ref01_data["id"]
 
   end
 end

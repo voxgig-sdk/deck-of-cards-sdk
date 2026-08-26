@@ -15,6 +15,7 @@ import (
 // Deck is the typed data model for the deck entity.
 type Deck struct {
 	DeckId *string `json:"deck_id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Remaining *int `json:"remaining,omitempty"`
 	Shuffled *bool `json:"shuffled,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -23,6 +24,7 @@ type Deck struct {
 // DeckLoadMatch is the typed request payload for Deck.LoadTyped.
 type DeckLoadMatch struct {
 	DeckId *string `json:"deck_id,omitempty"`
+	Id string `json:"id"`
 	Remaining *int `json:"remaining,omitempty"`
 	Shuffled *bool `json:"shuffled,omitempty"`
 	Success *bool `json:"success,omitempty"`

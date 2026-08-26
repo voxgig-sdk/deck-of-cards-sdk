@@ -56,7 +56,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    deck = client.Deck().load()
+    deck = client.Deck().load({"id": "example_id"})
     print(deck)
 except Exception as err:
     print(f"load failed: {err}")
@@ -125,7 +125,7 @@ client = DeckOfCardsSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-deck = client.Deck().load()
+deck = client.Deck().load({"id": "test01"})
 # deck contains the mock response record
 ```
 
@@ -249,6 +249,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `deck_id` | Unique identifier for the deck |
+| `id` |  |
 | `remaining` | Number of cards remaining in the deck |
 | `shuffled` | Whether the deck is shuffled |
 | `success` | Whether the operation was successful |
@@ -336,6 +337,7 @@ Create an instance: `deck = client.Deck()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deck_id` | `str` | Unique identifier for the deck |
+| `id` | `str` |  |
 | `remaining` | `int` | Number of cards remaining in the deck |
 | `shuffled` | `bool` | Whether the deck is shuffled |
 | `success` | `bool` | Whether the operation was successful |
@@ -343,7 +345,7 @@ Create an instance: `deck = client.Deck()`
 #### Example: Load
 
 ```python
-deck = client.Deck().load()
+deck = client.Deck().load({"id": "deck_id"})
 ```
 
 
@@ -547,7 +549,7 @@ stores the returned data and match criteria internally.
 
 ```python
 deck = client.Deck()
-deck.load()
+deck.load({"id": "example_id"})
 
 # deck.data_get() now returns the deck data from the last load
 # deck.match_get() returns the last match criteria

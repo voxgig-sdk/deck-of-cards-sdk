@@ -18,12 +18,17 @@ from typing import TypedDict, Any
 
 class Deck(TypedDict, total=False):
     deck_id: str
+    id: str
     remaining: int
     shuffled: bool
     success: bool
 
 
-class DeckLoadMatch(TypedDict, total=False):
+class DeckLoadMatchRequired(TypedDict):
+    id: str
+
+
+class DeckLoadMatch(DeckLoadMatchRequired, total=False):
     deck_id: str
     remaining: int
     shuffled: bool

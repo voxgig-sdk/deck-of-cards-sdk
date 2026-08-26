@@ -13,6 +13,9 @@
 # @!attribute [rw] deck_id
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] remaining
 #   @return [Integer, nil]
 #
@@ -23,6 +26,7 @@
 #   @return [Boolean, nil]
 Deck = Struct.new(
   :deck_id,
+  :id,
   :remaining,
   :shuffled,
   :success,
@@ -34,6 +38,9 @@ Deck = Struct.new(
 # @!attribute [rw] deck_id
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String]
+#
 # @!attribute [rw] remaining
 #   @return [Integer, nil]
 #
@@ -44,6 +51,7 @@ Deck = Struct.new(
 #   @return [Boolean, nil]
 DeckLoadMatch = Struct.new(
   :deck_id,
+  :id,
   :remaining,
   :shuffled,
   :success,

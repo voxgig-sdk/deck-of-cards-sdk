@@ -114,6 +114,7 @@ deck = client.Deck
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deck_id` | `String` | No | Unique identifier for the deck |
+| `id` | `String` | No |  |
 | `remaining` | `Integer` | No | Number of cards remaining in the deck |
 | `shuffled` | `Boolean` | No | Whether the deck is shuffled |
 | `success` | `Boolean` | No | Whether the operation was successful |
@@ -125,7 +126,7 @@ deck = client.Deck
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Deck.load()
+result = client.Deck.load({ "id" => "deck_id" })
 ```
 
 ### Common Methods

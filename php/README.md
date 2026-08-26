@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $deck = $client->Deck()->load();
+    $deck = $client->Deck()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -120,14 +120,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DeckOfCardsSDK::test();
+$client = DeckOfCardsSDK::test([
+    "entity" => ["deck" => ["test01" => ["id" => "test01"]]],
+]);
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$deck = $client->Deck()->load();
+$deck = $client->Deck()->load(["id" => "test01"]);
 print_r($deck);
 ```
 
@@ -254,6 +257,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `deck_id` | Unique identifier for the deck |
+| `id` |  |
 | `remaining` | Number of cards remaining in the deck |
 | `shuffled` | Whether the deck is shuffled |
 | `success` | Whether the operation was successful |
@@ -341,6 +345,7 @@ Create an instance: `$deck = $client->Deck();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deck_id` | `string` | Unique identifier for the deck |
+| `id` | `string` |  |
 | `remaining` | `int` | Number of cards remaining in the deck |
 | `shuffled` | `bool` | Whether the deck is shuffled |
 | `success` | `bool` | Whether the operation was successful |
@@ -349,7 +354,7 @@ Create an instance: `$deck = $client->Deck();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Deck record (throws on error).
-$deck = $client->Deck()->load();
+$deck = $client->Deck()->load(["id" => "deck_id"]);
 ```
 
 
@@ -559,7 +564,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $deck = $client->Deck();
-$deck->load();
+$deck->load(["id" => "example_id"]);
 
 // $deck->data_get() now returns the deck data from the last load
 // $deck->match_get() returns the last match criteria
