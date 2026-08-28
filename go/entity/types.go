@@ -23,11 +23,9 @@ type Deck struct {
 
 // DeckLoadMatch is the typed request payload for Deck.LoadTyped.
 type DeckLoadMatch struct {
-	DeckId *string `json:"deck_id,omitempty"`
-	Id string `json:"id"`
-	Remaining *int `json:"remaining,omitempty"`
-	Shuffled *bool `json:"shuffled,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Card *string `json:"card,omitempty"`
+	DeckCount *int `json:"deck_count,omitempty"`
+	JokersEnabled *bool `json:"jokers_enabled,omitempty"`
 }
 
 // Draw is the typed data model for the draw entity.
@@ -42,6 +40,7 @@ type Draw struct {
 // DrawListMatch is the typed request payload for Draw.ListTyped.
 type DrawListMatch struct {
 	DeckId string `json:"deck_id"`
+	Count *int `json:"count,omitempty"`
 }
 
 // Pile is the typed data model for the pile entity.
@@ -53,6 +52,7 @@ type Pile struct {
 type PileLoadMatch struct {
 	DeckId string `json:"deck_id"`
 	PileName string `json:"pile_name"`
+	Card *string `json:"card,omitempty"`
 }
 
 // PileDraw is the typed data model for the pile_draw entity.
@@ -68,6 +68,8 @@ type PileDraw struct {
 type PileDrawListMatch struct {
 	DeckId string `json:"deck_id"`
 	PileName *string `json:"pile_name,omitempty"`
+	Card *string `json:"card,omitempty"`
+	Count *int `json:"count,omitempty"`
 	PileId *string `json:"pile_id,omitempty"`
 }
 
@@ -92,6 +94,7 @@ type Return struct {
 type ReturnLoadMatch struct {
 	DeckId string `json:"deck_id"`
 	PileName *string `json:"pile_name,omitempty"`
+	Card *string `json:"card,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

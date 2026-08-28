@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local deck, err = client:Deck():load({ id = "example_id" })
+local deck, err = client:Deck():load()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Deck():load({ id = "test01" })
+local result, err = client:Deck():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -221,7 +221,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local deck, err = client:Deck():load({ id = "example_id" })
+    local deck, err = client:Deck():load()
     if err then error(err) end
     -- deck is the loaded record
 
@@ -331,7 +331,7 @@ Create an instance: `local deck = client:Deck(nil)`
 #### Example: Load
 
 ```lua
-local deck, err = client:Deck():load({ id = "deck_id" })
+local deck, err = client:Deck():load()
 ```
 
 
@@ -458,6 +458,29 @@ Create an instance: `local return_ = client:Return(nil)`
 local return_, err = client:Return():load({ deck_id = "deck_id" })
 ```
 
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
+
 
 ## Advanced
 
@@ -536,7 +559,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local deck = client:Deck()
-deck:load({ id = "example_id" })
+deck:load()
 
 -- deck:data_get() now returns the deck data from the last load
 -- deck:match_get() returns the last match criteria

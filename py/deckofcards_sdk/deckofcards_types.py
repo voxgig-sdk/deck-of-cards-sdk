@@ -24,15 +24,10 @@ class Deck(TypedDict, total=False):
     success: bool
 
 
-class DeckLoadMatchRequired(TypedDict):
-    id: str
-
-
-class DeckLoadMatch(DeckLoadMatchRequired, total=False):
-    deck_id: str
-    remaining: int
-    shuffled: bool
-    success: bool
+class DeckLoadMatch(TypedDict, total=False):
+    card: str
+    deck_count: int
+    jokers_enabled: bool
 
 
 class Draw(TypedDict, total=False):
@@ -43,17 +38,25 @@ class Draw(TypedDict, total=False):
     value: str
 
 
-class DrawListMatch(TypedDict):
+class DrawListMatchRequired(TypedDict):
     deck_id: str
+
+
+class DrawListMatch(DrawListMatchRequired, total=False):
+    count: int
 
 
 class Pile(TypedDict, total=False):
     remaining: int
 
 
-class PileLoadMatch(TypedDict):
+class PileLoadMatchRequired(TypedDict):
     deck_id: str
     pile_name: str
+
+
+class PileLoadMatch(PileLoadMatchRequired, total=False):
+    card: str
 
 
 class PileDraw(TypedDict, total=False):
@@ -70,6 +73,8 @@ class PileDrawListMatchRequired(TypedDict):
 
 class PileDrawListMatch(PileDrawListMatchRequired, total=False):
     pile_name: str
+    card: str
+    count: int
     pile_id: str
 
 
@@ -93,3 +98,4 @@ class ReturnLoadMatchRequired(TypedDict):
 
 class ReturnLoadMatch(ReturnLoadMatchRequired, total=False):
     pile_name: str
+    card: str

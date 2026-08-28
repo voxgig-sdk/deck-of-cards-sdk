@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  deck = client.Deck.load({ "id" => "example_id" })
+  deck = client.Deck.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -114,17 +114,14 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = DeckOfCardsSDK.test({
-  "entity" => { "deck" => { "test01" => { "id" => "test01" } } },
-})
+client = DeckOfCardsSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-deck = client.Deck.load({ "id" => "test01" })
+deck = client.Deck.load()
 puts deck
 ```
 
@@ -344,7 +341,7 @@ Create an instance: `deck = client.Deck`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Deck record (raises on error).
-deck = client.Deck.load({ "id" => "deck_id" })
+deck = client.Deck.load()
 ```
 
 
@@ -476,6 +473,29 @@ Create an instance: `return_ = client.Return`
 return_ = client.Return.load({ "deck_id" => "deck_id" })
 ```
 
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
+
 
 ## Advanced
 
@@ -554,7 +574,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 deck = client.Deck
-deck.load({ "id" => "example_id" })
+deck.load()
 
 # deck.data_get now returns the deck data from the last load
 # deck.match_get returns the last match criteria

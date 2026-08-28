@@ -14,6 +14,10 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
+> **Features:** `test` — opt-in,
+> inactive until switched on, and configured per client. See the Features
+> section of any SDK README below for what each one does.
+
 ## Entities, not endpoints
 
 This SDK exposes the API as a small set of **semantic entities** — Deck, Draw, Pile, PileDraw, PileList and Return — that you
@@ -23,7 +27,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new DeckOfCardsSDK()
-const deck = await client.Deck().load({ id: "example_id" })
+const deck = await client.Deck().load()
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -47,7 +51,7 @@ const client = DeckOfCardsSDK.test({
     },
   },
 })
-const deck = await client.Deck().load({ id: 'test01' })
+const deck = await client.Deck().load()
 // deck is the Deck entity, populated with mock data
 // — call deck.data() for the record itself
 console.log(deck)
@@ -57,7 +61,7 @@ console.log(deck)
 
 ```python
 client = DeckOfCardsSDK.test()
-deck = client.Deck().load({"id": "test01"})
+deck = client.Deck().load()
 print(deck)
 ```
 
@@ -66,9 +70,9 @@ print(deck)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = DeckOfCardsSDK::test([
-    "entity" => ["deck" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["deck" => ["test01" => []]],
 ]);
-$deck = $client->Deck()->load(["id" => "test01"]);
+$deck = $client->Deck()->load();
 ```
 
 ### Golang
@@ -76,7 +80,7 @@ $deck = $client->Deck()->load(["id" => "test01"]);
 ```go
 client := sdk.Test()
 result, err := client.Deck(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 ```
 
@@ -85,16 +89,16 @@ result, err := client.Deck(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = DeckOfCardsSDK.test({
-  "entity" => { "deck" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "deck" => { "test01" => {} } },
 })
-deck = client.Deck.load({ "id" => "test01" })
+deck = client.Deck.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Deck():load({ id = "test01" })
+local result, err = client:Deck():load()
 ```
 
 ## Packages
@@ -187,7 +191,7 @@ client = DeckOfCardsSDK()
 
 
 # Load a specific deck (returns the record, raises on error)
-deck = client.Deck().load({"id": "example_id"})
+deck = client.Deck().load()
 print(deck)
 ```
 
@@ -201,7 +205,7 @@ $client = new DeckOfCardsSDK();
 
 
 // Load a specific deck (returns the ENTITY; call data_get() for the record; throws on error)
-$deck = $client->Deck()->load(["id" => "example_id"]);
+$deck = $client->Deck()->load();
 print_r($deck);
 ```
 
@@ -232,7 +236,7 @@ client = DeckOfCardsSDK.new
 
 
 # Load a specific deck (returns the ENTITY; call data_get for the record)
-deck = client.Deck.load({ "id" => "example_id" })
+deck = client.Deck.load()
 puts deck
 ```
 
@@ -245,7 +249,7 @@ local client = sdk.new()
 
 
 -- Load a specific deck
-local deck, err = client:Deck():load({ id = "example_id" })
+local deck, err = client:Deck():load()
 print(deck)
 ```
 
@@ -351,6 +355,32 @@ forking the SDK.
 | **TestFeature** | In-memory mock transport for testing without a live server |
 
 Pass custom features via the `extend` option at construction time.
+
+## Customizing this SDK
+
+This repository contains its own generator (`.sdk/`), so the SDK is
+customizable without forking any upstream tool:
+
+- **The model** (`.sdk/model/`) declares everything this project owns:
+  package names, versions, active features, per-target settings. It is
+  written in [aontu](https://github.com/aontu-lang/aontu), a JSON-based
+  specification language designed for building ontologies: easy to edit
+  by hand, and files unify rather than override, so small declarations
+  compose into one model. Regeneration re-reads it every time.
+- **Templates** (`.sdk/tm/`) and **components** (`.sdk/src/cmp/`) are
+  the two layers of generation, copied into this repo: templates are the
+  literal per-language source, components generate the API-shaped parts.
+- **Regeneration merges.** By default, newly generated content is
+  three-way merged into existing files, so generator updates and local
+  edits usually converge without manual conflict handling. A project can
+  opt for plain overwrite instead.
+- **Custom features and entire custom targets** arrive through sdkgen
+  packages (`voxgig-sdkgen package add`), on the same rails as the
+  bundled languages, and `voxgig-sdkgen doctor` reports any drift from
+  what a resync would write.
+
+How-to: [customize and propagate templates](https://github.com/voxgig/sdkgen/blob/main/docs/how-to/customize-and-propagate-templates.md).
+The full story: [voxgig.com/sdk/custom](https://voxgig.com/sdk/custom).
 
 ## Per-language documentation
 

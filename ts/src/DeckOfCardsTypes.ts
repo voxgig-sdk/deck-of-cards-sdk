@@ -14,11 +14,9 @@ export interface Deck {
 }
 
 export interface DeckLoadMatch {
-  deck_id?: string
-  id: string
-  remaining?: number
-  shuffled?: boolean
-  success?: boolean
+  card?: string
+  deck_count?: number
+  jokers_enabled?: boolean
 
   // Selects a custom action instead of the plain load:
   //   'new' | 'shuffle'
@@ -37,6 +35,7 @@ export interface Draw {
 
 export interface DrawListMatch {
   deck_id: string
+  count?: number
 }
 
 export interface Pile {
@@ -46,6 +45,7 @@ export interface Pile {
 export interface PileLoadMatch {
   deck_id: string
   pile_name: string
+  card?: string
 
   // Selects a custom action instead of the plain load:
   //   'add' | 'shuffle'
@@ -65,6 +65,8 @@ export interface PileDraw {
 export interface PileDrawListMatch {
   deck_id: string
   pile_name?: string
+  card?: string
+  count?: number
   pile_id?: string
 }
 
@@ -85,5 +87,6 @@ export interface Return {
 export interface ReturnLoadMatch {
   deck_id: string
   pile_name?: string
+  card?: string
 }
 

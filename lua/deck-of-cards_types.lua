@@ -14,11 +14,9 @@
 ---@field success? boolean
 
 ---@class DeckLoadMatch
----@field deck_id? string
----@field id string
----@field remaining? number
----@field shuffled? boolean
----@field success? boolean
+---@field card? string
+---@field deck_count? number
+---@field jokers_enabled? boolean
 
 ---@class Draw
 ---@field code? string
@@ -29,6 +27,7 @@
 
 ---@class DrawListMatch
 ---@field deck_id string
+---@field count? number
 
 ---@class Pile
 ---@field remaining? number
@@ -36,6 +35,7 @@
 ---@class PileLoadMatch
 ---@field deck_id string
 ---@field pile_name string
+---@field card? string
 
 ---@class PileDraw
 ---@field code? string
@@ -47,6 +47,8 @@
 ---@class PileDrawListMatch
 ---@field deck_id string
 ---@field pile_name? string
+---@field card? string
+---@field count? number
 ---@field pile_id? string
 
 ---@class PileList
@@ -63,6 +65,7 @@
 ---@class ReturnLoadMatch
 ---@field deck_id string
 ---@field pile_name? string
+---@field card? string
 
 local M = {}
 

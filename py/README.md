@@ -56,7 +56,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    deck = client.Deck().load({"id": "example_id"})
+    deck = client.Deck().load()
     print(deck)
 except Exception as err:
     print(f"load failed: {err}")
@@ -125,7 +125,7 @@ client = DeckOfCardsSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-deck = client.Deck().load({"id": "test01"})
+deck = client.Deck().load()
 # deck contains the mock response record
 ```
 
@@ -345,7 +345,7 @@ Create an instance: `deck = client.Deck()`
 #### Example: Load
 
 ```python
-deck = client.Deck().load({"id": "deck_id"})
+deck = client.Deck().load()
 ```
 
 
@@ -472,6 +472,29 @@ Create an instance: `return_ = client.Return()`
 return_ = client.Return().load({"deck_id": "deck_id"})
 ```
 
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
+
 
 ## Advanced
 
@@ -549,7 +572,7 @@ stores the returned data and match criteria internally.
 
 ```python
 deck = client.Deck()
-deck.load({"id": "example_id"})
+deck.load()
 
 # deck.data_get() now returns the deck data from the last load
 # deck.match_get() returns the last match criteria
