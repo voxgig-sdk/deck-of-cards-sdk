@@ -48,12 +48,22 @@ main: kit: entity: pile: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/add/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "pile"
-            "{pile_name}"
-            "add"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "add"
+            }
           ]
           select: {
             "$action": "add"
@@ -89,12 +99,22 @@ main: kit: entity: pile: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/shuffle/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "pile"
-            "{pile_name}"
-            "shuffle"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "shuffle"
+            }
           ]
           select: {
             "$action": "shuffle"

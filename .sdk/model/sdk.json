@@ -111,10 +111,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/new/shuffle/",
-                  "parts": [
-                    "deck",
-                    "new",
-                    "shuffle"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "lit": "new"
+                    },
+                    {
+                      "lit": "shuffle"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -155,16 +161,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/shuffle/",
-                  "parts": [
-                    "deck",
-                    "{id}",
-                    "shuffle"
-                  ],
                   "rename": {
                     "param": {
                       "deck_id": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "id"
+                    },
+                    {
+                      "lit": "shuffle"
+                    }
+                  ],
                   "select": {
                     "$action": "shuffle",
                     "exist": [
@@ -194,9 +206,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/new/",
-                  "parts": [
-                    "deck",
-                    "new"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "lit": "new"
+                    }
                   ],
                   "select": {
                     "$action": "new",
@@ -291,10 +307,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/draw/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "draw"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "draw"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -373,12 +395,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/add/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_name}",
-                    "add"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_name"
+                    },
+                    {
+                      "lit": "add"
+                    }
                   ],
                   "select": {
                     "$action": "add",
@@ -418,12 +450,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_name}",
-                    "shuffle"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_name"
+                    },
+                    {
+                      "lit": "shuffle"
+                    }
                   ],
                   "select": {
                     "$action": "shuffle",
@@ -539,12 +581,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_name}",
-                    "draw"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_name"
+                    },
+                    {
+                      "lit": "draw"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -594,19 +646,31 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_id}",
-                    "draw",
-                    "bottom"
-                  ],
                   "rename": {
                     "param": {
                       "pile_name": "pile_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_id"
+                    },
+                    {
+                      "lit": "draw"
+                    },
+                    {
+                      "lit": "bottom"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "count",
@@ -654,19 +718,31 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_id}",
-                    "draw",
-                    "random"
-                  ],
                   "rename": {
                     "param": {
                       "pile_name": "pile_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_id"
+                    },
+                    {
+                      "lit": "draw"
+                    },
+                    {
+                      "lit": "random"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "count",
@@ -743,12 +819,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/list/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_name}",
-                    "list"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_name"
+                    },
+                    {
+                      "lit": "list"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -828,12 +914,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/return/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "pile",
-                    "{pile_name}",
-                    "return"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "pile"
+                    },
+                    {
+                      "var": "pile_name"
+                    },
+                    {
+                      "lit": "return"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -874,10 +970,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/return/",
-                  "parts": [
-                    "deck",
-                    "{deck_id}",
-                    "return"
+                  "segments": [
+                    {
+                      "lit": "deck"
+                    },
+                    {
+                      "var": "deck_id"
+                    },
+                    {
+                      "lit": "return"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -970,8 +1072,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1249,6 +1354,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1274,6 +1382,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1325,6 +1437,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1349,6 +1462,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1400,6 +1514,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1424,6 +1539,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1464,6 +1580,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1489,6 +1608,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1523,6 +1645,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1548,6 +1673,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1588,6 +1716,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1613,6 +1744,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1658,6 +1792,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1683,6 +1820,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1700,11 +1840,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1733,6 +1868,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1757,6 +1895,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

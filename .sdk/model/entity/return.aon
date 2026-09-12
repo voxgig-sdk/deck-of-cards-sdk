@@ -48,12 +48,22 @@ main: kit: entity: return: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/return/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "pile"
-            "{pile_name}"
-            "return"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "return"
+            }
           ]
           select: {
             exist: [
@@ -90,10 +100,16 @@ main: kit: entity: return: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/return/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "return"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "return"
+            }
           ]
           select: {
             exist: [

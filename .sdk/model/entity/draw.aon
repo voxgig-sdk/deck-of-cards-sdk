@@ -65,10 +65,16 @@ main: kit: entity: draw: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/draw/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "draw"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "draw"
+            }
           ]
           select: {
             exist: [

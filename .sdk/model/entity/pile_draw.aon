@@ -78,12 +78,22 @@ main: kit: entity: pile_draw: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/draw/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "pile"
-            "{pile_name}"
-            "draw"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "draw"
+            }
           ]
           select: {
             exist: [
@@ -128,19 +138,31 @@ main: kit: entity: pile_draw: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/draw/bottom/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "pile"
-            "{pile_id}"
-            "draw"
-            "bottom"
-          ]
           rename: {
             param: {
               pile_name: "pile_id"
             }
           }
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_id"
+            }
+            {
+              lit: "draw"
+            }
+            {
+              lit: "bottom"
+            }
+          ]
           select: {
             exist: [
               "count"
@@ -183,19 +205,31 @@ main: kit: entity: pile_draw: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/draw/random/"
-          parts: [
-            "deck"
-            "{deck_id}"
-            "pile"
-            "{pile_id}"
-            "draw"
-            "random"
-          ]
           rename: {
             param: {
               pile_name: "pile_id"
             }
           }
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_id"
+            }
+            {
+              lit: "draw"
+            }
+            {
+              lit: "random"
+            }
+          ]
           select: {
             exist: [
               "count"

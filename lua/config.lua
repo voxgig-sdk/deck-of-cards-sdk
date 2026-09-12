@@ -61,6 +61,10 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "deck",
         ["op"] = {
           ["load"] = {
@@ -94,10 +98,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/new/shuffle/",
-                ["parts"] = {
-                  "deck",
-                  "new",
-                  "shuffle",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["lit"] = "new",
+                  },
+                  {
+                    ["lit"] = "shuffle",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -109,6 +119,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "new",
+                  "shuffle",
                 },
               },
               {
@@ -134,14 +149,20 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/shuffle/",
-                ["parts"] = {
-                  "deck",
-                  "{id}",
-                  "shuffle",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["deck_id"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
+                  {
+                    ["lit"] = "shuffle",
                   },
                 },
                 ["select"] = {
@@ -154,6 +175,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{id}",
+                  "shuffle",
                 },
               },
               {
@@ -170,9 +196,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/new/",
-                ["parts"] = {
-                  "deck",
-                  "new",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["lit"] = "new",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "new",
@@ -183,6 +213,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "new",
                 },
               },
             },
@@ -249,10 +283,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/draw/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "draw",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "draw",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -263,6 +303,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.cards`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "draw",
                 },
               },
             },
@@ -321,12 +366,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/add/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_name}",
-                  "add",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_name",
+                  },
+                  {
+                    ["lit"] = "add",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "add",
@@ -339,6 +394,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_name}",
+                  "add",
                 },
               },
               {
@@ -363,12 +425,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/shuffle/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_name}",
-                  "shuffle",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_name",
+                  },
+                  {
+                    ["lit"] = "shuffle",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "shuffle",
@@ -380,6 +452,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_name}",
+                  "shuffle",
                 },
               },
             },
@@ -463,12 +542,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/draw/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_name}",
-                  "draw",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_name",
+                  },
+                  {
+                    ["lit"] = "draw",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -481,6 +570,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_name}",
+                  "draw",
                 },
               },
               {
@@ -513,17 +609,29 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_id}",
-                  "draw",
-                  "bottom",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["pile_name"] = "pile_id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_id",
+                  },
+                  {
+                    ["lit"] = "draw",
+                  },
+                  {
+                    ["lit"] = "bottom",
                   },
                 },
                 ["select"] = {
@@ -536,6 +644,14 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_id}",
+                  "draw",
+                  "bottom",
                 },
               },
               {
@@ -568,17 +684,29 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/draw/random/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_id}",
-                  "draw",
-                  "random",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["pile_name"] = "pile_id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_id",
+                  },
+                  {
+                    ["lit"] = "draw",
+                  },
+                  {
+                    ["lit"] = "random",
                   },
                 },
                 ["select"] = {
@@ -591,6 +719,14 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_id}",
+                  "draw",
+                  "random",
                 },
               },
             },
@@ -646,12 +782,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/list/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_name}",
-                  "list",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_name",
+                  },
+                  {
+                    ["lit"] = "list",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -662,6 +808,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_name}",
+                  "list",
                 },
               },
             },
@@ -720,12 +873,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/pile/{pile_name}/return/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "pile",
-                  "{pile_name}",
-                  "return",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "pile",
+                  },
+                  {
+                    ["var"] = "pile_name",
+                  },
+                  {
+                    ["lit"] = "return",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -737,6 +900,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "pile",
+                  "{pile_name}",
+                  "return",
                 },
               },
               {
@@ -762,10 +932,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deck/{deck_id}/return/",
-                ["parts"] = {
-                  "deck",
-                  "{deck_id}",
-                  "return",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deck",
+                  },
+                  {
+                    ["var"] = "deck_id",
+                  },
+                  {
+                    ["lit"] = "return",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -776,6 +952,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.piles`",
+                },
+                ["parts"] = {
+                  "deck",
+                  "{deck_id}",
+                  "return",
                 },
               },
             },

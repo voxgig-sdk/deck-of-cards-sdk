@@ -65,6 +65,10 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "deck",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -98,10 +102,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/new/shuffle/",
-								"parts": []any{
-									"deck",
-									"new",
-									"shuffle",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"lit": "new",
+									},
+									map[string]any{
+										"lit": "shuffle",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -113,6 +123,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"deck",
+									"new",
+									"shuffle",
 								},
 							},
 							map[string]any{
@@ -138,14 +153,20 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/shuffle/",
-								"parts": []any{
-									"deck",
-									"{id}",
-									"shuffle",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"deck_id": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "shuffle",
 									},
 								},
 								"select": map[string]any{
@@ -158,6 +179,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"deck",
+									"{id}",
+									"shuffle",
 								},
 							},
 							map[string]any{
@@ -174,9 +200,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/new/",
-								"parts": []any{
-									"deck",
-									"new",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"lit": "new",
+									},
 								},
 								"select": map[string]any{
 									"$action": "new",
@@ -187,6 +217,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"deck",
+									"new",
 								},
 							},
 						},
@@ -253,10 +287,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/draw/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"draw",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "draw",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -267,6 +307,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.cards`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"draw",
 								},
 							},
 						},
@@ -325,12 +370,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/add/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"add",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_name",
+									},
+									map[string]any{
+										"lit": "add",
+									},
 								},
 								"select": map[string]any{
 									"$action": "add",
@@ -343,6 +398,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.piles`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"add",
 								},
 							},
 							map[string]any{
@@ -367,12 +429,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"shuffle",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_name",
+									},
+									map[string]any{
+										"lit": "shuffle",
+									},
 								},
 								"select": map[string]any{
 									"$action": "shuffle",
@@ -384,6 +456,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.piles`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"shuffle",
 								},
 							},
 						},
@@ -467,12 +546,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"draw",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_name",
+									},
+									map[string]any{
+										"lit": "draw",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -485,6 +574,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"draw",
 								},
 							},
 							map[string]any{
@@ -517,17 +613,29 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_id}",
-									"draw",
-									"bottom",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"pile_name": "pile_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_id",
+									},
+									map[string]any{
+										"lit": "draw",
+									},
+									map[string]any{
+										"lit": "bottom",
 									},
 								},
 								"select": map[string]any{
@@ -540,6 +648,14 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_id}",
+									"draw",
+									"bottom",
 								},
 							},
 							map[string]any{
@@ -572,17 +688,29 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_id}",
-									"draw",
-									"random",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"pile_name": "pile_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_id",
+									},
+									map[string]any{
+										"lit": "draw",
+									},
+									map[string]any{
+										"lit": "random",
 									},
 								},
 								"select": map[string]any{
@@ -595,6 +723,14 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_id}",
+									"draw",
+									"random",
 								},
 							},
 						},
@@ -650,12 +786,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/list/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"list",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_name",
+									},
+									map[string]any{
+										"lit": "list",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -666,6 +812,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.piles`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"list",
 								},
 							},
 						},
@@ -724,12 +877,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/return/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"return",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "pile",
+									},
+									map[string]any{
+										"var": "pile_name",
+									},
+									map[string]any{
+										"lit": "return",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -741,6 +904,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.piles`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"return",
 								},
 							},
 							map[string]any{
@@ -766,10 +936,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/return/",
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"return",
+								"segments": []any{
+									map[string]any{
+										"lit": "deck",
+									},
+									map[string]any{
+										"var": "deck_id",
+									},
+									map[string]any{
+										"lit": "return",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -780,6 +956,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.piles`",
+								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"return",
 								},
 							},
 						},
@@ -799,6 +980,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

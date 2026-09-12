@@ -75,10 +75,16 @@ main: kit: entity: deck: {
           }
           method: "GET"
           orig: "/deck/new/shuffle/"
-          parts: [
-            "deck"
-            "new"
-            "shuffle"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              lit: "new"
+            }
+            {
+              lit: "shuffle"
+            }
           ]
           select: {
             exist: [
@@ -115,16 +121,22 @@ main: kit: entity: deck: {
           }
           method: "GET"
           orig: "/deck/{deck_id}/shuffle/"
-          parts: [
-            "deck"
-            "{id}"
-            "shuffle"
-          ]
           rename: {
             param: {
               deck_id: "id"
             }
           }
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "shuffle"
+            }
+          ]
           select: {
             "$action": "shuffle"
             exist: [
@@ -151,9 +163,13 @@ main: kit: entity: deck: {
           }
           method: "GET"
           orig: "/deck/new/"
-          parts: [
-            "deck"
-            "new"
+          segments: [
+            {
+              lit: "deck"
+            }
+            {
+              lit: "new"
+            }
           ]
           select: {
             "$action": "new"

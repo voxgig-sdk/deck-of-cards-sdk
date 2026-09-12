@@ -50,7 +50,7 @@ func TestPileListEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		pileListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.pile_list", setup.data)))
+		pileListRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.pile_list")))
 		var pileListRef01Data map[string]any
 		if len(pileListRef01DataRaw) > 0 {
 			pileListRef01Data = core.ToMapAny(pileListRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func pile_listBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"pile_list01", "pile_list02", "pile_list03", "deck01", "deck02", "deck03", "pile01", "pile02", "pile03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +125,22 @@ func pile_listBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["DECK_OF_CARDS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewDeckOfCardsSDK(core.ToMapAny(mergedOpts))
 	}
