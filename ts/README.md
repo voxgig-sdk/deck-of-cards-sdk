@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
+import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards-sdk'
 
 const client = new DeckOfCardsSDK()
 ```
@@ -604,7 +604,7 @@ deck-of-cards/
 Import the SDK from the package root:
 
 ```ts
-import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
+import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards-sdk'
 ```
 
 ### Entity state

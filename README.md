@@ -105,7 +105,7 @@ local result, err = client:Deck():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
+| TypeScript | `@voxgig-sdk/deck-of-cards-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
 | Python | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
 | PHP | `voxgig-sdk/deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/deck-of-cards-sdk/go` | `go get github.com/voxgig-sdk/deck-of-cards-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Deck():load()
 ### TypeScript
 
 ```ts
-import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards'
+import { DeckOfCardsSDK } from '@voxgig-sdk/deck-of-cards-sdk'
 
 const client = new DeckOfCardsSDK()
 

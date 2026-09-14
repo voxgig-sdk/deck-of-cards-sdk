@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/deck-of-cards",
+  "name": "@voxgig-sdk/deck-of-cards-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Deck of Cards public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
