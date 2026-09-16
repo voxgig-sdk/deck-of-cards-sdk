@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { DeckOfCardsSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('DeckEntity', async () => {
 
     const live = 'TRUE' === process.env.DECK_OF_CARDS_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'deck.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'deck.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set DECK_OF_CARDS_TEST_DECK_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"deck_id","req":false,"short":"Unique identifier for the deck","type":"`$STRING`","index$":0},{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":1},{"active":true,"name":"remaining","req":false,"short":"Number of cards remaining in the deck","type":"`$INTEGER`","index$":2},{"active":true,"name":"shuffled","req":false,"short":"Whether the deck is shuffled","type":"`$BOOLEAN`","index$":3},{"active":true,"name":"success","req":false,"short":"Whether the operation was successful","type":"`$BOOLEAN`","index$":4}],"id":{"field":"id","name":"id"},"name":"deck","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"card","orig":"card","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"example":1,"kind":"query","name":"deck_count","orig":"deck_count","reqd":false,"type":"`$INTEGER`","index$":1},{"active":true,"kind":"query","name":"jokers_enabled","orig":"jokers_enabled","reqd":false,"type":"`$BOOLEAN`","index$":2}]},"contract":{"id":"GET /deck/new/shuffle/","json":"{\"operationId\":\"shuffleNewDeck\",\"parameters\":[{\"description\":\"Number of decks to use (default is 1, Blackjack typically uses 6)\",\"in\":\"query\",\"name\":\"deck_count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Comma-separated list of card codes to create a partial deck (e.g., AS,2S,KS,AD,2D,KD)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/deck/new/shuffle/","segments":[{"lit":"deck"},{"lit":"new"},{"lit":"shuffle"}],"select":{"exist":["card","deck_count","jokers_enabled"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0},{"active":true,"args":{"params":[{"active":true,"kind":"param","name":"id","orig":"deck_id","reqd":true,"type":"`$STRING`"}],"query":[{"active":true,"kind":"query","name":"remaining","orig":"remaining","reqd":false,"type":"`$BOOLEAN`"}]},"contract":{"id":"GET /deck/{deck_id}/shuffle/","json":"{\"operationId\":\"reshuffleDeck\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Only shuffle cards remaining in the main stack, leaving piles and drawn cards alone\",\"in\":\"query\",\"name\":\"remaining\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/deck/{deck_id}/shuffle/","rename":{"param":{"deck_id":"id"}},"segments":[{"lit":"deck"},{"var":"id"},{"lit":"shuffle"}],"select":{"$action":"shuffle","exist":["id","remaining"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":1},{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"jokers_enabled","orig":"jokers_enabled","reqd":false,"type":"`$BOOLEAN`"}]},"contract":{"id":"GET /deck/new/","json":"{\"operationId\":\"createNewDeck\",\"parameters\":[{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":false,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/deck/new/","segments":[{"lit":"deck"},{"lit":"new"}],"select":{"$action":"new","exist":["jokers_enabled"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":2}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"deck","name__orig":"deck","Name":"Deck","name_":"deck","name-":"deck","NAME":"DECK","index$":0}, {"active":true,"entity":"deck","key$":"BasicDeckFlow","kind":"basic","name":"BasicDeckFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"deck_ref01","srcdatavar":"deck_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-deck_ref01"}}],"index$":0}]}, 'Deck')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['DECK_OF_CARDS_TEST_DECK_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'DECK_OF_CARDS_TEST_DECK_ENTID': idmap,
     'DECK_OF_CARDS_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.DECK_OF_CARDS_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['DECK_OF_CARDS_TEST_DECK_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new DeckOfCardsSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -139,7 +137,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -152,7 +151,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.DECK_OF_CARDS_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

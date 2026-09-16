@@ -3,21 +3,21 @@
     "pile_list": {
       "PILE_LIST00": {
         "cards": [],
-        "remaining": "s15",
+        "remaining": 21,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "PILE_LIST00"
       },
       "PILE_LIST01": {
         "cards": [],
-        "remaining": "s29",
+        "remaining": 41,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "PILE_LIST01"
       },
       "PILE_LIST02": {
         "cards": [],
-        "remaining": "s3d",
+        "remaining": 61,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "PILE_LIST02"
@@ -28,7 +28,135 @@
     "pile_list": {
       "pile_list_ref01": {
         "cards": [],
-        "remaining": "s51"
+        "remaining": 81
+      }
+    }
+  },
+  "requests": {
+    "GET /deck/{deck_id}/pile/{pile_name}/list/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listPileCards",
+        "parameters": [
+          {
+            "description": "The deck identifier",
+            "in": "path",
+            "name": "deck_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the pile",
+            "in": "path",
+            "name": "pile_name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "deck_id": "d5x0uw65g416",
+                  "piles": {
+                    "player1": {
+                      "remaining": 3
+                    },
+                    "player2": {
+                      "cards": [
+                        {
+                          "code": "KH",
+                          "image": "https://www.deckofcardsapi.com/static/img/KH.png",
+                          "suit": "HEARTS",
+                          "value": "KING"
+                        }
+                      ],
+                      "remaining": 2
+                    }
+                  },
+                  "remaining": 42,
+                  "success": true
+                },
+                "schema": {
+                  "properties": {
+                    "deck_id": {
+                      "description": "Unique identifier for the deck",
+                      "type": "string"
+                    },
+                    "piles": {
+                      "additionalProperties": {
+                        "properties": {
+                          "cards": {
+                            "description": "Array of cards in the pile",
+                            "items": {
+                              "properties": {
+                                "code": {
+                                  "description": "Two-character card code (e.g., AS for Ace of Spades)",
+                                  "type": "string"
+                                },
+                                "image": {
+                                  "description": "URL to the PNG image of the card",
+                                  "type": "string"
+                                },
+                                "images": {
+                                  "properties": {
+                                    "png": {
+                                      "description": "URL to the PNG image of the card",
+                                      "type": "string"
+                                    },
+                                    "svg": {
+                                      "description": "URL to the SVG image of the card",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "suit": {
+                                  "description": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "description": "Card value (e.g., ACE, 2, 10, KING)",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "remaining": {
+                            "description": "Number of cards remaining in the pile",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "description": "Object containing detailed pile information with cards",
+                      "type": "object"
+                    },
+                    "remaining": {
+                      "description": "Number of cards remaining in the main deck",
+                      "type": "integer"
+                    },
+                    "success": {
+                      "description": "Whether the operation was successful",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -46,6 +46,12 @@ main: kit: entity: pile: {
               }
             ]
           }
+          contract: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/add/"
+            json: "{\"operationId\":\"addToPile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of card codes to add to the pile (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":2}},\"remaining\":12,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/add/"
           segments: [
@@ -96,6 +102,12 @@ main: kit: entity: pile: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/shuffle/"
+            json: "{\"operationId\":\"shufflePile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/deck/{deck_id}/pile/{pile_name}/shuffle/"

@@ -63,6 +63,12 @@ main: kit: entity: draw: {
               }
             ]
           }
+          contract: {
+            id: "GET /deck/{deck_id}/draw/"
+            json: "{\"operationId\":\"drawCards\",\"parameters\":[{\"description\":\"The deck identifier (use 'new' to create a shuffled deck and draw from it)\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the deck\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"cards\":[{\"code\":\"6H\",\"image\":\"https://deckofcardsapi.com/static/img/6H.png\",\"images\":{\"png\":\"https://deckofcardsapi.com/static/img/6H.png\",\"svg\":\"https://deckofcardsapi.com/static/img/6H.svg\"},\"suit\":\"HEARTS\",\"value\":\"6\"}],\"deck_id\":\"kxozasf3edqu\",\"remaining\":51,\"success\":true},\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/deck/{deck_id}/draw/"
           segments: [

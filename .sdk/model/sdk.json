@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "deck": {
           "active": true,
@@ -108,6 +172,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/new/shuffle/",
+                    "json": "{\"operationId\":\"shuffleNewDeck\",\"parameters\":[{\"description\":\"Number of decks to use (default is 1, Blackjack typically uses 6)\",\"in\":\"query\",\"name\":\"deck_count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Comma-separated list of card codes to create a partial deck (e.g., AS,2S,KS,AD,2D,KD)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/new/shuffle/",
@@ -158,6 +228,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/shuffle/",
+                    "json": "{\"operationId\":\"reshuffleDeck\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Only shuffle cards remaining in the main stack, leaving piles and drawn cards alone\",\"in\":\"query\",\"name\":\"remaining\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/shuffle/",
@@ -202,6 +278,12 @@
                         "type": "`$BOOLEAN`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /deck/new/",
+                    "json": "{\"operationId\":\"createNewDeck\",\"parameters\":[{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":false,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -304,6 +386,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/draw/",
+                    "json": "{\"operationId\":\"drawCards\",\"parameters\":[{\"description\":\"The deck identifier (use 'new' to create a shuffled deck and draw from it)\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the deck\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"cards\":[{\"code\":\"6H\",\"image\":\"https://deckofcardsapi.com/static/img/6H.png\",\"images\":{\"png\":\"https://deckofcardsapi.com/static/img/6H.png\",\"svg\":\"https://deckofcardsapi.com/static/img/6H.svg\"},\"suit\":\"HEARTS\",\"value\":\"6\"}],\"deck_id\":\"kxozasf3edqu\",\"remaining\":51,\"success\":true},\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/draw/",
@@ -392,6 +480,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/add/",
+                    "json": "{\"operationId\":\"addToPile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of card codes to add to the pile (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":2}},\"remaining\":12,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/add/",
@@ -446,6 +540,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/shuffle/",
+                    "json": "{\"operationId\":\"shufflePile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -578,6 +678,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/",
+                    "json": "{\"operationId\":\"drawFromPileTop\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of specific card codes to draw (e.g., AS)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the pile\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"cards\":[{\"code\":\"AS\",\"image\":\"https://www.deckofcardsapi.com/static/img/AS.png\",\"suit\":\"SPADES\",\"value\":\"ACE\"}],\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":1}},\"remaining\":12,\"success\":true},\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards from the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
@@ -642,6 +748,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/bottom/",
+                    "json": "{\"operationId\":\"drawFromPileBottom\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the bottom of the pile\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards from the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -714,6 +826,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/random/",
+                    "json": "{\"operationId\":\"drawFromPileRandom\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of random cards to draw from the pile\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards from the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -816,6 +934,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/list/",
+                    "json": "{\"operationId\":\"listPileCards\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"d5x0uw65g416\",\"piles\":{\"player1\":{\"remaining\":3},\"player2\":{\"cards\":[{\"code\":\"KH\",\"image\":\"https://www.deckofcardsapi.com/static/img/KH.png\",\"suit\":\"HEARTS\",\"value\":\"KING\"}],\"remaining\":2}},\"remaining\":42,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"cards\":{\"description\":\"Array of cards in the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing detailed pile information with cards\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/list/",
@@ -911,6 +1035,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/return/",
+                    "json": "{\"operationId\":\"returnCardsFromPile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of specific card codes to return (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/pile/{pile_name}/return/",
@@ -967,6 +1097,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /deck/{deck_id}/return/",
+                    "json": "{\"operationId\":\"returnCardsToDeck\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of specific card codes to return (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":0}},\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deck/{deck_id}/return/",
@@ -1009,13 +1145,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -1105,6 +1451,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -1315,6 +1757,48 @@
         "website": "https://deckofcardsapi.com"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1869,6 +2353,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1910,7 +2395,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

@@ -73,6 +73,12 @@ main: kit: entity: deck: {
               }
             ]
           }
+          contract: {
+            id: "GET /deck/new/shuffle/"
+            json: "{\"operationId\":\"shuffleNewDeck\",\"parameters\":[{\"description\":\"Number of decks to use (default is 1, Blackjack typically uses 6)\",\"in\":\"query\",\"name\":\"deck_count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Comma-separated list of card codes to create a partial deck (e.g., AS,2S,KS,AD,2D,KD)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/deck/new/shuffle/"
           segments: [
@@ -119,6 +125,12 @@ main: kit: entity: deck: {
               }
             ]
           }
+          contract: {
+            id: "GET /deck/{deck_id}/shuffle/"
+            json: "{\"operationId\":\"reshuffleDeck\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Only shuffle cards remaining in the main stack, leaving piles and drawn cards alone\",\"in\":\"query\",\"name\":\"remaining\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/deck/{deck_id}/shuffle/"
           rename: {
@@ -160,6 +172,12 @@ main: kit: entity: deck: {
                 type: "`$BOOLEAN`"
               }
             ]
+          }
+          contract: {
+            id: "GET /deck/new/"
+            json: "{\"operationId\":\"createNewDeck\",\"parameters\":[{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":false,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/deck/new/"

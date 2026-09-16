@@ -4,7 +4,10 @@ declare(strict_types=1);
 // DeckOfCards SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class DeckOfCardsFeatures
@@ -14,8 +17,14 @@ class DeckOfCardsFeatures
         switch ($name) {
             case "base":
                 return new DeckOfCardsBaseFeature();
+            case "ratelimit":
+                return new DeckOfCardsRatelimitFeature();
+            case "retry":
+                return new DeckOfCardsRetryFeature();
             case "test":
                 return new DeckOfCardsTestFeature();
+            case "timeout":
+                return new DeckOfCardsTimeoutFeature();
             default:
                 return new DeckOfCardsBaseFeature();
         }
@@ -31,7 +40,10 @@ class DeckOfCardsFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

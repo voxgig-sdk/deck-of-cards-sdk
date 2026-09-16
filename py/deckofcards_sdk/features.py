@@ -1,12 +1,18 @@
 # DeckOfCards SDK feature factory
 
 from deckofcards_sdk.feature.base_feature import DeckOfCardsBaseFeature
+from deckofcards_sdk.feature.ratelimit_feature import DeckOfCardsRatelimitFeature
+from deckofcards_sdk.feature.retry_feature import DeckOfCardsRetryFeature
 from deckofcards_sdk.feature.test_feature import DeckOfCardsTestFeature
+from deckofcards_sdk.feature.timeout_feature import DeckOfCardsTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DeckOfCardsBaseFeature(),
+    "ratelimit": lambda: DeckOfCardsRatelimitFeature(),
+    "retry": lambda: DeckOfCardsRetryFeature(),
     "test": lambda: DeckOfCardsTestFeature(),
+    "timeout": lambda: DeckOfCardsTimeoutFeature(),
 }
 
 

@@ -2,19 +2,19 @@
   "existing": {
     "return": {
       "RETURN00": {
-        "remaining": "sa",
+        "remaining": 10,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "RETURN00"
       },
       "RETURN01": {
-        "remaining": "s14",
+        "remaining": 20,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "RETURN01"
       },
       "RETURN02": {
-        "remaining": "s1e",
+        "remaining": 30,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "RETURN02"
@@ -24,7 +24,171 @@
   "new": {
     "return": {
       "return_ref01": {
-        "remaining": "s28"
+        "remaining": 40
+      }
+    }
+  },
+  "requests": {
+    "GET /deck/{deck_id}/pile/{pile_name}/return/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "returnCardsFromPile",
+        "parameters": [
+          {
+            "description": "The deck identifier",
+            "in": "path",
+            "name": "deck_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The name of the pile",
+            "in": "path",
+            "name": "pile_name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of specific card codes to return (e.g., AS,2S)",
+            "in": "query",
+            "name": "cards",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deck_id": {
+                      "description": "Unique identifier for the deck",
+                      "type": "string"
+                    },
+                    "piles": {
+                      "additionalProperties": {
+                        "properties": {
+                          "remaining": {
+                            "description": "Number of cards remaining in the pile",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "description": "Object containing pile information",
+                      "type": "object"
+                    },
+                    "remaining": {
+                      "description": "Number of cards remaining in the deck",
+                      "type": "integer"
+                    },
+                    "shuffled": {
+                      "description": "Whether the deck is shuffled",
+                      "type": "boolean"
+                    },
+                    "success": {
+                      "description": "Whether the operation was successful",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /deck/{deck_id}/return/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "returnCardsToDeck",
+        "parameters": [
+          {
+            "description": "The deck identifier",
+            "in": "path",
+            "name": "deck_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated list of specific card codes to return (e.g., AS,2S)",
+            "in": "query",
+            "name": "cards",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "deck_id": "3p40paa87x90",
+                  "piles": {
+                    "discard": {
+                      "remaining": 0
+                    }
+                  },
+                  "remaining": 52,
+                  "shuffled": true,
+                  "success": true
+                },
+                "schema": {
+                  "properties": {
+                    "deck_id": {
+                      "description": "Unique identifier for the deck",
+                      "type": "string"
+                    },
+                    "piles": {
+                      "additionalProperties": {
+                        "properties": {
+                          "remaining": {
+                            "description": "Number of cards remaining in the pile",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "description": "Object containing pile information",
+                      "type": "object"
+                    },
+                    "remaining": {
+                      "description": "Number of cards remaining in the deck",
+                      "type": "integer"
+                    },
+                    "shuffled": {
+                      "description": "Whether the deck is shuffled",
+                      "type": "boolean"
+                    },
+                    "success": {
+                      "description": "Whether the operation was successful",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
