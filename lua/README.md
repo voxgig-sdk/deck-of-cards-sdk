@@ -262,7 +262,6 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -371,12 +370,6 @@ Create an instance: `local pile = client:Pile(nil)`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -601,6 +594,7 @@ Use `helpers.to_map()` to safely validate that a value is a table.
 lua/
 ├── deck-of-cards_sdk.lua    -- Main SDK module
 ├── config.lua               -- Configuration
+├── schema.lua               -- Generated option + entity specs
 ├── features.lua             -- Feature factory
 ├── core/                    -- Core types and context
 ├── entity/                  -- Entity implementations

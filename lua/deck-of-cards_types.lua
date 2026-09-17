@@ -30,7 +30,6 @@
 ---@field count? number
 
 ---@class Pile
----@field remaining? number
 
 ---@class PileLoadMatch
 ---@field deck_id string

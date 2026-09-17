@@ -45,7 +45,6 @@ type DrawListMatch struct {
 
 // Pile is the typed data model for the pile entity.
 type Pile struct {
-	Remaining *int `json:"remaining,omitempty"`
 }
 
 // PileLoadMatch is the typed request payload for Pile.LoadTyped.

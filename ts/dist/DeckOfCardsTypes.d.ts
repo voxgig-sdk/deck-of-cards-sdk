@@ -24,7 +24,6 @@ export interface DrawListMatch {
     count?: number;
 }
 export interface Pile {
-    remaining?: number;
 }
 export interface PileLoadMatch {
     deck_id: string;

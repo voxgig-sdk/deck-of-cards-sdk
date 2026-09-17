@@ -301,12 +301,6 @@ Return a copy of the entity options.
 const pile = client.Pile()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `remaining` | `number` | No | Number of cards remaining in the pile |
-
 ### Actions
 
 This entity exposes custom API actions in addition to the standard

@@ -330,7 +330,6 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` | Number of cards remaining in the pile |
 
 Operations: load.
 
@@ -439,12 +438,6 @@ Create an instance: `const pile = client.Pile()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `remaining` | `number` | Number of cards remaining in the pile |
 
 #### Example: Load
 

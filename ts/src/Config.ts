@@ -127,24 +127,24 @@ class Config {
 
     entity: {
       
-      deck: {
-      },
-
-      draw: {
-      },
-
-      pile: {
-      },
-
-      pile_draw: {
-      },
-
-      pile_list: {
-      },
-
-      return: {
-      },
-
+        deck: {
+        },
+  
+        draw: {
+        },
+  
+        pile: {
+        },
+  
+        pile_draw: {
+        },
+  
+        pile_list: {
+        },
+  
+        return: {
+        },
+  
     }
   }
 
@@ -438,13 +438,7 @@ class Config {
       }
     },
     "pile": {
-      "fields": [
-        {
-          "name": "remaining",
-          "short": "Number of cards remaining in the pile",
-          "type": "`$INTEGER`"
-        }
-      ],
+      "fields": [],
       "name": "pile",
       "op": {
         "load": {

@@ -39,7 +39,6 @@ export interface DrawListMatch {
 }
 
 export interface Pile {
-  remaining?: number
 }
 
 export interface PileLoadMatch {

@@ -218,12 +218,6 @@ Return the entity name.
 local pile = client:Pile(nil)
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `remaining` | `number` | No | Number of cards remaining in the pile |
-
 ### Operations
 
 #### `load(reqmatch, ctrl) -> any, err`

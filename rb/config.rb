@@ -388,13 +388,7 @@ module DeckOfCardsConfig
           },
         },
         "pile" => {
-          "fields" => [
-            {
-              "name" => "remaining",
-              "short" => "Number of cards remaining in the pile",
-              "type" => "`$INTEGER`",
-            },
-          ],
+          "fields" => [],
           "name" => "pile",
           "op" => {
             "load" => {

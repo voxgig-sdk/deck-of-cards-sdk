@@ -221,12 +221,6 @@ Return the entity name.
 pile = client.Pile
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `remaining` | `Integer` | No | Number of cards remaining in the pile |
-
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`

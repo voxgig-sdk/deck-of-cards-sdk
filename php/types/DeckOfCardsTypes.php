@@ -50,7 +50,6 @@ class DrawListMatch
 /** Pile entity data model. */
 class Pile
 {
-    public ?int $remaining = null;
 }
 
 /** Request payload for Pile#load. */

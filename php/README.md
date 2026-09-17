@@ -281,7 +281,6 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -392,12 +391,6 @@ Create an instance: `$pile = $client->Pile();`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `remaining` | `int` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -626,6 +619,7 @@ Use `Helpers::to_map()` to safely validate that a value is an array.
 php/
 ├── deckofcards_sdk.php          -- Main SDK class
 ├── config.php                     -- Configuration
+├── schema.php                     -- Generated option + entity specs
 ├── features.php                   -- Feature factory
 ├── core/                          -- Core types and context
 ├── entity/                        -- Entity implementations

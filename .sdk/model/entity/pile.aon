@@ -4,15 +4,6 @@ main: kit: entity: pile: {
 
   alias: field: {}
 
-  fields: [
-    {
-      name: "remaining"
-      req: false
-      short: "Number of cards remaining in the pile"
-      type: "`$INTEGER`"
-    }
-  ]
-
   name: "pile"
   op: {
     load: {

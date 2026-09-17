@@ -215,12 +215,6 @@ Return the entity name.
 pile = client.Pile()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `remaining` | `int` | No | Number of cards remaining in the pile |
-
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`

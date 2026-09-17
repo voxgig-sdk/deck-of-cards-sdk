@@ -380,13 +380,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"pile": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "remaining",
-						"short": "Number of cards remaining in the pile",
-						"type": "`$INTEGER`",
-					},
-				},
+				"fields": []any{},
 				"name": "pile",
 				"op": map[string]any{
 					"load": map[string]any{

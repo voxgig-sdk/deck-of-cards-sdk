@@ -46,8 +46,8 @@ class DrawListMatch(DrawListMatchRequired, total=False):
     count: int
 
 
-class Pile(TypedDict, total=False):
-    remaining: int
+class Pile(TypedDict):
+    pass
 
 
 class PileLoadMatchRequired(TypedDict):

@@ -293,7 +293,6 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `"remaining"` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -410,12 +409,6 @@ Create an instance: `pile := client.Pile(nil)`
 | Method | Description |
 | --- | --- |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `remaining` | `int` | Number of cards remaining in the pile |
 
 #### Example: Load
 

@@ -271,7 +271,6 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -382,12 +381,6 @@ Create an instance: `pile = client.Pile`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `remaining` | `Integer` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -616,6 +609,7 @@ Use `Helpers.to_map()` to safely validate that a value is a hash.
 rb/
 ├── DeckOfCards_sdk.rb       -- Main SDK module
 ├── config.rb                  -- Configuration
+├── schema.rb                  -- Generated option + entity specs
 ├── features.rb                -- Feature factory
 ├── core/                      -- Core types and context
 ├── entity/                    -- Entity implementations

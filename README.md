@@ -105,12 +105,12 @@ local result, err = client:Deck():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/deck-of-cards-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
-| Python | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
-| PHP | `voxgig-sdk/deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
+| TypeScript | `@voxgig-sdk/deck-of-cards-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/tags) |
+| Python | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/tags) |
+| PHP | `voxgig-sdk/deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/deck-of-cards-sdk/go` | `go get github.com/voxgig-sdk/deck-of-cards-sdk/go@latest` |
-| Ruby | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
-| Lua | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/releases) |
+| Ruby | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/tags) |
+| Lua | `voxgig-sdk-deck-of-cards` | publish pending — [install from git tag](https://github.com/voxgig-sdk/deck-of-cards-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/deck-of-cards-sdk/go-cli` | `go install github.com/voxgig-sdk/deck-of-cards-sdk/go-cli/cmd/deck-of-cards@latest` |
 | Go MCP server | `github.com/voxgig-sdk/deck-of-cards-sdk/go-mcp` | `go get github.com/voxgig-sdk/deck-of-cards-sdk/go-mcp@latest` |
 

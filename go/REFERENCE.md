@@ -224,12 +224,6 @@ pile := client.Pile(nil)
 fmt.Println(pile.GetName()) // "pile"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `remaining` | `int` | No | Number of cards remaining in the pile |
-
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`

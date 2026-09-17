@@ -2,19 +2,16 @@
   "existing": {
     "pile": {
       "PILE00": {
-        "remaining": 10,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "PILE00"
       },
       "PILE01": {
-        "remaining": 20,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "PILE01"
       },
       "PILE02": {
-        "remaining": 30,
         "deck_id": "DECK01",
         "pile_name": "PILE_NAME01",
         "id": "PILE02"
@@ -23,9 +20,7 @@
   },
   "new": {
     "pile": {
-      "pile_ref01": {
-        "remaining": 40
-      }
+      "pile_ref01": {}
     }
   },
   "requests": {

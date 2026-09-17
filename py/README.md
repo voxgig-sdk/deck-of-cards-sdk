@@ -276,7 +276,6 @@ API path: `/deck/{deck_id}/draw/`
 
 | Field | Description |
 | --- | --- |
-| `remaining` | Number of cards remaining in the pile |
 
 Operations: Load.
 
@@ -385,12 +384,6 @@ Create an instance: `pile = client.Pile()`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `remaining` | `int` | Number of cards remaining in the pile |
 
 #### Example: Load
 
@@ -615,6 +608,7 @@ Use `helpers.to_map()` to safely validate that a value is a dict.
 py/
 ├── deckofcards_sdk.py         -- Main SDK module
 ├── config.py                    -- Configuration
+├── schema.py                    -- Generated option + entity specs
 ├── features.py                  -- Feature factory
 ├── core/                        -- Core types and context
 ├── entity/                      -- Entity implementations

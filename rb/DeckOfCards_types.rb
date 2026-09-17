@@ -89,13 +89,8 @@ DrawListMatch = Struct.new(
 )
 
 # Pile entity data model.
-#
-# @!attribute [rw] remaining
-#   @return [Integer, nil]
-Pile = Struct.new(
-  :remaining,
-  keyword_init: true
-)
+class Pile
+end
 
 # Request payload for Pile#load.
 #

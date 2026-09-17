@@ -261,11 +261,7 @@ declare class Config {
             };
         };
         pile: {
-            fields: {
-                name: string;
-                short: string;
-                type: string;
-            }[];
+            fields: never[];
             name: string;
             op: {
                 load: {
