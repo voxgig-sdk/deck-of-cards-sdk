@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -154,27 +147,32 @@ class Config {
       "fields": [
         {
           "name": "deck_id",
-          "short": "Unique identifier for the deck",
-          "type": "`$STRING`"
+          "title": "Deck Id",
+          "type": "`$STRING`",
+          "short": "Unique identifier for the deck"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         },
         {
           "name": "remaining",
-          "short": "Number of cards remaining in the deck",
-          "type": "`$INTEGER`"
+          "title": "Remaining",
+          "type": "`$INTEGER`",
+          "short": "Number of cards remaining in the deck"
         },
         {
           "name": "shuffled",
-          "short": "Whether the deck is shuffled",
-          "type": "`$BOOLEAN`"
+          "title": "Shuffled",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the deck is shuffled"
         },
         {
           "name": "success",
-          "short": "Whether the operation was successful",
-          "type": "`$BOOLEAN`"
+          "title": "Success",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the operation was successful"
         }
       ],
       "id": {
@@ -188,29 +186,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "card",
-                    "orig": "card",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "deck_count",
-                    "orig": "deck_count",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "jokers_enabled",
-                    "orig": "jokers_enabled",
-                    "type": "`$BOOLEAN`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/new/shuffle/",
@@ -225,51 +200,51 @@ class Config {
                   "lit": "shuffle"
                 }
               ],
+              "parts": [
+                "deck",
+                "new",
+                "shuffle"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "card",
+                    "orig": "card",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "deck_count",
+                    "orig": "deck_count",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "jokers_enabled",
+                    "orig": "jokers_enabled",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "card",
                   "deck_count",
                   "jokers_enabled"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "deck",
-                "new",
-                "shuffle"
-              ]
+              }
             },
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "remaining",
-                    "orig": "remaining",
-                    "type": "`$BOOLEAN`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/shuffle/",
-              "rename": {
-                "param": {
-                  "deck_id": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "deck"
@@ -281,34 +256,48 @@ class Config {
                   "lit": "shuffle"
                 }
               ],
+              "parts": [
+                "deck",
+                "{id}",
+                "shuffle"
+              ],
+              "rename": {
+                "param": {
+                  "deck_id": "id"
+                }
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "remaining",
+                    "orig": "remaining",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "$action": "shuffle",
                 "exist": [
                   "id",
                   "remaining"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "deck",
-                "{id}",
-                "shuffle"
-              ]
+              }
             },
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "jokers_enabled",
-                    "orig": "jokers_enabled",
-                    "type": "`$BOOLEAN`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/new/",
@@ -320,20 +309,31 @@ class Config {
                   "lit": "new"
                 }
               ],
+              "parts": [
+                "deck",
+                "new"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "jokers_enabled",
+                    "orig": "jokers_enabled",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "$action": "new",
                 "exist": [
                   "jokers_enabled"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "deck",
-                "new"
-              ]
+              }
             }
           ]
         }
@@ -346,27 +346,32 @@ class Config {
       "fields": [
         {
           "name": "code",
-          "short": "Two-character card code (e.g., AS for Ace of Spades)",
-          "type": "`$STRING`"
+          "title": "Code",
+          "type": "`$STRING`",
+          "short": "Two-character card code (e.g., AS for Ace of Spades)"
         },
         {
           "name": "image",
-          "short": "URL to the PNG image of the card",
-          "type": "`$STRING`"
+          "title": "Image",
+          "type": "`$STRING`",
+          "short": "URL to the PNG image of the card"
         },
         {
           "name": "images",
+          "title": "Images",
           "type": "`$OBJECT`"
         },
         {
           "name": "suit",
-          "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
-          "type": "`$STRING`"
+          "title": "Suit",
+          "type": "`$STRING`",
+          "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)"
         },
         {
           "name": "value",
-          "short": "Card value (e.g., ACE, 2, 10, KING)",
-          "type": "`$STRING`"
+          "title": "Value",
+          "type": "`$STRING`",
+          "short": "Card value (e.g., ACE, 2, 10, KING)"
         }
       ],
       "name": "draw",
@@ -376,26 +381,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "count",
-                    "orig": "count",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/draw/",
@@ -410,21 +395,42 @@ class Config {
                   "lit": "draw"
                 }
               ],
+              "parts": [
+                "deck",
+                "{deck_id}",
+                "draw"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.cards`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "count",
+                    "orig": "count",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "count",
                   "deck_id"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.cards`"
-              },
-              "parts": [
-                "deck",
-                "{deck_id}",
-                "draw"
-              ]
+              }
             }
           ]
         }
@@ -432,7 +438,7 @@ class Config {
       "relations": {
         "ancestors": [
           [
-            "deck"
+            "$.main.kit.entity.deck"
           ]
         ]
       }
@@ -446,33 +452,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_name",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "card",
-                    "orig": "card",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/pile/{pile_name}/add/",
@@ -493,6 +472,45 @@ class Config {
                   "lit": "add"
                 }
               ],
+              "parts": [
+                "deck",
+                "{deck_id}",
+                "pile",
+                "{pile_name}",
+                "add"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.piles`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_name",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "card",
+                    "orig": "card",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true
+                  }
+                ]
+              },
               "select": {
                 "$action": "add",
                 "exist": [
@@ -500,38 +518,9 @@ class Config {
                   "deck_id",
                   "pile_name"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.piles`"
-              },
-              "parts": [
-                "deck",
-                "{deck_id}",
-                "pile",
-                "{pile_name}",
-                "add"
-              ]
+              }
             },
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_name",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
@@ -552,24 +541,43 @@ class Config {
                   "lit": "shuffle"
                 }
               ],
-              "select": {
-                "$action": "shuffle",
-                "exist": [
-                  "deck_id",
-                  "pile_name"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.piles`"
-              },
               "parts": [
                 "deck",
                 "{deck_id}",
                 "pile",
                 "{pile_name}",
                 "shuffle"
-              ]
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.piles`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_name",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "$action": "shuffle",
+                "exist": [
+                  "deck_id",
+                  "pile_name"
+                ]
+              }
             }
           ]
         }
@@ -577,8 +585,7 @@ class Config {
       "relations": {
         "ancestors": [
           [
-            "deck",
-            "pile"
+            "$.main.kit.entity.deck"
           ]
         ]
       }
@@ -587,27 +594,32 @@ class Config {
       "fields": [
         {
           "name": "code",
-          "short": "Two-character card code (e.g., AS for Ace of Spades)",
-          "type": "`$STRING`"
+          "title": "Code",
+          "type": "`$STRING`",
+          "short": "Two-character card code (e.g., AS for Ace of Spades)"
         },
         {
           "name": "image",
-          "short": "URL to the PNG image of the card",
-          "type": "`$STRING`"
+          "title": "Image",
+          "type": "`$STRING`",
+          "short": "URL to the PNG image of the card"
         },
         {
           "name": "images",
+          "title": "Images",
           "type": "`$OBJECT`"
         },
         {
           "name": "suit",
-          "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
-          "type": "`$STRING`"
+          "title": "Suit",
+          "type": "`$STRING`",
+          "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)"
         },
         {
           "name": "value",
-          "short": "Card value (e.g., ACE, 2, 10, KING)",
-          "type": "`$STRING`"
+          "title": "Value",
+          "type": "`$STRING`",
+          "short": "Card value (e.g., ACE, 2, 10, KING)"
         }
       ],
       "name": "pile_draw",
@@ -617,38 +629,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_name",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "card",
-                    "orig": "card",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "count",
-                    "orig": "count",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
@@ -669,6 +649,50 @@ class Config {
                   "lit": "draw"
                 }
               ],
+              "parts": [
+                "deck",
+                "{deck_id}",
+                "pile",
+                "{pile_name}",
+                "draw"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_name",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "card",
+                    "orig": "card",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "count",
+                    "orig": "count",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "card",
@@ -676,54 +700,12 @@ class Config {
                   "deck_id",
                   "pile_name"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "deck",
-                "{deck_id}",
-                "pile",
-                "{pile_name}",
-                "draw"
-              ]
+              }
             },
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_id",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "count",
-                    "orig": "count",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-              "rename": {
-                "param": {
-                  "pile_name": "pile_id"
-                }
-              },
               "segments": [
                 {
                   "lit": "deck"
@@ -744,17 +726,6 @@ class Config {
                   "lit": "bottom"
                 }
               ],
-              "select": {
-                "exist": [
-                  "count",
-                  "deck_id",
-                  "pile_id"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "deck",
                 "{deck_id}",
@@ -762,43 +733,54 @@ class Config {
                 "{pile_id}",
                 "draw",
                 "bottom"
-              ]
-            },
-            {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_id",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "count",
-                    "orig": "count",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
-              "kind": "http",
-              "method": "GET",
-              "orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
+              ],
               "rename": {
                 "param": {
                   "pile_name": "pile_id"
                 }
               },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_id",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "count",
+                    "orig": "count",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "count",
+                  "deck_id",
+                  "pile_id"
+                ]
+              }
+            },
+            {
+              "kind": "http",
+              "method": "GET",
+              "orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
               "segments": [
                 {
                   "lit": "deck"
@@ -819,17 +801,6 @@ class Config {
                   "lit": "random"
                 }
               ],
-              "select": {
-                "exist": [
-                  "count",
-                  "deck_id",
-                  "pile_id"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "deck",
                 "{deck_id}",
@@ -837,7 +808,49 @@ class Config {
                 "{pile_id}",
                 "draw",
                 "random"
-              ]
+              ],
+              "rename": {
+                "param": {
+                  "pile_name": "pile_id"
+                }
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_id",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "count",
+                    "orig": "count",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "count",
+                  "deck_id",
+                  "pile_id"
+                ]
+              }
             }
           ]
         }
@@ -845,8 +858,8 @@ class Config {
       "relations": {
         "ancestors": [
           [
-            "deck",
-            "pile"
+            "$.main.kit.entity.deck",
+            "$.main.kit.entity.pile"
           ]
         ]
       }
@@ -855,13 +868,15 @@ class Config {
       "fields": [
         {
           "name": "cards",
-          "short": "Array of cards in the pile",
-          "type": "`$ARRAY`"
+          "title": "Cards",
+          "type": "`$ARRAY`",
+          "short": "Array of cards in the pile"
         },
         {
           "name": "remaining",
-          "short": "Number of cards remaining in the pile",
-          "type": "`$INTEGER`"
+          "title": "Remaining",
+          "type": "`$INTEGER`",
+          "short": "Number of cards remaining in the pile"
         }
       ],
       "name": "pile_list",
@@ -871,24 +886,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_name",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/pile/{pile_name}/list/",
@@ -909,23 +906,42 @@ class Config {
                   "lit": "list"
                 }
               ],
-              "select": {
-                "exist": [
-                  "deck_id",
-                  "pile_name"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.piles`"
-              },
               "parts": [
                 "deck",
                 "{deck_id}",
                 "pile",
                 "{pile_name}",
                 "list"
-              ]
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.piles`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_name",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "deck_id",
+                  "pile_name"
+                ]
+              }
             }
           ]
         }
@@ -933,8 +949,8 @@ class Config {
       "relations": {
         "ancestors": [
           [
-            "deck",
-            "pile"
+            "$.main.kit.entity.deck",
+            "$.main.kit.entity.pile"
           ]
         ]
       }
@@ -943,8 +959,9 @@ class Config {
       "fields": [
         {
           "name": "remaining",
-          "short": "Number of cards remaining in the pile",
-          "type": "`$INTEGER`"
+          "title": "Remaining",
+          "type": "`$INTEGER`",
+          "short": "Number of cards remaining in the pile"
         }
       ],
       "name": "return",
@@ -954,32 +971,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "deck_id",
-                    "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "param",
-                    "name": "pile_name",
-                    "orig": "pile_name",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ],
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "card",
-                    "orig": "card",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/pile/{pile_name}/return/",
@@ -1000,45 +991,53 @@ class Config {
                   "lit": "return"
                 }
               ],
-              "select": {
-                "exist": [
-                  "card",
-                  "deck_id",
-                  "pile_name"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.piles`"
-              },
               "parts": [
                 "deck",
                 "{deck_id}",
                 "pile",
                 "{pile_name}",
                 "return"
-              ]
-            },
-            {
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.piles`"
+              },
               "args": {
                 "params": [
                   {
-                    "kind": "param",
                     "name": "deck_id",
                     "orig": "deck_id",
-                    "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  },
+                  {
+                    "name": "pile_name",
+                    "orig": "pile_name",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
                   }
                 ],
                 "query": [
                   {
-                    "kind": "query",
                     "name": "card",
                     "orig": "card",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "kind": "query"
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "card",
+                  "deck_id",
+                  "pile_name"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/deck/{deck_id}/return/",
@@ -1053,21 +1052,41 @@ class Config {
                   "lit": "return"
                 }
               ],
+              "parts": [
+                "deck",
+                "{deck_id}",
+                "return"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.piles`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "deck_id",
+                    "orig": "deck_id",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ],
+                "query": [
+                  {
+                    "name": "card",
+                    "orig": "card",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "card",
                   "deck_id"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.piles`"
-              },
-              "parts": [
-                "deck",
-                "{deck_id}",
-                "return"
-              ]
+              }
             }
           ]
         }
@@ -1075,11 +1094,11 @@ class Config {
       "relations": {
         "ancestors": [
           [
-            "deck"
+            "$.main.kit.entity.deck"
           ],
           [
-            "deck",
-            "pile"
+            "$.main.kit.entity.deck",
+            "$.main.kit.entity.pile"
           ]
         ]
       }

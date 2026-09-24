@@ -1,0 +1,211 @@
+# Entity: deck
+
+main: kit: entity: deck: {
+
+  alias: field: {}
+
+  fields: {
+    deck_id: {
+      h: "Deck Id"
+      n: "deck_id"
+      r: false
+      sh: "Unique identifier for the deck"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    remaining: {
+      h: "Remaining"
+      n: "remaining"
+      r: false
+      sh: "Number of cards remaining in the deck"
+      t: "`$INTEGER`"
+    }
+    shuffled: {
+      h: "Shuffled"
+      n: "shuffled"
+      r: false
+      sh: "Whether the deck is shuffled"
+      t: "`$BOOLEAN`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      sh: "Whether the operation was successful"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "deck"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /deck/new/shuffle/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "card"
+                or: "card"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "deck_count"
+                or: "deck_count"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "jokers_enabled"
+                or: "jokers_enabled"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/new/shuffle/"
+          q: {
+            exist: [
+              "card"
+              "deck_count"
+              "jokers_enabled"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              lit: "new"
+            }
+            {
+              lit: "shuffle"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /deck/{deck_id}/shuffle/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "remaining"
+                or: "remaining"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/shuffle/"
+          q: {
+            "$action": "shuffle"
+            exist: [
+              "id"
+              "remaining"
+            ]
+          }
+          r: {
+            param: {
+              deck_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "shuffle"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /deck/new/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "jokers_enabled"
+                or: "jokers_enabled"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/new/"
+          q: {
+            "$action": "new"
+            exist: [
+              "jokers_enabled"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              lit: "new"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

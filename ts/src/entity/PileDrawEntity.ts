@@ -19,7 +19,6 @@ import type {
   PileDrawListMatch,
 } from '../DeckOfCardsTypes'
 
-// TODO: needs Entity superclass
 class PileDrawEntity extends DeckOfCardsEntityBase<PileDraw> {
 
   constructor(client: DeckOfCardsSDK, entopts: any) {

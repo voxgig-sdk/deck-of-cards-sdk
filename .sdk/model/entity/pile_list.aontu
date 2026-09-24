@@ -1,0 +1,92 @@
+# Entity: pile_list
+
+main: kit: entity: pile_list: {
+
+  alias: field: {}
+
+  fields: {
+    cards: {
+      h: "Cards"
+      n: "cards"
+      r: false
+      sh: "Array of cards in the pile"
+      t: "`$ARRAY`"
+    }
+    remaining: {
+      h: "Remaining"
+      n: "remaining"
+      r: false
+      sh: "Number of cards remaining in the pile"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "pile_list"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/list/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "pile_name"
+                or: "pile_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/pile/{pile_name}/list/"
+          q: {
+            exist: [
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "list"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.piles`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.deck") path("$.main.kit.entity.pile")]
+  ]
+
+}

@@ -19,7 +19,6 @@ import type {
   DrawListMatch,
 } from '../DeckOfCardsTypes'
 
-// TODO: needs Entity superclass
 class DrawEntity extends DeckOfCardsEntityBase<Draw> {
 
   constructor(client: DeckOfCardsSDK, entopts: any) {

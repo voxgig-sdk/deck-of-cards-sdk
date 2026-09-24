@@ -24,48 +24,119 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "deck": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deck_id",
-              "req": false,
-              "short": "Unique identifier for the deck",
-              "type": "`$STRING`"
+          "fields": {
+            "deck_id": {
+              "a": true,
+              "h": "Deck Id",
+              "n": "deck_id",
+              "r": false,
+              "sh": "Unique identifier for the deck",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "remaining",
-              "req": false,
-              "short": "Number of cards remaining in the deck",
-              "type": "`$INTEGER`"
+            "remaining": {
+              "a": true,
+              "h": "Remaining",
+              "n": "remaining",
+              "r": false,
+              "sh": "Number of cards remaining in the deck",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "shuffled",
-              "req": false,
-              "short": "Whether the deck is shuffled",
-              "type": "`$BOOLEAN`"
+            "shuffled": {
+              "a": true,
+              "h": "Shuffled",
+              "n": "shuffled",
+              "r": false,
+              "sh": "Whether the deck is shuffled",
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "short": "Whether the operation was successful",
-              "type": "`$BOOLEAN`"
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "sh": "Whether the operation was successful",
+              "t": "`$BOOLEAN`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -77,46 +148,53 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/new/shuffle/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "card",
-                        "orig": "card",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "card",
+                        "or": "card",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "deck_count",
-                        "orig": "deck_count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "deck_count",
+                        "or": "deck_count",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "jokers_enabled",
-                        "orig": "jokers_enabled",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "k": "query",
+                        "n": "jokers_enabled",
+                        "or": "jokers_enabled",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/new/shuffle/",
-                    "json": "{\"operationId\":\"shuffleNewDeck\",\"parameters\":[{\"description\":\"Number of decks to use (default is 1, Blackjack typically uses 6)\",\"in\":\"query\",\"name\":\"deck_count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Comma-separated list of card codes to create a partial deck (e.g., AS,2S,KS,AD,2D,KD)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/new/shuffle/",
+                  "q": {
+                    "exist": [
+                      "card",
+                      "deck_count",
+                      "jokers_enabled"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/new/shuffle/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -127,57 +205,56 @@
                       "lit": "shuffle"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "card",
-                      "deck_count",
-                      "jokers_enabled"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/shuffle/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "remaining",
-                        "orig": "remaining",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "k": "query",
+                        "n": "remaining",
+                        "or": "remaining",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/shuffle/",
-                    "json": "{\"operationId\":\"reshuffleDeck\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Only shuffle cards remaining in the main stack, leaving piles and drawn cards alone\",\"in\":\"query\",\"name\":\"remaining\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/shuffle/",
+                  "q": {
+                    "$action": "shuffle",
+                    "exist": [
+                      "id",
+                      "remaining"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/shuffle/",
-                  "rename": {
+                  "r": {
                     "param": {
                       "deck_id": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -188,42 +265,41 @@
                       "lit": "shuffle"
                     }
                   ],
-                  "select": {
-                    "$action": "shuffle",
-                    "exist": [
-                      "id",
-                      "remaining"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/new/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "jokers_enabled",
-                        "orig": "jokers_enabled",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "k": "query",
+                        "n": "jokers_enabled",
+                        "or": "jokers_enabled",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/new/",
-                    "json": "{\"operationId\":\"createNewDeck\",\"parameters\":[{\"description\":\"Include two Jokers in the deck\",\"in\":\"query\",\"name\":\"jokers_enabled\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"remaining\":52,\"shuffled\":false,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/new/",
+                  "q": {
+                    "$action": "new",
+                    "exist": [
+                      "jokers_enabled"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/new/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -231,13 +307,7 @@
                       "lit": "new"
                     }
                   ],
-                  "select": {
-                    "$action": "new",
-                    "exist": [
-                      "jokers_enabled"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -254,42 +324,47 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "code",
-              "req": false,
-              "short": "Two-character card code (e.g., AS for Ace of Spades)",
-              "type": "`$STRING`"
+          "fields": {
+            "code": {
+              "a": true,
+              "h": "Code",
+              "n": "code",
+              "r": false,
+              "sh": "Two-character card code (e.g., AS for Ace of Spades)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "image",
-              "req": false,
-              "short": "URL to the PNG image of the card",
-              "type": "`$STRING`"
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": false,
+              "sh": "URL to the PNG image of the card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "images",
-              "req": false,
-              "type": "`$OBJECT`"
+            "images": {
+              "a": true,
+              "h": "Images",
+              "n": "images",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "suit",
-              "req": false,
-              "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
-              "type": "`$STRING`"
+            "suit": {
+              "a": true,
+              "h": "Suit",
+              "n": "suit",
+              "r": false,
+              "sh": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "value",
-              "req": false,
-              "short": "Card value (e.g., ACE, 2, 10, KING)",
-              "type": "`$STRING`"
+            "value": {
+              "a": true,
+              "h": "Value",
+              "n": "value",
+              "r": false,
+              "sh": "Card value (e.g., ACE, 2, 10, KING)",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "draw",
           "op": {
             "list": {
@@ -297,40 +372,46 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/draw/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "count",
-                        "orig": "count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "count",
+                        "or": "count",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/draw/",
-                    "json": "{\"operationId\":\"drawCards\",\"parameters\":[{\"description\":\"The deck identifier (use 'new' to create a shuffled deck and draw from it)\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the deck\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"cards\":[{\"code\":\"6H\",\"image\":\"https://deckofcardsapi.com/static/img/6H.png\",\"images\":{\"png\":\"https://deckofcardsapi.com/static/img/6H.png\",\"svg\":\"https://deckofcardsapi.com/static/img/6H.svg\"},\"suit\":\"HEARTS\",\"value\":\"6\"}],\"deck_id\":\"kxozasf3edqu\",\"remaining\":51,\"success\":true},\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/draw/",
+                  "q": {
+                    "exist": [
+                      "count",
+                      "deck_id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/draw/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -341,13 +422,7 @@
                       "lit": "draw"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "count",
-                      "deck_id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.cards`"
                   }
@@ -358,7 +433,7 @@
           "relations": {
             "ancestors": [
               [
-                "deck"
+                "$.main.kit.entity.deck"
               ]
             ]
           }
@@ -368,7 +443,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "pile",
           "op": {
             "load": {
@@ -376,47 +451,55 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/add/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_name",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_name",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "card",
-                        "orig": "card",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "card",
+                        "or": "card",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/add/",
-                    "json": "{\"operationId\":\"addToPile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of card codes to add to the pile (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":2}},\"remaining\":12,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/add/",
+                  "q": {
+                    "$action": "add",
+                    "exist": [
+                      "card",
+                      "deck_id",
+                      "pile_name"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/add/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -433,51 +516,50 @@
                       "lit": "add"
                     }
                   ],
-                  "select": {
-                    "$action": "add",
-                    "exist": [
-                      "card",
-                      "deck_id",
-                      "pile_name"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.piles`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/shuffle/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_name",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_name",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/shuffle/",
-                    "json": "{\"operationId\":\"shufflePile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
+                  "q": {
+                    "$action": "shuffle",
+                    "exist": [
+                      "deck_id",
+                      "pile_name"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -494,14 +576,7 @@
                       "lit": "shuffle"
                     }
                   ],
-                  "select": {
-                    "$action": "shuffle",
-                    "exist": [
-                      "deck_id",
-                      "pile_name"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.piles`"
                   }
@@ -512,8 +587,7 @@
           "relations": {
             "ancestors": [
               [
-                "deck",
-                "pile"
+                "$.main.kit.entity.deck"
               ]
             ]
           }
@@ -523,42 +597,47 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "code",
-              "req": false,
-              "short": "Two-character card code (e.g., AS for Ace of Spades)",
-              "type": "`$STRING`"
+          "fields": {
+            "code": {
+              "a": true,
+              "h": "Code",
+              "n": "code",
+              "r": false,
+              "sh": "Two-character card code (e.g., AS for Ace of Spades)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "image",
-              "req": false,
-              "short": "URL to the PNG image of the card",
-              "type": "`$STRING`"
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": false,
+              "sh": "URL to the PNG image of the card",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "images",
-              "req": false,
-              "type": "`$OBJECT`"
+            "images": {
+              "a": true,
+              "h": "Images",
+              "n": "images",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "suit",
-              "req": false,
-              "short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
-              "type": "`$STRING`"
+            "suit": {
+              "a": true,
+              "h": "Suit",
+              "n": "suit",
+              "r": false,
+              "sh": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "value",
-              "req": false,
-              "short": "Card value (e.g., ACE, 2, 10, KING)",
-              "type": "`$STRING`"
+            "value": {
+              "a": true,
+              "h": "Value",
+              "n": "value",
+              "r": false,
+              "sh": "Card value (e.g., ACE, 2, 10, KING)",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "pile_draw",
           "op": {
             "list": {
@@ -566,55 +645,63 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_name",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_name",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "card",
-                        "orig": "card",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "card",
+                        "or": "card",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "count",
-                        "orig": "count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "count",
+                        "or": "count",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/",
-                    "json": "{\"operationId\":\"drawFromPileTop\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of specific card codes to draw (e.g., AS)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the pile\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"cards\":[{\"code\":\"AS\",\"image\":\"https://www.deckofcardsapi.com/static/img/AS.png\",\"suit\":\"SPADES\",\"value\":\"ACE\"}],\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":1}},\"remaining\":12,\"success\":true},\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards from the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/draw/",
+                  "q": {
+                    "exist": [
+                      "card",
+                      "count",
+                      "deck_id",
+                      "pile_name"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -631,66 +718,64 @@
                       "lit": "draw"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "card",
-                      "count",
-                      "deck_id",
-                      "pile_name"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/bottom/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_id",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_id",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "count",
-                        "orig": "count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "query",
+                        "n": "count",
+                        "or": "count",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-                    "json": "{\"operationId\":\"drawFromPileBottom\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of cards to draw from the bottom of the pile\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards from the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
+                  "q": {
+                    "exist": [
+                      "count",
+                      "deck_id",
+                      "pile_id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-                  "rename": {
+                  "r": {
                     "param": {
                       "pile_name": "pile_id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -710,65 +795,64 @@
                       "lit": "bottom"
                     }
                   ],
-                  "select": {
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/random/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_id",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "count",
+                        "or": "count",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
+                  "q": {
                     "exist": [
                       "count",
                       "deck_id",
                       "pile_id"
                     ]
                   },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "params": [
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_id",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "count",
-                        "orig": "count",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/draw/random/",
-                    "json": "{\"operationId\":\"drawFromPileRandom\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of random cards to draw from the pile\",\"in\":\"query\",\"name\":\"count\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cards\":{\"description\":\"Array of drawn cards from the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
-                  "rename": {
+                  "r": {
                     "param": {
                       "pile_name": "pile_id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -788,14 +872,7 @@
                       "lit": "random"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "count",
-                      "deck_id",
-                      "pile_id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -806,8 +883,8 @@
           "relations": {
             "ancestors": [
               [
-                "deck",
-                "pile"
+                "$.main.kit.entity.deck",
+                "$.main.kit.entity.pile"
               ]
             ]
           }
@@ -817,22 +894,24 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "cards",
-              "req": false,
-              "short": "Array of cards in the pile",
-              "type": "`$ARRAY`"
+          "fields": {
+            "cards": {
+              "a": true,
+              "h": "Cards",
+              "n": "cards",
+              "r": false,
+              "sh": "Array of cards in the pile",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "remaining",
-              "req": false,
-              "short": "Number of cards remaining in the pile",
-              "type": "`$INTEGER`"
+            "remaining": {
+              "a": true,
+              "h": "Remaining",
+              "n": "remaining",
+              "r": false,
+              "sh": "Number of cards remaining in the pile",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "pile_list",
           "op": {
             "load": {
@@ -840,37 +919,43 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/list/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_name",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_name",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/list/",
-                    "json": "{\"operationId\":\"listPileCards\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"d5x0uw65g416\",\"piles\":{\"player1\":{\"remaining\":3},\"player2\":{\"cards\":[{\"code\":\"KH\",\"image\":\"https://www.deckofcardsapi.com/static/img/KH.png\",\"suit\":\"HEARTS\",\"value\":\"KING\"}],\"remaining\":2}},\"remaining\":42,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"cards\":{\"description\":\"Array of cards in the pile\",\"items\":{\"properties\":{\"code\":{\"description\":\"Two-character card code (e.g., AS for Ace of Spades)\",\"type\":\"string\"},\"image\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"images\":{\"properties\":{\"png\":{\"description\":\"URL to the PNG image of the card\",\"type\":\"string\"},\"svg\":{\"description\":\"URL to the SVG image of the card\",\"type\":\"string\"}},\"type\":\"object\"},\"suit\":{\"description\":\"Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)\",\"type\":\"string\"},\"value\":{\"description\":\"Card value (e.g., ACE, 2, 10, KING)\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing detailed pile information with cards\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the main deck\",\"type\":\"integer\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/list/",
+                  "q": {
+                    "exist": [
+                      "deck_id",
+                      "pile_name"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/list/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -887,13 +972,7 @@
                       "lit": "list"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "deck_id",
-                      "pile_name"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.piles`"
                   }
@@ -904,8 +983,8 @@
           "relations": {
             "ancestors": [
               [
-                "deck",
-                "pile"
+                "$.main.kit.entity.deck",
+                "$.main.kit.entity.pile"
               ]
             ]
           }
@@ -915,15 +994,16 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "remaining",
-              "req": false,
-              "short": "Number of cards remaining in the pile",
-              "type": "`$INTEGER`"
+          "fields": {
+            "remaining": {
+              "a": true,
+              "h": "Remaining",
+              "n": "remaining",
+              "r": false,
+              "sh": "Number of cards remaining in the pile",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "return",
           "op": {
             "load": {
@@ -931,47 +1011,54 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/pile/{pile_name}/return/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "pile_name",
-                        "orig": "pile_name",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "pile_name",
+                        "or": "pile_name",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "card",
-                        "orig": "card",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "card",
+                        "or": "card",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/pile/{pile_name}/return/",
-                    "json": "{\"operationId\":\"returnCardsFromPile\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The name of the pile\",\"in\":\"path\",\"name\":\"pile_name\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of specific card codes to return (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/pile/{pile_name}/return/",
+                  "q": {
+                    "exist": [
+                      "card",
+                      "deck_id",
+                      "pile_name"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/pile/{pile_name}/return/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -988,52 +1075,51 @@
                       "lit": "return"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "card",
-                      "deck_id",
-                      "pile_name"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.piles`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /deck/{deck_id}/return/",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "deck_id",
-                        "orig": "deck_id",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "deck_id",
+                        "or": "deck_id",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "card",
-                        "orig": "card",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "card",
+                        "or": "card",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /deck/{deck_id}/return/",
-                    "json": "{\"operationId\":\"returnCardsToDeck\",\"parameters\":[{\"description\":\"The deck identifier\",\"in\":\"path\",\"name\":\"deck_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Comma-separated list of specific card codes to return (e.g., AS,2S)\",\"in\":\"query\",\"name\":\"cards\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deck_id\":\"3p40paa87x90\",\"piles\":{\"discard\":{\"remaining\":0}},\"remaining\":52,\"shuffled\":true,\"success\":true},\"schema\":{\"properties\":{\"deck_id\":{\"description\":\"Unique identifier for the deck\",\"type\":\"string\"},\"piles\":{\"additionalProperties\":{\"properties\":{\"remaining\":{\"description\":\"Number of cards remaining in the pile\",\"type\":\"integer\"}},\"type\":\"object\"},\"description\":\"Object containing pile information\",\"type\":\"object\"},\"remaining\":{\"description\":\"Number of cards remaining in the deck\",\"type\":\"integer\"},\"shuffled\":{\"description\":\"Whether the deck is shuffled\",\"type\":\"boolean\"},\"success\":{\"description\":\"Whether the operation was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/deck/{deck_id}/return/",
+                  "q": {
+                    "exist": [
+                      "card",
+                      "deck_id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/deck/{deck_id}/return/",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "deck"
                     },
@@ -1044,13 +1130,7 @@
                       "lit": "return"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "card",
-                      "deck_id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.piles`"
                   }
@@ -1061,11 +1141,11 @@
           "relations": {
             "ancestors": [
               [
-                "deck"
+                "$.main.kit.entity.deck"
               ],
               [
-                "deck",
-                "pile"
+                "$.main.kit.entity.deck",
+                "$.main.kit.entity.pile"
               ]
             ]
           }
@@ -1487,17 +1567,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "deck_ref01",
                 "srcdatavar": "deck_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1517,15 +1597,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "deck_id": "deck01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1545,16 +1625,16 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
                 "deck_id": "deck01",
                 "pile_id": "pile01"
               },
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1574,20 +1654,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "pile_ref01",
                 "srcdatavar": "pile_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "deck_id": "deck01",
                 "id": "pile01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1607,20 +1687,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "pile_list_ref01",
                 "srcdatavar": "pile_list_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "deck_id": "deck01",
                 "id": "pile_list01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1640,19 +1720,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "return_ref01",
                 "srcdatavar": "return_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "return01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {

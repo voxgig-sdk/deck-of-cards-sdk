@@ -1,0 +1,144 @@
+# Entity: pile
+
+main: kit: entity: pile: {
+
+  alias: field: {}
+
+  name: "pile"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/add/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "pile_name"
+                or: "pile_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "card"
+                or: "card"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/pile/{pile_name}/add/"
+          q: {
+            "$action": "add"
+            exist: [
+              "card"
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "add"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.piles`"
+          }
+        }
+        {
+          co: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/shuffle/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "pile_name"
+                or: "pile_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/pile/{pile_name}/shuffle/"
+          q: {
+            "$action": "shuffle"
+            exist: [
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "shuffle"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.piles`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.deck")]
+  ]
+
+}

@@ -1,0 +1,109 @@
+# Entity: draw
+
+main: kit: entity: draw: {
+
+  alias: field: {}
+
+  fields: {
+    code: {
+      h: "Code"
+      n: "code"
+      r: false
+      sh: "Two-character card code (e.g., AS for Ace of Spades)"
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      sh: "URL to the PNG image of the card"
+      t: "`$STRING`"
+    }
+    images: {
+      h: "Images"
+      n: "images"
+      r: false
+      t: "`$OBJECT`"
+    }
+    suit: {
+      h: "Suit"
+      n: "suit"
+      r: false
+      sh: "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)"
+      t: "`$STRING`"
+    }
+    value: {
+      h: "Value"
+      n: "value"
+      r: false
+      sh: "Card value (e.g., ACE, 2, 10, KING)"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "draw"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /deck/{deck_id}/draw/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/draw/"
+          q: {
+            exist: [
+              "count"
+              "deck_id"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "draw"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.cards`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.deck")]
+  ]
+
+}

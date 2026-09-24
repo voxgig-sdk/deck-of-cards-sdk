@@ -1,0 +1,33 @@
+# BasicPileFlow
+
+main: kit: flow: BasicPileFlow:
+{
+  entity: "pile",
+  kind: "basic",
+  name: "BasicPileFlow",
+  step: [
+    {
+      i: {
+        ref: "pile_ref01",
+        srcdatavar: "pile_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        deck_id: "deck01",
+        id: "pile01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-pile_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPileFlow"
+}

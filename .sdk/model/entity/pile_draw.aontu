@@ -1,0 +1,274 @@
+# Entity: pile_draw
+
+main: kit: entity: pile_draw: {
+
+  alias: field: {}
+
+  fields: {
+    code: {
+      h: "Code"
+      n: "code"
+      r: false
+      sh: "Two-character card code (e.g., AS for Ace of Spades)"
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      sh: "URL to the PNG image of the card"
+      t: "`$STRING`"
+    }
+    images: {
+      h: "Images"
+      n: "images"
+      r: false
+      t: "`$OBJECT`"
+    }
+    suit: {
+      h: "Suit"
+      n: "suit"
+      r: false
+      sh: "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)"
+      t: "`$STRING`"
+    }
+    value: {
+      h: "Value"
+      n: "value"
+      r: false
+      sh: "Card value (e.g., ACE, 2, 10, KING)"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "pile_draw"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/draw/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "pile_name"
+                or: "pile_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "card"
+                or: "card"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/pile/{pile_name}/draw/"
+          q: {
+            exist: [
+              "card"
+              "count"
+              "deck_id"
+              "pile_name"
+            ]
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_name"
+            }
+            {
+              lit: "draw"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/draw/bottom/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "pile_id"
+                or: "pile_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/pile/{pile_name}/draw/bottom/"
+          q: {
+            exist: [
+              "count"
+              "deck_id"
+              "pile_id"
+            ]
+          }
+          r: {
+            param: {
+              pile_name: "pile_id"
+            }
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_id"
+            }
+            {
+              lit: "draw"
+            }
+            {
+              lit: "bottom"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /deck/{deck_id}/pile/{pile_name}/draw/random/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "deck_id"
+                or: "deck_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "pile_id"
+                or: "pile_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "count"
+                or: "count"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/deck/{deck_id}/pile/{pile_name}/draw/random/"
+          q: {
+            exist: [
+              "count"
+              "deck_id"
+              "pile_id"
+            ]
+          }
+          r: {
+            param: {
+              pile_name: "pile_id"
+            }
+          }
+          s: [
+            {
+              lit: "deck"
+            }
+            {
+              var: "deck_id"
+            }
+            {
+              lit: "pile"
+            }
+            {
+              var: "pile_id"
+            }
+            {
+              lit: "draw"
+            }
+            {
+              lit: "random"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.deck") path("$.main.kit.entity.pile")]
+  ]
+
+}

@@ -96,27 +96,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deck_id",
-						"short": "Unique identifier for the deck",
+						"title": "Deck Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the deck",
 					},
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "remaining",
-						"short": "Number of cards remaining in the deck",
+						"title": "Remaining",
 						"type": "`$INTEGER`",
+						"short": "Number of cards remaining in the deck",
 					},
 					map[string]any{
 						"name": "shuffled",
-						"short": "Whether the deck is shuffled",
+						"title": "Shuffled",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the deck is shuffled",
 					},
 					map[string]any{
 						"name": "success",
-						"short": "Whether the operation was successful",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the operation was successful",
 					},
 				},
 				"id": map[string]any{
@@ -130,29 +135,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "card",
-											"orig": "card",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "deck_count",
-											"orig": "deck_count",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "jokers_enabled",
-											"orig": "jokers_enabled",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/new/shuffle/",
@@ -167,6 +149,39 @@ func MakeConfig() map[string]any {
 										"lit": "shuffle",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"new",
+									"shuffle",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "card",
+											"orig": "card",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "deck_count",
+											"orig": "deck_count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "jokers_enabled",
+											"orig": "jokers_enabled",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"card",
@@ -174,44 +189,11 @@ func MakeConfig() map[string]any {
 										"jokers_enabled",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"deck",
-									"new",
-									"shuffle",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "remaining",
-											"orig": "remaining",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/shuffle/",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"deck_id": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "deck",
@@ -223,6 +205,39 @@ func MakeConfig() map[string]any {
 										"lit": "shuffle",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"{id}",
+									"shuffle",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"deck_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "remaining",
+											"orig": "remaining",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "shuffle",
 									"exist": []any{
@@ -230,27 +245,8 @@ func MakeConfig() map[string]any {
 										"remaining",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"deck",
-									"{id}",
-									"shuffle",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "jokers_enabled",
-											"orig": "jokers_enabled",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/new/",
@@ -262,19 +258,30 @@ func MakeConfig() map[string]any {
 										"lit": "new",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"new",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "jokers_enabled",
+											"orig": "jokers_enabled",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "new",
 									"exist": []any{
 										"jokers_enabled",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"deck",
-									"new",
 								},
 							},
 						},
@@ -288,27 +295,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "code",
-						"short": "Two-character card code (e.g., AS for Ace of Spades)",
+						"title": "Code",
 						"type": "`$STRING`",
+						"short": "Two-character card code (e.g., AS for Ace of Spades)",
 					},
 					map[string]any{
 						"name": "image",
-						"short": "URL to the PNG image of the card",
+						"title": "Image",
 						"type": "`$STRING`",
+						"short": "URL to the PNG image of the card",
 					},
 					map[string]any{
 						"name": "images",
+						"title": "Images",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "suit",
-						"short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
+						"title": "Suit",
 						"type": "`$STRING`",
+						"short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
 					},
 					map[string]any{
 						"name": "value",
-						"short": "Card value (e.g., ACE, 2, 10, KING)",
+						"title": "Value",
 						"type": "`$STRING`",
+						"short": "Card value (e.g., ACE, 2, 10, KING)",
 					},
 				},
 				"name": "draw",
@@ -318,26 +330,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "count",
-											"orig": "count",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/draw/",
@@ -352,20 +344,41 @@ func MakeConfig() map[string]any {
 										"lit": "draw",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"draw",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.cards`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "count",
+											"orig": "count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"count",
 										"deck_id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.cards`",
-								},
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"draw",
 								},
 							},
 						},
@@ -374,7 +387,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"deck",
+							"$.main.kit.entity.deck",
 						},
 					},
 				},
@@ -388,33 +401,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_name",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "card",
-											"orig": "card",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/add/",
@@ -435,6 +421,45 @@ func MakeConfig() map[string]any {
 										"lit": "add",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"add",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.piles`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_name",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "card",
+											"orig": "card",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "add",
 									"exist": []any{
@@ -443,37 +468,8 @@ func MakeConfig() map[string]any {
 										"pile_name",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.piles`",
-								},
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"add",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_name",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/shuffle/",
@@ -494,23 +490,42 @@ func MakeConfig() map[string]any {
 										"lit": "shuffle",
 									},
 								},
-								"select": map[string]any{
-									"$action": "shuffle",
-									"exist": []any{
-										"deck_id",
-										"pile_name",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.piles`",
-								},
 								"parts": []any{
 									"deck",
 									"{deck_id}",
 									"pile",
 									"{pile_name}",
 									"shuffle",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.piles`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_name",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "shuffle",
+									"exist": []any{
+										"deck_id",
+										"pile_name",
+									},
 								},
 							},
 						},
@@ -519,8 +534,7 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"deck",
-							"pile",
+							"$.main.kit.entity.deck",
 						},
 					},
 				},
@@ -529,27 +543,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "code",
-						"short": "Two-character card code (e.g., AS for Ace of Spades)",
+						"title": "Code",
 						"type": "`$STRING`",
+						"short": "Two-character card code (e.g., AS for Ace of Spades)",
 					},
 					map[string]any{
 						"name": "image",
-						"short": "URL to the PNG image of the card",
+						"title": "Image",
 						"type": "`$STRING`",
+						"short": "URL to the PNG image of the card",
 					},
 					map[string]any{
 						"name": "images",
+						"title": "Images",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "suit",
-						"short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
+						"title": "Suit",
 						"type": "`$STRING`",
+						"short": "Card suit (SPADES, DIAMONDS, CLUBS, HEARTS)",
 					},
 					map[string]any{
 						"name": "value",
-						"short": "Card value (e.g., ACE, 2, 10, KING)",
+						"title": "Value",
 						"type": "`$STRING`",
+						"short": "Card value (e.g., ACE, 2, 10, KING)",
 					},
 				},
 				"name": "pile_draw",
@@ -559,38 +578,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_name",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "card",
-											"orig": "card",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "count",
-											"orig": "count",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/",
@@ -611,6 +598,50 @@ func MakeConfig() map[string]any {
 										"lit": "draw",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"pile",
+									"{pile_name}",
+									"draw",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_name",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "card",
+											"orig": "card",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "count",
+											"orig": "count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"card",
@@ -619,53 +650,11 @@ func MakeConfig() map[string]any {
 										"pile_name",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"pile",
-									"{pile_name}",
-									"draw",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_id",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "count",
-											"orig": "count",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/bottom/",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"pile_name": "pile_id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "deck",
@@ -686,17 +675,6 @@ func MakeConfig() map[string]any {
 										"lit": "bottom",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"count",
-										"deck_id",
-										"pile_id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"deck",
 									"{deck_id}",
@@ -705,42 +683,53 @@ func MakeConfig() map[string]any {
 									"draw",
 									"bottom",
 								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_id",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "count",
-											"orig": "count",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
 								"rename": map[string]any{
 									"param": map[string]any{
 										"pile_name": "pile_id",
 									},
 								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_id",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "count",
+											"orig": "count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"count",
+										"deck_id",
+										"pile_id",
+									},
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/deck/{deck_id}/pile/{pile_name}/draw/random/",
 								"segments": []any{
 									map[string]any{
 										"lit": "deck",
@@ -761,17 +750,6 @@ func MakeConfig() map[string]any {
 										"lit": "random",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"count",
-										"deck_id",
-										"pile_id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"deck",
 									"{deck_id}",
@@ -780,6 +758,48 @@ func MakeConfig() map[string]any {
 									"draw",
 									"random",
 								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"pile_name": "pile_id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_id",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "count",
+											"orig": "count",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"count",
+										"deck_id",
+										"pile_id",
+									},
+								},
 							},
 						},
 					},
@@ -787,8 +807,8 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"deck",
-							"pile",
+							"$.main.kit.entity.deck",
+							"$.main.kit.entity.pile",
 						},
 					},
 				},
@@ -797,13 +817,15 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cards",
-						"short": "Array of cards in the pile",
+						"title": "Cards",
 						"type": "`$ARRAY`",
+						"short": "Array of cards in the pile",
 					},
 					map[string]any{
 						"name": "remaining",
-						"short": "Number of cards remaining in the pile",
+						"title": "Remaining",
 						"type": "`$INTEGER`",
+						"short": "Number of cards remaining in the pile",
 					},
 				},
 				"name": "pile_list",
@@ -813,24 +835,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_name",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/list/",
@@ -851,22 +855,41 @@ func MakeConfig() map[string]any {
 										"lit": "list",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"deck_id",
-										"pile_name",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.piles`",
-								},
 								"parts": []any{
 									"deck",
 									"{deck_id}",
 									"pile",
 									"{pile_name}",
 									"list",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.piles`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_name",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"deck_id",
+										"pile_name",
+									},
 								},
 							},
 						},
@@ -875,8 +898,8 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"deck",
-							"pile",
+							"$.main.kit.entity.deck",
+							"$.main.kit.entity.pile",
 						},
 					},
 				},
@@ -885,8 +908,9 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "remaining",
-						"short": "Number of cards remaining in the pile",
+						"title": "Remaining",
 						"type": "`$INTEGER`",
+						"short": "Number of cards remaining in the pile",
 					},
 				},
 				"name": "return",
@@ -896,32 +920,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "deck_id",
-											"orig": "deck_id",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "param",
-											"name": "pile_name",
-											"orig": "pile_name",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "card",
-											"orig": "card",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/pile/{pile_name}/return/",
@@ -942,17 +940,6 @@ func MakeConfig() map[string]any {
 										"lit": "return",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"card",
-										"deck_id",
-										"pile_name",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.piles`",
-								},
 								"parts": []any{
 									"deck",
 									"{deck_id}",
@@ -960,27 +947,46 @@ func MakeConfig() map[string]any {
 									"{pile_name}",
 									"return",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.piles`",
+								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"kind": "param",
 											"name": "deck_id",
 											"orig": "deck_id",
-											"reqd": true,
 											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "pile_name",
+											"orig": "pile_name",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"kind": "query",
 											"name": "card",
 											"orig": "card",
 											"type": "`$STRING`",
+											"kind": "query",
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"card",
+										"deck_id",
+										"pile_name",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/deck/{deck_id}/return/",
@@ -995,20 +1001,40 @@ func MakeConfig() map[string]any {
 										"lit": "return",
 									},
 								},
+								"parts": []any{
+									"deck",
+									"{deck_id}",
+									"return",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.piles`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "deck_id",
+											"orig": "deck_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "card",
+											"orig": "card",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"card",
 										"deck_id",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.piles`",
-								},
-								"parts": []any{
-									"deck",
-									"{deck_id}",
-									"return",
 								},
 							},
 						},
@@ -1017,11 +1043,11 @@ func MakeConfig() map[string]any {
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
-							"deck",
+							"$.main.kit.entity.deck",
 						},
 						[]any{
-							"deck",
-							"pile",
+							"$.main.kit.entity.deck",
+							"$.main.kit.entity.pile",
 						},
 					},
 				},

@@ -1,0 +1,26 @@
+# BasicDrawFlow
+
+main: kit: flow: BasicDrawFlow:
+{
+  entity: "draw",
+  kind: "basic",
+  name: "BasicDrawFlow",
+  step: [
+    {
+      m: {
+        deck_id: "deck01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "draw_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDrawFlow"
+}

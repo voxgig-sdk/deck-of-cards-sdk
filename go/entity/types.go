@@ -1,7 +1,7 @@
 // Typed models for the DeckOfCards SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,11 +14,6 @@ import (
 
 // Deck is the typed data model for the deck entity.
 type Deck struct {
-	DeckId *string `json:"deck_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Remaining *int `json:"remaining,omitempty"`
-	Shuffled *bool `json:"shuffled,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // DeckLoadMatch is the typed request payload for Deck.LoadTyped.
@@ -30,11 +25,6 @@ type DeckLoadMatch struct {
 
 // Draw is the typed data model for the draw entity.
 type Draw struct {
-	Code *string `json:"code,omitempty"`
-	Image *string `json:"image,omitempty"`
-	Images *map[string]any `json:"images,omitempty"`
-	Suit *string `json:"suit,omitempty"`
-	Value *string `json:"value,omitempty"`
 }
 
 // DrawListMatch is the typed request payload for Draw.ListTyped.
@@ -56,11 +46,6 @@ type PileLoadMatch struct {
 
 // PileDraw is the typed data model for the pile_draw entity.
 type PileDraw struct {
-	Code *string `json:"code,omitempty"`
-	Image *string `json:"image,omitempty"`
-	Images *map[string]any `json:"images,omitempty"`
-	Suit *string `json:"suit,omitempty"`
-	Value *string `json:"value,omitempty"`
 }
 
 // PileDrawListMatch is the typed request payload for PileDraw.ListTyped.
@@ -74,8 +59,6 @@ type PileDrawListMatch struct {
 
 // PileList is the typed data model for the pile_list entity.
 type PileList struct {
-	Cards *[]any `json:"cards,omitempty"`
-	Remaining *int `json:"remaining,omitempty"`
 }
 
 // PileListLoadMatch is the typed request payload for PileList.LoadTyped.
@@ -86,7 +69,6 @@ type PileListLoadMatch struct {
 
 // Return is the typed data model for the return entity.
 type Return struct {
-	Remaining *int `json:"remaining,omitempty"`
 }
 
 // ReturnLoadMatch is the typed request payload for Return.LoadTyped.

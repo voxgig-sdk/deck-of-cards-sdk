@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PileDrawEntity = void 0;
 const DeckOfCardsEntityBase_1 = require("../DeckOfCardsEntityBase");
-// TODO: needs Entity superclass
 class PileDrawEntity extends DeckOfCardsEntityBase_1.DeckOfCardsEntityBase {
     constructor(client, entopts) {
         super(client, entopts);
