@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "voxgig-sdk-deck-of-cards"
+name = "voxgig-sdk-deck-of-cards-sdk"
 version = "0.0.1"
 description = "Unofficial generated Python SDK for the Deck of Cards public API. Not affiliated with or endorsed by the upstream API provider."
 readme = "README.md"
